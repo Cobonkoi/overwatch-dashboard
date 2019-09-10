@@ -6,7 +6,24 @@
     </head>
     
     <body>
-        <button onclick="writeToDocument('https://ow-api.com/v1/stats/pc/eu/MLGesus-21679/profile')">MLGesus Profile</button>
+        <form>
+            <input id="form-username" type="text" placeholder="username-123456">
+            <select id="form-region">
+                <option value="eu">EU</option>
+                <option value="us">US</option>
+                <option value="asia">Asia</option>
+            </select>
+            <select id="form-platform">
+                <option value="pc">PC</option>
+                <option value="ps4">PS4</option>
+                <option value="xbox">Xbox</option>
+            </select>
+        </form>
+        <button onclick="writeToDocument('https://ow-api.com/v1/stats/')">Search</button>
         <div>Games: </div><div id="stat-games"></div>
+        <div>Test Usernames: <br>
+        Zael-2375<br>
+        Sharpy-2695<br>
+        MLGesus-21679</div>
     </body>
 </html>
