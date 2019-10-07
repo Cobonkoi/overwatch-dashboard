@@ -2,28 +2,47 @@
 <html>
     <head>
         <title>Overwatch Dashboard</title>
-        <script type="text/javascript" src="main.js"></script>
+        <link rel="stylesheet" href="libraries/bootstrap.min.css" type="text/css" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+        <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
     </head>
     
     <body>
+        
+        <nav class="navbar">
+            <a href="index.html" class="navbar-brand">Image</a>
+            
+        </nav>
+        
         <form>
-            <input id="form-username" type="text" placeholder="username-123456">
-            <select id="form-region">
+            <input id="search-form-username" type="text" placeholder="Blizzard ID (Username-12345)">
+            <select id="search-form-region">
                 <option value="eu">EU</option>
                 <option value="us">US</option>
                 <option value="asia">Asia</option>
             </select>
-            <select id="form-platform">
+            <select id="search-form-platform" onchange="changeUsernamePlaceholder(); changeRegionHidden();">
                 <option value="pc">PC</option>
-                <option value="ps4">PS4</option>
-                <option value="xbox">Xbox</option>
+                <option value="psn">PS4</option>
+                <option value="xbl">Xbox</option>
             </select>
         </form>
         <button onclick="writeToDocument('https://ow-api.com/v1/stats/')">Search</button>
-        <div>Games: </div><div id="stat-games"></div>
+        <div>Games: </div><div id="stat-games"></div><br>
         <div>Test Usernames: <br>
-        Zael-2375<br>
-        Sharpy-2695<br>
-        MLGesus-21679</div>
+        Zael-2375 (PC, EU)<br>
+        Sharpy-2695 (PC, EU)<br>
+        MLGesus-21679 (PC, EU)<br>
+        LicensedCntrctr (Xbox, US)<br>
+        Ignortion (PS4, US)<br>
+        NekoGirlMx (PS4, Asia)<br>
+        shon bilinkis (Xbox, Asia)</div>
+        
+        <!-- SCRIPTS -->
+        <script src="./libraries/jquery.slim.min.js"></script>
+        <script src="./libraries/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="assets/javascript/main.js"></script>
+        
     </body>
 </html>
