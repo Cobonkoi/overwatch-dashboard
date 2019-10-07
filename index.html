@@ -1,48 +1,82 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Overwatch Dashboard</title>
-        <link rel="stylesheet" href="libraries/bootstrap.min.css" type="text/css" />
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
-        <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
-    </head>
-    
-    <body>
-        
-        <nav class="navbar">
-            <a href="index.html" class="navbar-brand">Image</a>
-            
-        </nav>
-        
-        <form>
-            <input id="search-form-username" type="text" placeholder="Blizzard ID (Username-12345)">
-            <select id="search-form-region">
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Overwatch Dashboard</title>
+    <link rel="stylesheet" href="libraries/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-sm">
+        <a href="index.html" class="navbar-brand ml-4">Image</a>
+
+        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span></button>
+
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto mr-4">
+                <li class="active nav-item mr-5"><a class="nav-link" href="search.html">Search</a></li>
+                <li class="active mr-5 d-none d-sm-block"><a class="nav-link">|</a></li>
+                <li class="nav-item mr-5"><a class="nav-link" href="compare.html">Compare</a></li>
+                <li class="active mr-5 d-none d-sm-block"><a class="nav-link">|</a></li>
+                <li class="nav-item dropdown mr-5">
+                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Contact
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">Feature Request</a>
+                        <a class="dropdown-item" href="#">Bug Report</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="">Overwatch Dashboard</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <form>
+                    <input id="search-form-username" type="text" placeholder="Blizzard ID (Username-12345)">
+                    <select id="search-form-region">
                 <option value="eu">EU</option>
                 <option value="us">US</option>
                 <option value="asia">Asia</option>
             </select>
-            <select id="search-form-platform" onchange="changeUsernamePlaceholder(); changeRegionHidden();">
+                    <select id="search-form-platform" onchange="changeUsernamePlaceholder(); changeRegionHidden();">
                 <option value="pc">PC</option>
                 <option value="psn">PS4</option>
                 <option value="xbl">Xbox</option>
             </select>
-        </form>
-        <button onclick="writeToDocument('https://ow-api.com/v1/stats/')">Search</button>
-        <div>Games: </div><div id="stat-games"></div><br>
-        <div>Test Usernames: <br>
-        Zael-2375 (PC, EU)<br>
-        Sharpy-2695 (PC, EU)<br>
-        MLGesus-21679 (PC, EU)<br>
-        LicensedCntrctr (Xbox, US)<br>
-        Ignortion (PS4, US)<br>
-        NekoGirlMx (PS4, Asia)<br>
-        shon bilinkis (Xbox, Asia)</div>
-        
-        <!-- SCRIPTS -->
-        <script src="./libraries/jquery.slim.min.js"></script>
-        <script src="./libraries/bootstrap.bundle.min.js"></script>
-        <script type="text/javascript" src="assets/javascript/main.js"></script>
-        
-    </body>
+                </form>
+                <button onclick="writeToDocument('https://ow-api.com/v1/stats/')">Search</button>
+                <div>Games: </div>
+                <div id="stat-games"></div><br>
+                <div>Test Usernames: <br> Zael-2375 (PC, EU)<br> Sharpy-2695 (PC, EU)<br> MLGesus-21679 (PC, EU)<br> LicensedCntrctr (Xbox, US)<br> Ignortion (PS4, US)<br> NekoGirlMx (PS4, Asia)<br> shon bilinkis (Xbox, Asia)</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="./libraries/jquery.slim.min.js"></script>
+    <script src="./libraries/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="assets/javascript/main.js"></script>
+
+</body>
+
 </html>
