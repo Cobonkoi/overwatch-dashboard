@@ -8,14 +8,14 @@
     <title>Overwatch Dashboard</title>
     <link rel="stylesheet" href="libraries/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300|Source+Sans+Pro:300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
 </head>
 
 <body>
-
-    <nav class="navbar navbar-expand-sm">
-        <a href="index.html" class="navbar-brand ml-4">Image</a>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-sm navbar-light">
+        <a href="index.html" class="navbar-brand ml-4">Logo Here</a>
 
         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span></button>
@@ -37,46 +37,90 @@
                 </li>
             </ul>
         </div>
-
     </nav>
+    <!-- /NAVBAR -->
 
-    <div class="container-fluid">
+    <!-- HEADER -->
+    <div class="container-fluid callout-container">
         <div class="row">
-            <div class="col-12">
-                <h1 class="">Overwatch Dashboard</h1>
+            <div class="col-12 mb-3">
+                <h1 class="text-center" id="index-title">Overwatch Dashboard</h1>
             </div>
         </div>
     </div>
 
-    <div class="container-fluid">
+    <div class="container-fluid reminder-container">
+        <div class="row">
+            <div class="col-12 mb-3">
+                <p class="lead text-center">Reminder: Overwatch profiles are private by default, you will need to set this to public in the social settings of Overwatch.</p>
+            </div>
+        </div>
+    </div>
+    <!-- /HEADER -->
+
+    <!-- SEARCH -->
+    <div class="container search-container text-center">
+        <div class="row">
+            <div class="col-12 mb-3">
+                <form class="form-inline" id="search-form">
+                    <div class="input-group mb-3 mx-auto">
+                        <select class="custom-select rounded-left--search" id="search-form-platform" onchange="changeUsernamePlaceholder(); changeRegionHidden();" required>
+                            <option disabled>Platform...</option>
+                            <option value="pc">PC</option>
+                            <option value="psn">PS4</option>
+                            <option value="xbl">Xbox</option>
+                        </select>
+                        <select class="custom-select" id="search-form-region" required>
+                            <option disabled>Region...</option>
+                            <option value="eu">EU</option>
+                            <option value="us">US</option>
+                            <option value="asia">Asia</option>
+                        </select>
+                        <div class="input-group-append">
+                            <input type="text" class="input-group-text rounded-right--search" id="search-form-username" placeholder="Blizzard ID (Username-12345)" size="65" required></input>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid text-center before-footer">
         <div class="row">
             <div class="col-12">
-                <form>
-                    <input id="search-form-username" type="text" placeholder="Blizzard ID (Username-12345)">
-                    <select id="search-form-region">
-                <option value="eu">EU</option>
-                <option value="us">US</option>
-                <option value="asia">Asia</option>
-            </select>
-                    <select id="search-form-platform" onchange="changeUsernamePlaceholder(); changeRegionHidden();">
-                <option value="pc">PC</option>
-                <option value="psn">PS4</option>
-                <option value="xbl">Xbox</option>
-            </select>
-                </form>
-                <button onclick="writeToDocument('https://ow-api.com/v1/stats/')">Search</button>
+                <button type="submit" class="btn btn-outline-dark btn-rounded btn--search" onclick="writeToDocument('https://ow-api.com/v1/stats/')" form="search-form">Search</button>
+            </div>
+        </div>
+    </div>
+    <!-- /SEARCH -->
+
+    <!-- <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
                 <div>Games: </div>
                 <div id="stat-games"></div><br>
                 <div>Test Usernames: <br> Zael-2375 (PC, EU)<br> Sharpy-2695 (PC, EU)<br> MLGesus-21679 (PC, EU)<br> LicensedCntrctr (Xbox, US)<br> Ignortion (PS4, US)<br> NekoGirlMx (PS4, Asia)<br> shon bilinkis (Xbox, Asia)</div>
             </div>
         </div>
-    </div>
+    </div> /-->
+    
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 text-left">
+                    <p>© Daniel Tierney 2019</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- /FOOTER -->
 
     <!-- SCRIPTS -->
-    <script src="./libraries/jquery.slim.min.js"></script>
-    <script src="./libraries/bootstrap.bundle.min.js"></script>
+    <script src="libraries/jquery.slim.min.js"></script>
+    <script src="libraries/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="assets/javascript/main.js"></script>
-
+    <!-- /SCRIPTS -->
+    
 </body>
-
 </html>
