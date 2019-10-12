@@ -1,11 +1,22 @@
-html, body {
-  height: 100%;
+html,
+body {
+    height: 100%;
 }
 
 body {
     font-family: 'Lato', sans-serif;
     display: flex;
     flex-direction: column;
+}
+
+p {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+/* -- NAVBAR -- */
+
+.navbar-nav {
+    font-size: 1.25rem;
 }
 
 /* -- FOOTER -- */
@@ -22,15 +33,13 @@ body {
 
 .callout-container {
     height: 30vh;
-    
+
     display: flex;
     align-items: flex-end;
     justify-content: center;
 }
 
 .reminder-container {
-    font-family: 'Source Sans Pro', sans-serif;
-    
     align-items: center;
     justify-content: center;
 }
@@ -42,20 +51,12 @@ body {
 
 /* -- FORM ASSETS -- */
 
-.rounded-left--search {
-    border-top-left-radius: 10rem;
-    border-bottom-left-radius: 10rem;
-}
 
-.rounded-right--search {
-    border-top-right-radius: 10rem;
-    border-bottom-right-radius: 10rem;
-}
 
 /* -- BUTTONS -- */
 
 .btn--search {
-    font-size:1.1rem;
+    font-size: 1.1rem;
     border-radius: 10rem;
     width: 10rem;
 }
@@ -64,4 +65,24 @@ body {
 
 #index-title {
     font-size: 3.5rem;
+}
+
+/* ---- MEDIA QUERIES ---- */
+
+@media (min-width: 768px) {
+    
+/* -- FORM ASSETS -- */
+    .rounded-left--search {
+        border-top-left-radius: 10rem;
+        border-bottom-left-radius: 10rem;
+    }
+
+    .rounded-right--search {
+        border-top-right-radius: 10rem;
+        border-bottom-right-radius: 10rem;
+    }
+    
+    #search-form-username {
+        size: 65px;
+    }
 }

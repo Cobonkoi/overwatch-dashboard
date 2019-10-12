@@ -14,18 +14,18 @@
 
 <body>
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-sm navbar-light">
-        <a href="index.html" class="navbar-brand ml-4">Logo Here</a>
+    <nav class="navbar navbar-expand-sm navbar-light my-2">
+        <a href="index.html" class="navbar-brand ml-4"><img src="assets/images/brand-image.png" width="80" height="45"></a>
 
         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span></button>
 
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto mr-4">
-                <li class="active nav-item mr-5"><a class="nav-link" href="search.html">Search</a></li>
-                <li class="active mr-5 d-none d-sm-block"><a class="nav-link">|</a></li>
+                <li class="nav-item mr-5"><a class="nav-link" href="search.html">Search</a></li>
+                <li class="mr-5 d-none d-sm-block"><a class="nav-link">|</a></li>
                 <li class="nav-item mr-5"><a class="nav-link" href="compare.html">Compare</a></li>
-                <li class="active mr-5 d-none d-sm-block"><a class="nav-link">|</a></li>
+                <li class="mr-5 d-none d-sm-block"><a class="nav-link">|</a></li>
                 <li class="nav-item dropdown mr-5">
                     <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Contact
@@ -59,18 +59,18 @@
     <!-- /HEADER -->
 
     <!-- SEARCH -->
-    <div class="container search-container text-center">
+    <div class="container search-container text-center d-none d-sm-block">
         <div class="row">
             <div class="col-12 mb-3">
                 <form class="form-inline" id="search-form">
                     <div class="input-group mb-3 mx-auto">
-                        <select class="custom-select rounded-left--search" id="search-form-platform" onchange="changeUsernamePlaceholder(); changeRegionHidden();" required>
+                        <select class="custom-select rounded-left--search" id="search-form-platform" onchange="changeUsernamePlaceholder(); changeRegionHidden();">
                             <option disabled>Platform...</option>
                             <option value="pc">PC</option>
                             <option value="psn">PS4</option>
                             <option value="xbl">Xbox</option>
                         </select>
-                        <select class="custom-select" id="search-form-region" required>
+                        <select class="custom-select" id="search-form-region">
                             <option disabled>Region...</option>
                             <option value="eu">EU</option>
                             <option value="us">US</option>
@@ -84,15 +84,51 @@
             </div>
         </div>
     </div>
-
-    <div class="container-fluid text-center before-footer">
+    
+    <div class="container-fluid text-center before-footer d-none d-sm-block">
         <div class="row">
-            <div class="col-12">
-                <button type="submit" class="btn btn-outline-dark btn-rounded btn--search" onclick="writeToDocument('https://ow-api.com/v1/stats/')" form="search-form">Search</button>
+            <div class="col-12 mb-5">
+                <button type="submit" class="btn btn-outline-dark btn-rounded btn--search" form="search-form">Search</button>
             </div>
         </div>
     </div>
     <!-- /SEARCH -->
+    
+    <!-- SEARCH-MOBILE -->
+    <div class="container search-container text-center d-sm-none">
+        <div class="row">
+            <div class="col-12">
+                <form class="form-group" id="search-form-mobile">
+                    <div class="mb-3 mx-auto">
+                        <select class="form-control my-4" id="search-form-platform-mobile" onchange="changeUsernamePlaceholderMobile(); changeRegionHiddenMobile();">
+                            <option disabled>Platform...</option>
+                            <option value="pc">PC</option>
+                            <option value="psn">PS4</option>
+                            <option value="xbl">Xbox</option>
+                        </select>
+                        <select class="form-control my-4" id="search-form-region-mobile">
+                            <option disabled>Region...</option>
+                            <option value="eu">EU</option>
+                            <option value="us">US</option>
+                            <option value="asia">Asia</option>
+                        </select>
+                        <div class="input-group-append my-4">
+                            <input type="text" class="form-control" id="search-form-username-mobile" placeholder="Blizzard ID (Username-12345)" required></input>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid text-center before-footer d-sm-none">
+        <div class="row">
+            <div class="col-12 mb-5">
+                <button type="submit" class="btn btn-outline-dark btn-rounded btn--search" form="search-form-mobile">Search</button>
+            </div>
+        </div>
+    </div>
+    <!-- /SEARCH MOBILE -->
 
     <!-- <div class="container-fluid">
         <div class="row">
