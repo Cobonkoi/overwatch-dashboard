@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Overwatch Dashboard</title>
+    <link rel="stylesheet" href="libraries/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300|Source+Sans+Pro:300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-sm navbar-light my-2">
+        <a href="index.html" class="navbar-brand ml-4"><img src="assets/images/brand-image.png" alt="Website Logo" width="80" height="45"></a>
+
+        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span></button>
+
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto mr-4">
+                <li class="nav-item mr-5"><a class="nav-link" href="search.html">Search</a></li>
+                <li class="mr-5 d-none d-sm-block"><a class="nav-link">|</a></li>
+                <li class="nav-item mr-5"><a class="nav-link" href="compare.html">Compare</a></li>
+                <li class="mr-5 d-none d-sm-block"><a class="nav-link">|</a></li>
+                <li class="nav-item dropdown mr-5">
+                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Contact
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="featurerequest.html">Feature Request</a>
+                        <a class="dropdown-item" href="bugreport.html">Bug Report</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- /NAVBAR -->
+
+    <!-- HEADER -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 mb-3 pt-4">
+                <h1 class="text-center">Feature Request</h1>
+            </div>
+        </div>
+    </div>
+    <!-- /HEADER -->
+
+    <!-- REQUESTED-FEATURES -->
+    <div class="container-fluid requested-features-container">
+        <div class="row text-center">
+            <div class="col-12">
+                <p class="lead">Most Requested Features:</p>
+            </div>
+            <div class="col-12 mb-3 mx-auto">
+                <p>Currently no requests are outstanding</p>
+            </div>
+        </div>
+    </div>
+    <!-- /REQUESTED-FEATURES -->
+
+    <!-- REQUEST-FORM -->
+    <div class="container search-container text-center">
+        <div class="row">
+            <div class="col-12">
+                <form class="form-group" id="requestForm">
+                    <div class="mb-3 mx-auto">
+                        <input type="text" class="form-control my-4" id="requestFormName" placeholder="Name" required>
+                        <input type="email" class="form-control my-4" id="requestFormEmail" placeholder="Email Address" required>
+                        <input type="text" class="form-control my-4" id="requestFormSubject" placeholder="Subject" required>
+                        <textarea class="form-control my-4" id="requestFormRequest" placeholder="Description of Request" rows="4" required></textarea>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid text-center before-footer">
+        <div class="row">
+            <div class="col-12 mb-5">
+                <button type="submit" class="btn btn-outline-dark btn-rounded btn--search" form="requestForm">Send</button>
+            </div>
+        </div>
+    </div>
+    <!-- /REQUEST-FORM -->
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 text-left">
+                    <p>© Daniel Tierney 2019</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- /FOOTER -->
+
+    <!-- SCRIPTS -->
+    <script src="libraries/jquery.slim.min.js"></script>
+    <script src="libraries/bootstrap.bundle.min.js"></script>
+    <script src="assets/javascript/main.js"></script>
+    <!-- /SCRIPTS -->
+
+</body>
+
+</html>

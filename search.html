@@ -39,29 +39,11 @@
         </div>
     </nav>
     <!-- /NAVBAR -->
-
-    <!-- HEADER -->
-    <div class="container-fluid callout-container">
-        <div class="row">
-            <div class="col-12 mb-3">
-                <h1 class="text-center" id="indexTitle">Overwatch Dashboard</h1>
-            </div>
-        </div>
-    </div>
-
-    <div class="container-fluid reminder-container">
-        <div class="row">
-            <div class="col-12 mb-3">
-                <p class="lead text-center">Reminder: Overwatch profiles are private by default, you will need to set this to public in the social settings of Overwatch.</p>
-            </div>
-        </div>
-    </div>
-    <!-- /HEADER -->
-
+    
     <!-- SEARCH -->
     <div class="container search-container text-center d-none d-sm-block">
         <div class="row">
-            <div class="col-12 mb-3">
+            <div class="col-12 my-3">
                 <form class="form-inline" id="searchForm">
                     <div class="input-group mb-3 mx-auto">
                         <select class="custom-select rounded-left--search" id="searchFormPlatform" onchange="changeUsernamePlaceholder(); changeRegionHidden();">
@@ -77,24 +59,19 @@
                             <option value="asia">Asia</option>
                         </select>
                         <div class="input-group-append">
-                            <input type="text" class="input-group-text rounded-right--search" id="searchFormUsername" placeholder="Blizzard ID (Username-12345)" size="65" required>
+                            <input type="text" class="input-group-text" id="searchFormUsername" placeholder="Blizzard ID (Username-12345)" size="65" required>
+                        </div>
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-outline-dark rounded-right--search" form="searchForm">Search</button>                        </div>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    
-    <div class="container-fluid text-center before-footer d-none d-sm-block">
-        <div class="row">
-            <div class="col-12 mb-5">
-                <button type="submit" class="btn btn-outline-dark btn-rounded btn--search" form="searchForm">Search</button>
-            </div>
-        </div>
-    </div>
     <!-- /SEARCH -->
     
-    <!-- SEARCH-MOBILE -->
+        <!-- SEARCH-MOBILE -->
     <div class="container search-container text-center d-sm-none">
         <div class="row">
             <div class="col-12">
@@ -129,6 +106,69 @@
         </div>
     </div>
     <!-- /SEARCH MOBILE -->
+    
+    <!-- HEADER -->
+    <div class="container-fluid search-header-container">
+        <div class="row">
+            <div class="col-12 mb-3">
+                <h1 class="" id="">Username</h1>
+            </div>
+        </div>
+    </div>
+    <!-- /HEADER -->
+    
+    <!-- CAREER OVERVIEW -->
+    <div class="container-fluid career-overview-container">
+        <div class="row">
+            <div class="col-5 mb-3">
+                <h4 class="" id="">Career Overview</h4>
+            </div>
+            <div class="col-5 mb-3">
+                <h4 class="" id="">Top 10 Heroes</h4>
+            </div>
+            <div class="col-2 mb-3">
+                <select class="form-control" id="">
+                    <option disabled>Region...</option>
+                    <option value="eu">EU</option>
+                    <option value="us">US</option>
+                    <option value="asia">Asia</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-5 mb-3">
+                <!-- overview table -->
+            </div>
+            <div class="col-7 mb-3">
+                <!-- top 10 table -->
+            </div>
+        </div>
+    </div>
+    <!-- /CAREER OVERVIEW -->
+    
+    <!-- FULL STATISTICS -->
+    <div class="container-fluid search-header-container">
+        <div class="row">
+            <div class="col-10 mb-3">
+                <h4 class="" id="">Full Statistics</h4>
+            </div>
+            <div class="col-2 mb-3">
+                <select class="form-control" id="">
+                    <option disabled>Region...</option>
+                    <option value="eu">EU</option>
+                    <option value="us">US</option>
+                    <option value="asia">Asia</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <!-- full statistics table -->
+            </div>
+        </div>
+    </div>
+    <!-- /FULL STATISTICS -->
+
 
     <!-- <div class="container-fluid">
         <div class="row">

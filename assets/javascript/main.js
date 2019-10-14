@@ -32,47 +32,47 @@ function writeToDocument(type) {
 }
 
 function changeUsernamePlaceholder() {
-    if (document.getElementById("search-form-platform").value == "pc") {
-        document.getElementById("search-form-username").placeholder = "Blizzard ID (Username-12345)";
-    } else if (document.getElementById("search-form-platform").value == "xbl") {
-        document.getElementById("search-form-username").placeholder = "Gamertag";
-    } else if (document.getElementById("search-form-platform").value == "psn") {
-        document.getElementById("search-form-username").placeholder = "PSN ID";
+    if (document.getElementById("searchFormPlatform").value == "pc") {
+        document.getElementById("searchFormUsername").placeholder = "Blizzard ID (Username-12345)";
+    } else if (document.getElementById("searchFormPlatform").value == "xbl") {
+        document.getElementById("searchFormUsername").placeholder = "Gamertag";
+    } else if (document.getElementById("searchFormPlatform").value == "psn") {
+        document.getElementById("searchFormUsername").placeholder = "PSN ID";
     }
 }
 
 function changeUsernamePlaceholderMobile() {
-    if (document.getElementById("search-form-platform-mobile").value == "pc") {
-        document.getElementById("search-form-username-mobile").placeholder = "Blizzard ID (Username-12345)";
-    } else if (document.getElementById("search-form-platform-mobile").value == "xbl") {
-        document.getElementById("search-form-username-mobile").placeholder = "Gamertag";
-    } else if (document.getElementById("search-form-platform-mobile").value == "psn") {
-        document.getElementById("search-form-username-mobile").placeholder = "PSN ID";
+    if (document.getElementById("searchFormPlatformMobile").value == "pc") {
+        document.getElementById("searchFormUsernameMobile").placeholder = "Blizzard ID (Username-12345)";
+    } else if (document.getElementById("searchFormPlatformMobile").value == "xbl") {
+        document.getElementById("searchFormUsernameMobile").placeholder = "Gamertag";
+    } else if (document.getElementById("searchFormPlatformMobile").value == "psn") {
+        document.getElementById("searchFormUsernameMobile").placeholder = "PSN ID";
     }
 }
 
 function changeRegionHidden() {
-    if (document.getElementById("search-form-platform").value == "pc") {
-        var regionDropdown = document.getElementById("search-form-region");
+    if (document.getElementById("searchFormPlatform").value == "pc") {
+        var regionDropdown = document.getElementById("searchFormRegion");
         regionDropdown.removeAttribute("hidden");
-    } else if (document.getElementById("search-form-platform").value == "xbl") {
-        var regionDropdown = document.getElementById("search-form-region");
+    } else if (document.getElementById("searchFormPlatform").value == "xbl") {
+        var regionDropdown = document.getElementById("searchFormRegion");
         regionDropdown.setAttribute("hidden", true);
-    } else if (document.getElementById("search-form-platform").value == "psn") {
-        var regionDropdown = document.getElementById("search-form-region");
+    } else if (document.getElementById("searchFormPlatform").value == "psn") {
+        var regionDropdown = document.getElementById("searchFormRegion");
         regionDropdown.setAttribute("hidden", true);
     }
 }
 
 function changeRegionHiddenMobile() {
-    if (document.getElementById("search-form-platform-mobile").value == "pc") {
-        var regionDropdownMobile = document.getElementById("search-form-region-mobile");
+    if (document.getElementById("searchFormPlatformMobile").value == "pc") {
+        var regionDropdownMobile = document.getElementById("searchFormRegionMobile");
         regionDropdownMobile.removeAttribute("hidden");
-    } else if (document.getElementById("search-form-platform-mobile").value == "xbl") {
-        var regionDropdownMobile = document.getElementById("search-form-region-mobile");
+    } else if (document.getElementById("searchFormPlatformMobile").value == "xbl") {
+        var regionDropdownMobile = document.getElementById("searchFormRegionMobile");
         regionDropdownMobile.setAttribute("hidden", true);
-    } else if (document.getElementById("search-form-platform-mobile").value == "psn") {
-        var regionDropdownMobile = document.getElementById("search-form-region-mobile");
+    } else if (document.getElementById("searchFormPlatformMobile").value == "psn") {
+        var regionDropdownMobile = document.getElementById("searchFormRegionMobile");
         regionDropdownMobile.setAttribute("hidden", true);
     }
 }
