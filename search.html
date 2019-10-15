@@ -39,7 +39,7 @@
         </div>
     </nav>
     <!-- /NAVBAR -->
-    
+
     <!-- SEARCH -->
     <div class="container search-container text-center d-none d-sm-block">
         <div class="row">
@@ -62,7 +62,7 @@
                             <input type="text" class="input-group-text" id="searchFormUsername" placeholder="Blizzard ID (Username-12345)" size="65" required>
                         </div>
                         <div class="input-group-append">
-                            <button type="submit" class="btn btn-outline-dark rounded-right--search" form="searchForm">Search</button>                        </div>
+                            <button type="submit" class="btn btn-outline-dark rounded-right--search" form="searchForm">Search</button>
                         </div>
                     </div>
                 </form>
@@ -70,8 +70,8 @@
         </div>
     </div>
     <!-- /SEARCH -->
-    
-        <!-- SEARCH-MOBILE -->
+
+    <!-- SEARCH-MOBILE -->
     <div class="container search-container text-center d-sm-none">
         <div class="row">
             <div class="col-12">
@@ -98,7 +98,7 @@
         </div>
     </div>
 
-    <div class="container-fluid text-center before-footer d-sm-none">
+    <div class="container text-center d-sm-none">
         <div class="row">
             <div class="col-12 mb-5">
                 <button type="submit" class="btn btn-outline-dark btn-rounded btn--search" form="searchFormMobile">Search</button>
@@ -106,9 +106,9 @@
         </div>
     </div>
     <!-- /SEARCH MOBILE -->
-    
+
     <!-- HEADER -->
-    <div class="container-fluid search-header-container">
+    <div class="container search-header-container">
         <div class="row">
             <div class="col-12 mb-3">
                 <h1 class="" id="">Username</h1>
@@ -116,9 +116,9 @@
         </div>
     </div>
     <!-- /HEADER -->
-    
+
     <!-- CAREER OVERVIEW -->
-    <div class="container-fluid career-overview-container">
+    <div class="container career-overview-container">
         <div class="row">
             <div class="col-5 mb-3">
                 <h4 class="" id="">Career Overview</h4>
@@ -137,7 +137,50 @@
         </div>
         <div class="row">
             <div class="col-5 mb-3">
-                <!-- overview table -->
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Eliminations Average:</th>
+                            <td id="careerOverviewEliminations"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Damage Done Avg:</th>
+                            <td id="careerOverviewDamageDone"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Deaths Avg:</th>
+                            <td id="careerOverviewDeaths"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Final Blows Avg:</th>
+                            <td id="careerOverviewFinalBlows"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Healing Done Avg:</th>
+                            <td id="careerOverviewHealing"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Objective Kills Avg:</th>
+                            <td id="careerOverviewObjectiveKills"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Objective Time Avg:</th>
+                            <td id="careerOverviewObjectiveTime"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Solo Kills Avg:</th>
+                            <td id="careerOverviewSoloKills"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Games Played:</th>
+                            <td id="careerOverviewGamesPlayed"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Games Won:</th>
+                            <td id="careerOverviewGamesWon"></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="col-7 mb-3">
                 <!-- top 10 table -->
@@ -145,9 +188,9 @@
         </div>
     </div>
     <!-- /CAREER OVERVIEW -->
-    
+
     <!-- FULL STATISTICS -->
-    <div class="container-fluid search-header-container">
+    <div class="container search-header-container  before-footer">
         <div class="row">
             <div class="col-10 mb-3">
                 <h4 class="" id="">Full Statistics</h4>
@@ -179,7 +222,7 @@
             </div>
         </div>
     </div> /-->
-    
+
     <!-- FOOTER -->
     <footer class="footer">
         <div class="container-fluid">
@@ -197,6 +240,7 @@
     <script src="libraries/bootstrap.bundle.min.js"></script>
     <script src="assets/javascript/main.js"></script>
     <!-- /SCRIPTS -->
-    
+
 </body>
+
 </html>
