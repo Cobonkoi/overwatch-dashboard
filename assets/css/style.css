@@ -53,6 +53,26 @@ p {
     background-color: #cbe8ba;
 }
 
+.search-header-container {
+    min-height: 30vh !important;
+    
+    background: url("../images/profile-background.png") no-repeat center center;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.search-toggler {
+    min-height: 30vh !important;
+    padding-top: 25vh;
+}
+
+.btn-group-toggler {
+    vertical-align: middle;
+}
+
 /* -- FORM ASSETS -- */
 
 
@@ -76,13 +96,21 @@ p {
 @media (min-width: 768px) {
     
 /* -- FORM ASSETS -- */
-    .rounded-left--search {
-        border-top-left-radius: 10rem;
-        border-bottom-left-radius: 10rem;
+    .rounded-left {
+        border-top-left-radius: 10rem !important;
+        border-bottom-left-radius: 10rem !important;
     }
 
-    .rounded-right--search {
-        border-top-right-radius: 10rem;
-        border-bottom-right-radius: 10rem;
+    .rounded-right {
+        border-top-right-radius: 10rem !important;
+        border-bottom-right-radius: 10rem !important;
+    }
+    
+    .rounded-top-left {
+        border-top-left-radius: 1rem !important;
+    }
+    
+    .rounded-top-right {
+        border-top-right-radius: 1rem !important;
     }
 }

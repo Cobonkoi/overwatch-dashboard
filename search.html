@@ -46,7 +46,7 @@
             <div class="col-12 my-3">
                 <form class="form-inline" id="searchForm">
                     <div class="input-group mb-3 mx-auto">
-                        <select class="custom-select rounded-left--search" id="searchFormPlatform" onchange="changeUsernamePlaceholder(); changeRegionHidden();">
+                        <select class="custom-select rounded-left" id="searchFormPlatform" onchange="changeUsernamePlaceholder(); changeRegionHidden();">
                             <option disabled>Platform...</option>
                             <option value="pc">PC</option>
                             <option value="psn">PS4</option>
@@ -62,7 +62,7 @@
                             <input type="text" class="input-group-text" id="searchFormUsername" placeholder="Blizzard ID (Username-12345)" size="65" required>
                         </div>
                         <div class="input-group-append">
-                            <button type="submit" class="btn btn-outline-dark rounded-right--search" form="searchForm">Search</button>
+                            <button type="submit" class="btn btn-outline-dark rounded-right" form="searchForm">Search</button>
                         </div>
                     </div>
                 </form>
@@ -109,20 +109,27 @@
 
     <!-- HEADER -->
     <div class="container search-header-container">
-        <div class="row">
-            <div class="col-2 mb-3 text-right">
-                <img src="assets/images/placeholder-profile-picture.png" alt="profile picture" width="100" height="100"></img>
+        <div class="row" min-height="50vh">
+            <div class="col-2 my-3 text-right">
+                <img src="assets/images/profile-picture.png" id="profilePictureImage" alt="profile picture" width="100" height="100"></img>
             </div>
-            <div class="col-3 mb-3">
+            <div class="col-3 my-3">
                 <h1 class="mb-0" id="profileUsername">Username</h1>
                 <span class="" id="profilePlatform">Platform</span><span class="" id="profileRegion">- Region</span>
             </div>
-            <div class="col-2 mb-3">
-                <!-- Account Level -->
+            <div class="col-2 pl-0 my-3">
+                <img src="assets/images/profile-picture.png" id="profileLevelImage" alt="profile picture" width="40" height="40"></img>
+                <img src="assets/images/profile-picture.png" id="profileEndoresmentImage" alt="profile picture" width="40" height="40"></img>
+                </br>
+                <img src="assets/images/profile-picture.png" id="profilePrestigeImage" alt="profile picture" width="40" height="20"></img>
+
                 <!-- Endoresment Level -->
             </div>
-            <div class="col-5 mb-3">
-                <!-- Quickplay / Comp toggler -->
+            <div class="col-5 search-toggler text-center">
+                <div class="btn-group btn-group-lg btn-group-toggler" role="group">
+                    <button type="button" class="btn btn-secondary rounded-top-left">Quickplay</button>
+                    <button type="button" class="btn btn-secondary rounded-top-right">Competitive</button>
+                </div>
             </div>
         </div>
     </div>
@@ -201,7 +208,7 @@
     <!-- /CAREER OVERVIEW -->
 
     <!-- FULL STATISTICS -->
-    <div class="container search-header-container before-footer">
+    <div class="container search-statistics-container before-footer">
         <div class="row">
             <div class="col-10 my-3">
                 <h4 class="" id="">Full Statistics</h4>
@@ -217,7 +224,439 @@
         </div>
         <div class="row">
             <div class="col-12 my-3">
-                <!-- full statistics table -->
+                <!-- NAV TABS -->
+                <ul class="nav nav-tabs" id="searchTabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="bestTab" data-toggle="tab" href="#best" role="tab" aria-controls="best" aria-selected="true">Best (Most In Game)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="combatTab" data-toggle="tab" href="#combat" role="tab" aria-controls="combat" aria-selected="false">Combat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="assistsTab" data-toggle="tab" href="#assists" role="tab" aria-controls="assists" aria-selected="false">Assists</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="averageTab" data-toggle="tab" href="#average" role="tab" aria-controls="average" aria-selected="false">Average (Per 10 Min)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="awardsTab" data-toggle="tab" href="#awards" role="tab" aria-controls="awards" aria-selected="false">Match Awards</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="gameTab" data-toggle="tab" href="#game" role="tab" aria-controls="game" aria-selected="false">Game</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="miscellaneousTab" data-toggle="tab" href="#miscellaneous" role="tab" aria-controls="miscellaneous" aria-selected="false">Miscellaneous</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="heroTab" data-toggle="tab" href="#hero" role="tab" aria-controls="hero" aria-selected="false"  hidden="true">Hero Specific</a>
+                    </li>
+                </ul>
+                <!-- /NAV TABS -->
+                
+                <!-- TAB PANES -->
+                <div class="tab-content" id="searchTabsContent">
+                    <div class="tab-pane fade show active" id="best" role="tabpanel" aria-labelledby="bestTab">
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">All Damage Done:</th>
+                                    <td id="fullStatisticsBestAllDamageDone"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Barrier Damage Done:</th>
+                                    <td id="fullStatisticsBestBarrierDamageDone"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Defensive Assists:</th>
+                                    <td id="fullStatisticsBestDefensiveAssists"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Eliminations:</th>
+                                    <td id="fullStatisticsBestEliminations"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Environmental Kills:</th>
+                                    <td id="fullStatisticsBestEnvironmentKills"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Final Blows:</th>
+                                    <td id="fullStatisticsBestFinalBlows"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Healing Done:</th>
+                                    <td id="fullStatisticsBestHealingDone"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Hero Damage Done:</th>
+                                    <td id="fullStatisticsBestHeroDamageDone"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Kills Streak - Best:</th>
+                                    <td id="fullStatisticsBestKillStreak"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Melee Final Blows:</th>
+                                    <td id="fullStatisticsBestMeleeFinalBlows"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Multikills - Best:</th>
+                                    <td id="fullStatisticsBestMultikills"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Objective Kills:</th>
+                                    <td id="fullStatisticsBestObjectiveKills"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Objective Time:</th>
+                                    <td id="fullStatisticsBestObjectiveTime"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Offensive Assists:</th>
+                                    <td id="fullStatisticsBestOffensiveAssists"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Recon Assists:</th>
+                                    <td id="fullStatisticsBestReconAssists"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Solo Kills:</th>
+                                    <td id="fullStatisticsBestSoloKills"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Time Spent On Fire:</th>
+                                    <td id="fullStatisticsBestTimeSpentOnFire"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Turrets Destroyed:</th>
+                                    <td id="fullStatisticsBestTurretsDestroyed"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="combat" role="tabpanel" aria-labelledby="combatTab">
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Eliminations Average:</th>
+                                    <td id="careerOverviewEliminations"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Damage Done Avg:</th>
+                                    <td id="careerOverviewDamageDone"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Deaths Avg:</th>
+                                    <td id="careerOverviewDeaths"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Final Blows Avg:</th>
+                                    <td id="careerOverviewFinalBlows"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Healing Done Avg:</th>
+                                    <td id="careerOverviewHealing"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Objective Kills Avg:</th>
+                                    <td id="careerOverviewObjectiveKills"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Objective Time Avg:</th>
+                                    <td id="careerOverviewObjectiveTime"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Solo Kills Avg:</th>
+                                    <td id="careerOverviewSoloKills"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Games Played:</th>
+                                    <td id="careerOverviewGamesPlayed"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Games Won:</th>
+                                    <td id="careerOverviewGamesWon"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="assists" role="tabpanel" aria-labelledby="assistsTab">
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Eliminations Average:</th>
+                                    <td id="careerOverviewEliminations"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Damage Done Avg:</th>
+                                    <td id="careerOverviewDamageDone"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Deaths Avg:</th>
+                                    <td id="careerOverviewDeaths"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Final Blows Avg:</th>
+                                    <td id="careerOverviewFinalBlows"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Healing Done Avg:</th>
+                                    <td id="careerOverviewHealing"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Objective Kills Avg:</th>
+                                    <td id="careerOverviewObjectiveKills"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Objective Time Avg:</th>
+                                    <td id="careerOverviewObjectiveTime"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Solo Kills Avg:</th>
+                                    <td id="careerOverviewSoloKills"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Games Played:</th>
+                                    <td id="careerOverviewGamesPlayed"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Games Won:</th>
+                                    <td id="careerOverviewGamesWon"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="average" role="tabpanel" aria-labelledby="averageTab">
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Eliminations Average:</th>
+                                    <td id="careerOverviewEliminations"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Damage Done Avg:</th>
+                                    <td id="careerOverviewDamageDone"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Deaths Avg:</th>
+                                    <td id="careerOverviewDeaths"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Final Blows Avg:</th>
+                                    <td id="careerOverviewFinalBlows"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Healing Done Avg:</th>
+                                    <td id="careerOverviewHealing"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Objective Kills Avg:</th>
+                                    <td id="careerOverviewObjectiveKills"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Objective Time Avg:</th>
+                                    <td id="careerOverviewObjectiveTime"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Solo Kills Avg:</th>
+                                    <td id="careerOverviewSoloKills"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Games Played:</th>
+                                    <td id="careerOverviewGamesPlayed"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Games Won:</th>
+                                    <td id="careerOverviewGamesWon"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="awards" role="tabpanel" aria-labelledby="awardsTab">
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Eliminations Average:</th>
+                                    <td id="careerOverviewEliminations"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Damage Done Avg:</th>
+                                    <td id="careerOverviewDamageDone"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Deaths Avg:</th>
+                                    <td id="careerOverviewDeaths"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Final Blows Avg:</th>
+                                    <td id="careerOverviewFinalBlows"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Healing Done Avg:</th>
+                                    <td id="careerOverviewHealing"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Objective Kills Avg:</th>
+                                    <td id="careerOverviewObjectiveKills"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Objective Time Avg:</th>
+                                    <td id="careerOverviewObjectiveTime"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Solo Kills Avg:</th>
+                                    <td id="careerOverviewSoloKills"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Games Played:</th>
+                                    <td id="careerOverviewGamesPlayed"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Games Won:</th>
+                                    <td id="careerOverviewGamesWon"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="game" role="tabpanel" aria-labelledby="gameTab">
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Eliminations Average:</th>
+                                    <td id="careerOverviewEliminations"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Damage Done Avg:</th>
+                                    <td id="careerOverviewDamageDone"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Deaths Avg:</th>
+                                    <td id="careerOverviewDeaths"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Final Blows Avg:</th>
+                                    <td id="careerOverviewFinalBlows"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Healing Done Avg:</th>
+                                    <td id="careerOverviewHealing"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Objective Kills Avg:</th>
+                                    <td id="careerOverviewObjectiveKills"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Objective Time Avg:</th>
+                                    <td id="careerOverviewObjectiveTime"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Solo Kills Avg:</th>
+                                    <td id="careerOverviewSoloKills"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Games Played:</th>
+                                    <td id="careerOverviewGamesPlayed"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Games Won:</th>
+                                    <td id="careerOverviewGamesWon"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="miscellaneous" role="tabpanel" aria-labelledby="miscellaneousTab">
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Eliminations Average:</th>
+                                    <td id="careerOverviewEliminations"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Damage Done Avg:</th>
+                                    <td id="careerOverviewDamageDone"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Deaths Avg:</th>
+                                    <td id="careerOverviewDeaths"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Final Blows Avg:</th>
+                                    <td id="careerOverviewFinalBlows"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Healing Done Avg:</th>
+                                    <td id="careerOverviewHealing"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Objective Kills Avg:</th>
+                                    <td id="careerOverviewObjectiveKills"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Objective Time Avg:</th>
+                                    <td id="careerOverviewObjectiveTime"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Solo Kills Avg:</th>
+                                    <td id="careerOverviewSoloKills"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Games Played:</th>
+                                    <td id="careerOverviewGamesPlayed"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Games Won:</th>
+                                    <td id="careerOverviewGamesWon"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="hero" role="tabpanel" aria-labelledby="heroTab">
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Eliminations Average:</th>
+                                    <td id="careerOverviewEliminations"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Damage Done Avg:</th>
+                                    <td id="careerOverviewDamageDone"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Deaths Avg:</th>
+                                    <td id="careerOverviewDeaths"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Final Blows Avg:</th>
+                                    <td id="careerOverviewFinalBlows"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Healing Done Avg:</th>
+                                    <td id="careerOverviewHealing"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Objective Kills Avg:</th>
+                                    <td id="careerOverviewObjectiveKills"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Objective Time Avg:</th>
+                                    <td id="careerOverviewObjectiveTime"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Solo Kills Avg:</th>
+                                    <td id="careerOverviewSoloKills"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Games Played:</th>
+                                    <td id="careerOverviewGamesPlayed"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Games Won:</th>
+                                    <td id="careerOverviewGamesWon"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- /TAB PANES -->
             </div>
         </div>
     </div>
