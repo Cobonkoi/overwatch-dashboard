@@ -64,14 +64,7 @@ p {
     background-size: cover;
 }
 
-.search-toggler {
-    min-height: 30vh !important;
-    padding-top: 25vh;
-}
 
-.btn-group-toggler {
-    vertical-align: middle;
-}
 
 /* -- FORM ASSETS -- */
 
@@ -85,10 +78,24 @@ p {
     width: 10rem;
 }
 
+.search-toggler {
+    min-height: 30vh !important;
+    padding-top: 25vh;
+}
+
 /* -- HEADERS -- */
 
 #indexTitle {
     font-size: 3.5rem;
+}
+
+/* -- TEXT -- */
+
+.centered-image-text {
+    position: absolute;
+    top: 13%;
+    left: 44%;
+    transform: translate(-50%, -50%);
 }
 
 /* ---- MEDIA QUERIES ---- */

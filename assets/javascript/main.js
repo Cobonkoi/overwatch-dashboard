@@ -1,12 +1,24 @@
 const baseURL = "https://ow-api.com/v1/stats/";
 
+const bestArray = ['allDamageDoneMostInGame', 'barrierDamageDoneMostInGame', 'defensiveAssistsMostInGame', 'eliminationsMostInGame', 'finalBlowsMostInGame', 'healingDoneMostInGame',
+                    'heroDamageDoneMostInGame', 'killsStreakBest', 'meleeFinalBlowsMostInGame', 'multikillsBest', 'objectiveKillsMostInGame', 'objectiveTimeMostInGame',
+                    'offensiveAssistsMostInGame', 'soloKillsMostInGame', 'timeSpentOnFireMostInGame', 'turretsDestroyedMostInGame'];
+const combatArray = ['barrierDamageDone', 'damageDone', 'deaths', 'eliminations', 'finalBlows', 'heroDamageDone', 'meleeFinalBlows', 'multikills', 'objectiveKills',
+                            'objectiveTime', 'soloKills', 'timeSpentOnFire'];
+const assistsArray = ['defensiveAssists', 'healingDone', 'offensiveAssists'];
+const averageArray = ['allDamageDoneAvgPer10Min', 'barrierDamageDoneAvgPer10Min', 'deathsAvgPer10Min', 'eliminationsAvgPer10Min', 'finalBlowsAvgPer10Min', 'healingDoneAvgPer10Min',
+                            'heroDamageDoneAvgPer10Min', 'objectiveKillsAvgPer10Min', 'objectiveTimeAvgPer10Min', 'soloKillsAvgPer10Min', 'timeSpentOnFireAvgPer10Min'];
+const awardsArray = ['cards', 'medals', 'medalsBronze', 'medalsGold', 'medalsSilver'];
+const gameArray = ['gamesWon', 'timePlayed'];
+const miscellaneousArray = ['teleporterPadsDestroyed', 'turretsDestroyed'];
 
-function getData(type, cb) {
+
+function getData(cb) {
     var xhr = new XMLHttpRequest();
     
-    var platform = document.getElementById("search-form-platform").value;
-    var region = document.getElementById("search-form-region").value;
-    var username = document.getElementById("search-form-username").value;
+    var platform = document.getElementById("searchFormPlatform").value;
+    var region = document.getElementById("searchFormRegion").value;
+    var username = document.getElementById("searchFormUsername").value;
     
     if (platform == "pc") {
         var profileUrl = baseURL + platform + "/" + region + "/" + username + "/complete";
@@ -24,10 +36,56 @@ function getData(type, cb) {
     xhr.send();
 }
 
-function writeToDocument(type) {
-    getData(type, function(data) {
+function writeToDocument() {
+    getData(function(data) {
+        
+        var gameType = document.getElementById("gameTypeSelect").value;
+        var heroName = document.getElementById("heroNameSelect").value;
+        
         console.dir(data);
-        document.getElementById("stat-games").innerHTML = `Played ${data.competitiveStats.games.played} / Won ${data.competitiveStats.games.won}`;
+        
+        //Profile Text
+        document.getElementById("profileUsername").innerHTML = data['name'];
+        document.getElementById("profileLevel").innerHTML = data['level'];
+        document.getElementById("profileEndoresmentLevel").innerHTML = data['endorsement'];
+        document.getElementById("profilePlatform").innerHTML = document.getElementById("searchFormPlatform").value;
+        document.getElementById("profileRegion").innerHTML = " - " + document.getElementById("searchFormRegion").value;
+        
+        
+        //Images
+        document.getElementById("profilePictureImage").src = data['icon'];
+        document.getElementById("profileLevelImage").src = data['levelIcon'];
+        document.getElementById("profileEndoresmentImage").src = data['endorsementIcon'];
+        document.getElementById("profilePrestigeImage").src = data['prestigeIcon'];
+        
+        //Table Data
+        bestArray.forEach(function(statistic) {
+            document.getElementById(statistic).innerHTML = data[gameType]['careerStats'][heroName]['best'][statistic];
+        });
+        
+        combatArray.forEach(function(statistic2) {
+            document.getElementById(statistic2).innerHTML = data[gameType]['careerStats'][heroName]['combat'][statistic2];
+        });
+        
+        assistsArray.forEach(function(statistic) {
+            document.getElementById(statistic).innerHTML = data[gameType]['careerStats'][heroName]['assists'][statistic];
+        });
+        
+        averageArray.forEach(function(statistic) {
+            document.getElementById(statistic).innerHTML = data[gameType]['careerStats'][heroName]['average'][statistic];
+        });
+        
+        awardsArray.forEach(function(statistic) {
+            document.getElementById(statistic).innerHTML = data[gameType]['careerStats'][heroName]['matchAwards'][statistic];
+        });
+        
+        gameArray.forEach(function(statistic) {
+            document.getElementById(statistic).innerHTML = data[gameType]['careerStats'][heroName]['game'][statistic];
+        });
+        
+        miscellaneousArray.forEach(function(statistic) {
+            document.getElementById(statistic).innerHTML = data[gameType]['careerStats'][heroName]['miscellaneous'][statistic];
+        });
     });
 }
 
