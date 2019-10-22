@@ -74,11 +74,6 @@
                 <!--</form>-->
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <p class="mx-auto text-center" id="errorMessage"></p>
-            </div>
-        </div>
     </div>
     <!-- /SEARCH -->
 
@@ -117,7 +112,17 @@
         </div>
     </div>
     <!-- /SEARCH MOBILE -->
-
+    
+    <!-- ERROR MESSAGES -->
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <p class="mx-auto text-center" id="errorMessage"></p>
+            </div>
+        </div>
+    </div>
+    <!-- /ERROR MESSAGES -->
+    
     <!-- HEADER -->
     <div class="container search-header-container">
         <div class="row" min-height="50vh">
@@ -585,7 +590,7 @@
             <div class="col-12">
                 <div>Games: </div>
                 <div id="stat-games"></div><br>
-                <div>Test Usernames: <br> Zael-2375 (PC, EU)<br> Sharpy-2695 (PC, EU)<br> MLGesus-21679 (PC, EU)<br> LicensedCntrctr (Xbox, US)
+                <div>Test Usernames: <br>   (PC, EU)<br> Sharpy-2695 (PC, EU)<br> MLGesus-21679 (PC, EU)<br> LicensedCntrctr (Xbox, US)
                 <br> Ignortion (PS4, US)<br> NekoGirlMx (PS4, Asia)<br> shon bilinkis (Xbox, Asia)</div>
             </div>
         </div>
@@ -608,6 +613,12 @@
     <script src="libraries/bootstrap.bundle.min.js"></script>
     <script src="assets/javascript/main.js"></script>
     <!-- /SCRIPTS -->
+
+    <!-- ONLOAD -->
+    <script type="text/javascript">
+        window.onload = indexSearch();
+    </script>
+    <!-- /ONLOAD -->
 
 </body>
 

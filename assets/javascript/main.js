@@ -35,6 +35,18 @@ function getData(platformInput, regionInput, usernameInput, cb) {
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             cb(JSON.parse(this.responseText));
+        } else if (this.readyState == 4 && this.status == 400) {
+            document.getElementById("errorMessage").innerHTML = "Bad Request - Please follow correct format for PC (Username-12345)";
+            hideLoadingScreen();
+        } else if (this.readyState == 4 && this.status == 402) {
+            document.getElementById("errorMessage").innerHTML = "Profile not found - Please check your search criteria";
+            hideLoadingScreen();
+        } else if (this.readyState == 4 && this.status == 500) {
+            document.getElementById("errorMessage").innerHTML = "Internal Server Error – We had a problem with our server. Try again later.";
+            hideLoadingScreen();
+        } else if (this.readyState == 4 && this.status == 503) {
+            document.getElementById("errorMessage").innerHTML = "Service Unavailable – We’re temporarily offline for maintenance. Please try again later.";
+            hideLoadingScreen();
         }
     };
 
@@ -43,9 +55,7 @@ function getData(platformInput, regionInput, usernameInput, cb) {
 }
 
 function writeToDocument(platformInput, regionInput, usernameInput) {
-    document.getElementById("errorMessage").innerHTML = "";
-    document.getElementById("loaderBackground").classList.add("loader-background");
-    document.getElementById("loader").classList.add("loader");
+    showLoadingScreen();
 
     getData(platformInput, regionInput, usernameInput, function(data) {
         dataDownload = data;
@@ -57,9 +67,51 @@ function writeToDocument(platformInput, regionInput, usernameInput) {
         else {
             changeDocumentData();
         }
-        document.getElementById("loaderBackground").classList.remove('loader-background');
-        document.getElementById("loader").classList.remove('loader');
+        hideLoadingScreen();
     });
+
+}
+
+function showLoadingScreen() {
+    document.getElementById("errorMessage").innerHTML = "";
+    document.getElementById("loaderBackground").classList.add("loader-background");
+    document.getElementById("loader").classList.add("loader");
+}
+
+function hideLoadingScreen() {
+    document.getElementById("loaderBackground").classList.remove('loader-background');
+    document.getElementById("loader").classList.remove('loader');
+}
+
+function GetURLParameter(param) {
+    var pageURL = window.location.search.substring(1);
+    var urlVariables = pageURL.split('&');
+    for (var i = 0; i < urlVariables.length; i++) {
+        var parameterName = urlVariables[i].split('=');
+        if (parameterName[0] == param) {
+            return parameterName[1];
+        }
+    }
+}
+
+function indexSearch() {
+    //Get variables passed from index.html in the url, add to search box data
+
+    var searchFormPlatform = GetURLParameter('searchFormPlatform');
+    var searchFormRegion = GetURLParameter('searchFormRegion');
+    var searchFormUsername = GetURLParameter('searchFormUsername');
+
+    if (searchFormPlatform !== undefined && searchFormRegion !== undefined && searchFormUsername !== undefined) {
+        document.getElementById('searchFormPlatform').value = searchFormPlatform;
+        document.getElementById('searchFormRegion').value = searchFormRegion;
+        document.getElementById('searchFormUsername').value = searchFormUsername;
+
+        document.getElementById('searchFormPlatformMobile').value = searchFormPlatform;
+        document.getElementById('searchFormRegionMobile').value = searchFormRegion;
+        document.getElementById('searchFormUsernameMobile').value = searchFormUsername;
+
+        writeToDocument('searchFormPlatform', 'searchFormRegion', 'searchFormUsername');
+    }
 }
 
 function changeDocumentData() {
