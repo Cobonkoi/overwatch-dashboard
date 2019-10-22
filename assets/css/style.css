@@ -53,22 +53,8 @@ p {
     background-color: #cbe8ba;
 }
 
-.search-header-container {
-    min-height: 30vh !important;
-    
-    background: url("../images/profile-background.png") no-repeat center center;
-
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-
-
 
 /* -- FORM ASSETS -- */
-
-
 
 /* -- BUTTONS -- */
 
@@ -78,10 +64,6 @@ p {
     width: 10rem;
 }
 
-.search-toggler {
-    min-height: 30vh !important;
-    padding-top: 25vh;
-}
 
 /* -- HEADERS -- */
 
@@ -98,11 +80,86 @@ p {
     transform: translate(-50%, -50%);
 }
 
+.username {
+    text-align: center;
+}
+
+#errorMessage {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: red;
+}
+
+/* -- LOADERS -- */
+
+.loader {
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    margin:auto;
+    
+    border: 20px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 20px solid gold;
+    border-bottom: 20px solid gold;
+    
+    width: 120px;
+    height: 120px;
+    
+    -webkit-animation: spin 1.5s linear infinite;
+    animation: spin 1.5s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loader-background {
+    position:fixed;
+    
+    padding:0;
+    margin:0;
+    top:0;
+    left:0;
+
+    width: 100%;
+    height: 100%;
+    
+    background:rgba(0,0,0,0.8);
+    
+    z-index: 999;
+}
+
+/* -- IMAGES -- */
+
+.profile-picture {
+    text-align: center;
+}
+
 /* ---- MEDIA QUERIES ---- */
 
 @media (min-width: 768px) {
-    
-/* -- FORM ASSETS -- */
+    /* -- CONTAINERS -- */
+    .search-header-container {
+        min-height: 30vh !important;
+
+        background: url("../images/profile-background.png") no-repeat center center;
+
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
+    /* -- FORM ASSETS -- */
     .rounded-left {
         border-top-left-radius: 10rem !important;
         border-bottom-left-radius: 10rem !important;
@@ -112,12 +169,28 @@ p {
         border-top-right-radius: 10rem !important;
         border-bottom-right-radius: 10rem !important;
     }
-    
+
     .rounded-top-left {
         border-top-left-radius: 1rem !important;
     }
-    
+
     .rounded-top-right {
         border-top-right-radius: 1rem !important;
+    }
+
+    /* -- BUTTONS -- */
+    .search-toggler {
+        min-height: 30vh !important;
+        padding-top: 25vh;
+    }
+
+    /* -- TEXT -- */
+    .username {
+        text-align: left;
+    }
+
+    /* -- IMAGES -- */
+    .profile-picture {
+        text-align: right;
     }
 }
