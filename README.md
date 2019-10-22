@@ -1,44 +1,90 @@
 # Overwatch Dashboard
+This project is a dashboard for the popular online game Overwatch.
 
-One or two paragraphs providing an overview of your project.
+Using this website you will be able to search for information on users spanning across all platforms.
+There is also a page for you to easily compare your statistics with other users.
 
-Essentially, this part is your sales pitch.
- 
+Features also exist to request new features and report bugs.
+
+The goals of the website are to:
+- Allow users to search for their profile and easily view there statistics
+- Allow users to search for their friends profiles and easily view there statistics
+- Provide users with an easy way to compare their statistics to those of others
+- Allow users to report any issues they have on the website.
+- Allow users to suggest improvements to the website.
+
 ## Demo
 
 A demo can be viewed on Github Pages [here](https://cobonkoi.github.io/overwatch-dashboard/).
- 
+
+If you don't play Overwatch, here is a list of example profiles to use on the website:
+Sharpy-2695 (PC)
+MLGesus-21679 (PC)
+LicensedCntrctr (Xbox)
+shon bilinkis (Xbox)
+Ignortion (PS4)
+NekoGirlMx (PS4)
+
 ## UX
+My goal with the design of this website was to be as minimilistic as possible to enable the data to be easy to read and understand.
 
-Use this section to provide insight into your UX process, focusing on who this website is for, what it is that they want to achieve and how your project is the best way to help them achieve these things.
+To do this I have not included vibrant colours or too much information on the screen at once.
 
-In particular, as part of this section we recommend that you provide a list of User Stories, with the following general structure:
-- As a user type, I want to perform an action, so that I can achieve a goal.
+This website is for users who want to look at their statistics outside of the game and compare them to other users.
 
-This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of the design process. These files should themselves either be included in the project itself (in an separate directory), or just hosted elsewhere online and can be in any format that is viewable inside the browser.
+#### User Stories
+1. As a new visitor to the site, I want to be able to easily navigate the site, so that I can find what I want easily.
+2. As a new visitor to the site, I want to search for my overwatch profile easily.
+3. As a new visitor to the site, I want to compare my profile to other overwatch profiles.
+4. As a user of the site, I want to request a new feature for the dashboard.
+5. As a user of the site, I want to report a bug I have encountered.
+
+#### Wireframe Mockups
+
 
 ## Features
+Each page features a navigation bar that is responsive to screen sizes. This contains links to each other page, as well as the site logo in the top left which links back to the index page.
+Each page features a footer with copyright information.
 
-In this section, you should go over the different parts of your project, and describe each in a sentence or so.
- 
+#### Index
+
+This page features a search bar with dropdown to pick the relevant platform that you want to search.
+Clicking the search button will send you to the search page, and show information for the username/platform that you input.
+
+#### Search
+
+This page features the same search bar as the index page. If you have come from the index page this will show the information that you searched.
+If you have come from the index page via a search, all of the information on this page will update automatically on load.
+Beneath the search is the profile overview which shows profile picture, username, platform, profile level and endoresment level of the searched profile.
+Beneath the profile overview, are the profiles full statistics.
+This has 2 dropdown menus to change the information that appears in the tables below them.
+The tables are laid out in tabs which can easily be switch between by clicking the titles.
+
+#### Compare
+
+
+
+#### Feature Request/Bug Report
+
+These pages feature a list of currently known bugs and requested features.
+They also feature a form to fill in to either report a bug or request a feature.
+
 ### Existing Features
-- Feature 1 - allows users X to achieve Y, by having them fill out Z
-- ...
 
-For some/all of your features, you may choose to reference the specific project files that implement them, although this is entirely optional.
-
-In addition, you may also use this section to discuss plans for additional features to be implemented in the future:
+- Search Profile Form - This form allows the user to search for a profile over 3 platforms (PC, Xbox, PS4)
+- Compare Profile Form - This form allows the user to add and remove profiles to compare statistics between them.
+- Report Bug Form - This form allows the user to input information on a bug they have encountered to report it.
+- Request Feature Form - This form allows the user to suggest improvements to the site.
 
 ### Features Left to Implement
-- Another feature idea
+- History of searched profiles - With this you could easily see your historical searches and navigate back to these profiles. I did not have time to implement this, this could be added in the future.
 
 ## Technologies Used
-
-In this section, you should mention all of the languages, frameworks, libraries, and any other tools that you have used to construct this project. For each, provide its name, a link to its official site and a short sentence of why it was used.
-
-- [JQuery](https://jquery.com)
-    - The project uses **JQuery** to simplify DOM manipulation.
-
+1. HTML
+2. CSS
+3. Bootstrap (4.3)
+4. JQuery
+5. Javascript
 
 ## Testing
 
@@ -74,12 +120,7 @@ In addition, if it is not obvious, you should also describe how to run your code
 
 ## Credits
 
-### Content
-- The text for section Y was copied from the [Wikipedia article Z](https://en.wikipedia.org/wiki/Z)
-
 ### Media
-- The photos used in this site were obtained from ...
+- The screenshots used on this site were obtained from the game Overwatch.
 
-### Acknowledgements
-
-- I received inspiration for this project from X
+This is for educational use.

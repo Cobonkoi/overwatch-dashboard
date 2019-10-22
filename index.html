@@ -64,18 +64,18 @@
             <div class="col-12 mb-3">
                 <form class="form-inline" id="searchForm" action="search.html" method="GET">
                     <div class="input-group mb-3 mx-auto">
-                        <select class="custom-select rounded-left" id="searchFormPlatform" name="searchFormPlatform" onchange="changeUsernamePlaceholder(); changeRegionHidden();">
+                        <select class="custom-select rounded-left" id="searchFormPlatform" name="searchFormPlatform" onchange="changeUsernamePlaceholder();">
                             <option disabled>Platform...</option>
                             <option value="pc">PC</option>
                             <option value="psn">PS4</option>
                             <option value="xbl">Xbox</option>
                         </select>
-                        <select class="custom-select" id="searchFormRegion" name="searchFormRegion">
+                        <!--<select class="custom-select" id="searchFormRegion" name="searchFormRegion">
                             <option disabled>Region...</option>
                             <option value="eu">EU</option>
                             <option value="us">US</option>
                             <option value="asia">Asia</option>
-                        </select>
+                        </select>-->
                         <div class="input-group-append">
                             <input type="text" class="input-group-text rounded-right" id="searchFormUsername" name="searchFormUsername" placeholder="Blizzard ID (Username-12345)" size="65" required>
                         </div>
@@ -100,18 +100,18 @@
             <div class="col-12">
                 <form class="form-group" id="searchFormMobile" action="search.html" method="GET">
                     <div class="mb-3 mx-auto">
-                        <select class="form-control my-4" id="searchFormPlatformMobile" name="searchFormPlatform" onchange="changeUsernamePlaceholderMobile(); changeRegionHiddenMobile();">
+                        <select class="form-control my-4" id="searchFormPlatformMobile" name="searchFormPlatform" onchange="changeUsernamePlaceholderMobile();">
                             <option disabled>Platform...</option>
                             <option value="pc">PC</option>
                             <option value="psn">PS4</option>
                             <option value="xbl">Xbox</option>
                         </select>
-                        <select class="form-control my-4" id="searchFormRegionMobile" name="searchFormRegion">
+                        <!--<select class="form-control my-4" id="searchFormRegionMobile" name="searchFormRegion">
                             <option disabled>Region...</option>
                             <option value="eu">EU</option>
                             <option value="us">US</option>
                             <option value="asia">Asia</option>
-                        </select>
+                        </select>-->
                         <div class="input-group-append my-4">
                             <input type="text" class="form-control" id="searchFormUsernameMobile" name="searchFormUsername" placeholder="Blizzard ID (Username-12345)" required>
                         </div>

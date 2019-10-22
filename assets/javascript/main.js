@@ -15,14 +15,16 @@ const awardsArray = ['cards', 'medals', 'medalsBronze', 'medalsGold', 'medalsSil
 const gameArray = ['gamesWon', 'timePlayed'];
 const miscellaneousArray = ['teleporterPadsDestroyed', 'turretsDestroyed'];
 
+const profileImageArray = ['havana-screenshot-001.jpg', 'havana-screenshot-002.jpg', 'havana-screenshot-003.jpg', 'havana-screenshot-004.jpg']
+
 let dataDownload = {};
 
 
-function getData(platformInput, regionInput, usernameInput, cb) {
+function getData(platformInput, usernameInput, cb) {
     var xhr = new XMLHttpRequest();
 
     var platform = document.getElementById(platformInput).value;
-    var region = document.getElementById(regionInput).value;
+    var region = 'eu';
     var username = document.getElementById(usernameInput).value;
 
     if (platform == "pc") {
@@ -38,8 +40,8 @@ function getData(platformInput, regionInput, usernameInput, cb) {
         } else if (this.readyState == 4 && this.status == 400) {
             document.getElementById("errorMessage").innerHTML = "Bad Request - Please follow correct format for PC (Username-12345)";
             hideLoadingScreen();
-        } else if (this.readyState == 4 && this.status == 402) {
-            document.getElementById("errorMessage").innerHTML = "Profile not found - Please check your search criteria";
+        } else if (this.readyState == 4 && this.status == 404) {
+            document.getElementById("errorMessage").innerHTML = "Profile not found - Please check Platform - Profiles are case sensitive";
             hideLoadingScreen();
         } else if (this.readyState == 4 && this.status == 500) {
             document.getElementById("errorMessage").innerHTML = "Internal Server Error – We had a problem with our server. Try again later.";
@@ -54,10 +56,10 @@ function getData(platformInput, regionInput, usernameInput, cb) {
     xhr.send();
 }
 
-function writeToDocument(platformInput, regionInput, usernameInput) {
+function writeToDocument(platformInput, usernameInput) {
     showLoadingScreen();
 
-    getData(platformInput, regionInput, usernameInput, function(data) {
+    getData(platformInput, usernameInput, function(data) {
         dataDownload = data;
 
         console.dir(dataDownload);
@@ -95,22 +97,17 @@ function GetURLParameter(param) {
 }
 
 function indexSearch() {
-    //Get variables passed from index.html in the url, add to search box data
-
     var searchFormPlatform = GetURLParameter('searchFormPlatform');
-    var searchFormRegion = GetURLParameter('searchFormRegion');
     var searchFormUsername = GetURLParameter('searchFormUsername');
 
-    if (searchFormPlatform !== undefined && searchFormRegion !== undefined && searchFormUsername !== undefined) {
+    if (searchFormPlatform !== undefined && searchFormUsername !== undefined) {
         document.getElementById('searchFormPlatform').value = searchFormPlatform;
-        document.getElementById('searchFormRegion').value = searchFormRegion;
         document.getElementById('searchFormUsername').value = searchFormUsername;
 
         document.getElementById('searchFormPlatformMobile').value = searchFormPlatform;
-        document.getElementById('searchFormRegionMobile').value = searchFormRegion;
         document.getElementById('searchFormUsernameMobile').value = searchFormUsername;
 
-        writeToDocument('searchFormPlatform', 'searchFormRegion', 'searchFormUsername');
+        writeToDocument('searchFormPlatform', 'searchFormUsername');
     }
 }
 
@@ -125,11 +122,16 @@ function changeDocumentData() {
         document.getElementById("profileLevel").innerHTML = dataDownload['level'] + (dataDownload['prestige'] * 100);
         document.getElementById("profileEndoresmentLevel").innerHTML = dataDownload['endorsement'];
         document.getElementById("profilePlatform").innerHTML = document.getElementById("searchFormPlatform").value;
-        document.getElementById("profileRegion").innerHTML = " - " + document.getElementById("searchFormRegion").value;
+        /*document.getElementById("profileRegion").innerHTML = " - " + document.getElementById("searchFormRegion").value;*/
 
 
         //Images
         document.getElementById("profilePictureImage").src = dataDownload['icon'];
+        
+        var profileBackgroundImage = profileImageArray[Math.floor(Math.random()*profileImageArray.length)]
+        var profileBackground = document.getElementById("profileBackground");
+        profileBackground.style.background = `url("../images/${profileBackgroundImage}") no-repeat center center`;
+       /* profileBackground.style.backgroundsize = "cover";*/
         /*document.getElementById("profileLevelImage").src = dataDownload['levelIcon'];
         document.getElementById("profileEndoresmentImage").src = dataDownload['endorsementIcon'];
         document.getElementById("profilePrestigeImage").src = dataDownload['prestigeIcon'];*/
@@ -294,7 +296,7 @@ function changeUsernamePlaceholderMobile() {
     }
 }
 
-function changeRegionHidden() {
+/*function changeRegionHidden() {
     if (document.getElementById("searchFormPlatform").value == "pc") {
         var regionDropdown = document.getElementById("searchFormRegion");
         regionDropdown.removeAttribute("hidden");
@@ -307,9 +309,9 @@ function changeRegionHidden() {
         var regionDropdown = document.getElementById("searchFormRegion");
         regionDropdown.setAttribute("hidden", true);
     }
-}
+}*/
 
-function changeRegionHiddenMobile() {
+/*function changeRegionHiddenMobile() {
     if (document.getElementById("searchFormPlatformMobile").value == "pc") {
         var regionDropdownMobile = document.getElementById("searchFormRegionMobile");
         regionDropdownMobile.removeAttribute("hidden");
@@ -322,4 +324,4 @@ function changeRegionHiddenMobile() {
         var regionDropdownMobile = document.getElementById("searchFormRegionMobile");
         regionDropdownMobile.setAttribute("hidden", true);
     }
-}
+}*/
