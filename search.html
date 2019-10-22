@@ -50,7 +50,6 @@
     <div class="container search-container text-center d-none d-sm-block">
         <div class="row">
             <div class="col-11 mt-3 mx-auto">
-                <!--<form class="form-inline" id="searchForm">-->
                 <div class="input-group mb-3">
                     <select class="custom-select rounded-left" id="searchFormPlatform" onchange="changeUsernamePlaceholder();">
                             <option disabled>Platform...</option>
@@ -58,12 +57,6 @@
                             <option value="psn">PS4</option>
                             <option value="xbl">Xbox</option>
                         </select>
-                    <!--<select class="custom-select" id="searchFormRegion">
-                            <option disabled>Region...</option>
-                            <option value="eu">EU</option>
-                            <option value="us">US</option>
-                            <option value="asia">Asia</option>
-                        </select>-->
                     <div class="input-group-append">
                         <input type="text" class="input-group-text" id="searchFormUsername" placeholder="Blizzard ID (Username-12345)" size="65" required>
                     </div>
@@ -71,7 +64,6 @@
                         <button class="btn btn-outline-dark rounded-right" onclick="writeToDocument('searchFormPlatform', 'searchFormUsername')">Search</button>
                     </div>
                 </div>
-                <!--</form>-->
             </div>
         </div>
     </div>
@@ -81,7 +73,6 @@
     <div class="container search-container text-center d-sm-none">
         <div class="row">
             <div class="col-12">
-                <!--<form class="form-group" id="searchFormMobile">-->
                 <div class="mb-3 mx-auto">
                     <select class="form-control my-4" id="searchFormPlatformMobile" onchange="changeUsernamePlaceholderMobile();">
                             <option disabled>Platform...</option>
@@ -89,17 +80,10 @@
                             <option value="psn">PS4</option>
                             <option value="xbl">Xbox</option>
                         </select>
-                    <!--<select class="form-control my-4" id="searchFormRegionMobile">
-                            <option disabled>Region...</option>
-                            <option value="eu">EU</option>
-                            <option value="us">US</option>
-                            <option value="asia">Asia</option>
-                        </select>-->
                     <div class="input-group-append my-4">
                         <input type="text" class="form-control" id="searchFormUsernameMobile" placeholder="Blizzard ID (Username-12345)" required>
                     </div>
                 </div>
-                <!--</form>-->
             </div>
         </div>
     </div>
@@ -112,7 +96,7 @@
         </div>
     </div>
     <!-- /SEARCH MOBILE -->
-    
+
     <!-- ERROR MESSAGES -->
     <div class="container">
         <div class="row">
@@ -122,28 +106,24 @@
         </div>
     </div>
     <!-- /ERROR MESSAGES -->
-    
+
     <!-- HEADER -->
     <div class="container search-header-container" id="profileBackground">
-        <div class="row" min-height="50vh">
+        <div class="row">
             <div class="col-sm-12 col-md-2 my-3 profile-picture">
-                <img src="assets/images/profile-picture.png" class="" id="profilePictureImage" alt="profile picture" width="100" height="100"></img>
+                <img src="assets/images/profile-picture.png" class="" id="profilePictureImage" alt="profile picture" width="100" height="100">
             </div>
             <div class="col-sm-12 col-md-5 my-3 username">
                 <h1 class="mb-0" id="profileUsername">Username</h1>
-                <h4 class="" id="profilePlatform">Platform</h4>
+                <h4 id="profilePlatform">Platform</h4>
             </div>
             <div class="col-sm-12 text-center col-md-2 pl-0 my-3 pr-0">
                 <h4 class="mb-0">Profile Level:</h4>
-                <h4 class="" id="profileLevel">0</h4>
-                <!-- <img src="assets/images/profile-picture.png" id="profileLevelImage" alt="profile level image" width="70" height="70"><div class="centered-image-text" id="profileLevel"></div></img>
-                <br>
-                <img src="assets/images/profile-picture.png" id="profilePrestigeImage" alt="prestige level image" width="70" height="35"></img>-->
+                <h4 id="profileLevel">0</h4>
             </div>
             <div class="col-sm-12 text-center col-md-3 pl-0 my-3 pr-0">
                 <h4 class="mb-0">Endorsement Level:</h4>
-                <h4 class="" id="profileEndoresmentLevel">0</h4>
-                <!--<img src="assets/images/profile-picture.png" id="profileEndoresmentImage" alt="endorsement level image" width="70" height="70"><div class="centered-image-text" id="profileEndoresmentLevel"></div></img>-->
+                <h4 id="profileEndoresmentLevel">0</h4>
             </div>
         </div>
     </div>
@@ -225,7 +205,7 @@
     <div class="container search-statistics-container before-footer">
         <div class="row">
             <div class="col-sm-12 col-md-8 mt-3 mb-2">
-                <h4 class="" id="">Full Statistics</h4>
+                <h4>Full Statistics</h4>
             </div>
             <div class="col-sm-12 col-md-2 mt-3">
                 <select class="form-control" id="gameTypeSelect" onchange="changeDocumentData()">
@@ -277,9 +257,6 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="miscellaneousTab" data-toggle="tab" href="#miscellaneous" role="tab" aria-controls="miscellaneous" aria-selected="false">Miscellaneous</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="heroTab" data-toggle="tab" href="#hero" role="tab" aria-controls="hero" aria-selected="false" hidden="true">Hero Specific</a>
                     </li>
                 </ul>
                 <!-- /NAV TABS -->
@@ -531,70 +508,12 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="tab-pane fade" id="hero" role="tabpanel" aria-labelledby="heroTab">
-                        <table class="table table-striped">
-                            <tbody>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <td id="hero1"></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <td id="hero2"></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <td id="hero3"></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <td id="hero4"></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <td id="hero5"></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <td id="hero6"></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <td id="hero7"></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <td id="hero8"></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <td id="hero9"></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <td id="hero10"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
-                <!-- /TAB PANES -->
             </div>
+            <!-- /TAB PANES -->
         </div>
     </div>
     <!-- /FULL STATISTICS -->
-
-
-    <!-- <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div>Games: </div>
-                <div id="stat-games"></div><br>
-                <div>Test Usernames: <br>   (PC, EU)<br> Sharpy-2695 (PC, EU)<br> MLGesus-21679 (PC, EU)<br> LicensedCntrctr (Xbox, US)
-                <br> Ignortion (PS4, US)<br> NekoGirlMx (PS4, Asia)<br> shon bilinkis (Xbox, Asia)</div>
-            </div>
-        </div>
-    </div> /-->
 
     <!-- FOOTER -->
     <footer class="footer">
@@ -615,7 +534,7 @@
     <!-- /SCRIPTS -->
 
     <!-- ONLOAD -->
-    <script type="text/javascript">
+    <script>
         window.onload = indexSearch();
     </script>
     <!-- /ONLOAD -->

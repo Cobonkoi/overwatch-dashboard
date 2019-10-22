@@ -21,10 +21,11 @@ const profileImageArray = ['havana-screenshot-001.jpg', 'havana-screenshot-002.j
 
 let dataDownload = {};
 
-
+//Used to get data from API using information the user has inputted.
 function getData(platformInput, usernameInput, cb) {
     var xhr = new XMLHttpRequest();
-
+    
+    //Creating the URL for the API using data in the dropdown boxes - region required for PC but doesn't need to change.
     var platform = document.getElementById(platformInput).value;
     var region = 'eu';
     var username = document.getElementById(usernameInput).value;
@@ -36,6 +37,7 @@ function getData(platformInput, usernameInput, cb) {
         var profileUrl = baseURL + platform + "/" + username + "/complete";
     }
 
+    //Possible Error codes with outputs
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             cb(JSON.parse(this.responseText));
@@ -58,17 +60,24 @@ function getData(platformInput, usernameInput, cb) {
     xhr.send();
 }
 
+//Populates the dashboard using plaform and username information
 function writeToDocument(platformInput, usernameInput) {
     showLoadingScreen();
 
     getData(platformInput, usernameInput, function(data) {
         dataDownload = data;
-
+        
         console.dir(dataDownload);
+        
+        //Checks if profile is private and gives error if so. Otherwise inserts random profile background & populates dashboard.
         if (dataDownload['private'] === true) {
             document.getElementById("errorMessage").innerHTML = "Profile is Private - Please set to public in Overwatch > Social settings";
         }
         else {
+            var profileBackgroundImage = profileImageArray[Math.floor(Math.random()*profileImageArray.length)]
+            var profileBackground = document.createElement('style');
+            document.head.appendChild(profileBackground);
+            profileBackground.sheet.insertRule(`#profileBackground { background: url("./assets/images/${profileBackgroundImage}") no-repeat center center;`)
             changeDocumentData();
         }
         hideLoadingScreen();
@@ -76,17 +85,20 @@ function writeToDocument(platformInput, usernameInput) {
 
 }
 
+//Shows the loading screen
 function showLoadingScreen() {
     document.getElementById("errorMessage").innerHTML = "";
     document.getElementById("loaderBackground").classList.add("loader-background");
     document.getElementById("loader").classList.add("loader");
 }
 
+//Hides the loading screen
 function hideLoadingScreen() {
     document.getElementById("loaderBackground").classList.remove('loader-background');
     document.getElementById("loader").classList.remove('loader');
 }
 
+//To split out the data from the URL if sent from index
 function GetURLParameter(param) {
     var pageURL = window.location.search.substring(1);
     var urlVariables = pageURL.split('&');
@@ -98,6 +110,7 @@ function GetURLParameter(param) {
     }
 }
 
+//Runs on search page loading, checks if data was sent from index. Populates dashbaord if there was data sent
 function indexSearch() {
     var searchFormPlatform = GetURLParameter('searchFormPlatform');
     var searchFormUsername = GetURLParameter('searchFormUsername');
@@ -124,22 +137,12 @@ function changeDocumentData() {
         document.getElementById("profileLevel").innerHTML = dataDownload['level'] + (dataDownload['prestige'] * 100);
         document.getElementById("profileEndoresmentLevel").innerHTML = dataDownload['endorsement'];
         document.getElementById("profilePlatform").innerHTML = document.getElementById("searchFormPlatform").value;
-        /*document.getElementById("profileRegion").innerHTML = " - " + document.getElementById("searchFormRegion").value;*/
 
 
         //Images
         document.getElementById("profilePictureImage").src = dataDownload['icon'];
-        
-        var profileBackgroundImage = profileImageArray[Math.floor(Math.random()*profileImageArray.length)]
-        var profileBackground = document.createElement('style');
-        document.head.appendChild(profileBackground);
-        profileBackground.sheet.insertRule(`#profileBackground { background: url("./assets/images/${profileBackgroundImage}") no-repeat center center;`)
-        /*profileBackground.style.background = `url("../images/${profileBackgroundImage}") no-repeat center center`;*/
-        /*document.getElementById("profileLevelImage").src = dataDownload['levelIcon'];
-        document.getElementById("profileEndoresmentImage").src = dataDownload['endorsementIcon'];
-        document.getElementById("profilePrestigeImage").src = dataDownload['prestigeIcon'];*/
 
-        //Table Data
+        //Table Data - Each table checks for possible errors with null data before populating.
         bestArray.forEach(function(statistic) {
             if (dataDownload[gameType]['careerStats'][heroName] == null) {
                 document.getElementById(statistic).innerHTML = "N/A";
@@ -275,6 +278,7 @@ function changeDocumentData() {
     }
 }
 
+//Changes the placeholder text depending on which platform you pick from dropdown.
 function changeUsernamePlaceholder() {
     if (document.getElementById("searchFormPlatform").value == "pc") {
         document.getElementById("searchFormUsername").placeholder = "Blizzard ID (Username-12345)";
@@ -298,33 +302,3 @@ function changeUsernamePlaceholderMobile() {
         document.getElementById("searchFormUsernameMobile").placeholder = "PSN ID";
     }
 }
-
-/*function changeRegionHidden() {
-    if (document.getElementById("searchFormPlatform").value == "pc") {
-        var regionDropdown = document.getElementById("searchFormRegion");
-        regionDropdown.removeAttribute("hidden");
-    }
-    else if (document.getElementById("searchFormPlatform").value == "xbl") {
-        var regionDropdown = document.getElementById("searchFormRegion");
-        regionDropdown.setAttribute("hidden", true);
-    }
-    else if (document.getElementById("searchFormPlatform").value == "psn") {
-        var regionDropdown = document.getElementById("searchFormRegion");
-        regionDropdown.setAttribute("hidden", true);
-    }
-}*/
-
-/*function changeRegionHiddenMobile() {
-    if (document.getElementById("searchFormPlatformMobile").value == "pc") {
-        var regionDropdownMobile = document.getElementById("searchFormRegionMobile");
-        regionDropdownMobile.removeAttribute("hidden");
-    }
-    else if (document.getElementById("searchFormPlatformMobile").value == "xbl") {
-        var regionDropdownMobile = document.getElementById("searchFormRegionMobile");
-        regionDropdownMobile.setAttribute("hidden", true);
-    }
-    else if (document.getElementById("searchFormPlatformMobile").value == "psn") {
-        var regionDropdownMobile = document.getElementById("searchFormRegionMobile");
-        regionDropdownMobile.setAttribute("hidden", true);
-    }
-}*/
