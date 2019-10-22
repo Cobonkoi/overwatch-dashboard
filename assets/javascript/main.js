@@ -15,7 +15,9 @@ const awardsArray = ['cards', 'medals', 'medalsBronze', 'medalsGold', 'medalsSil
 const gameArray = ['gamesWon', 'timePlayed'];
 const miscellaneousArray = ['teleporterPadsDestroyed', 'turretsDestroyed'];
 
-const profileImageArray = ['havana-screenshot-001.jpg', 'havana-screenshot-002.jpg', 'havana-screenshot-003.jpg', 'havana-screenshot-004.jpg']
+const profileImageArray = ['havana-screenshot-001.jpg', 'havana-screenshot-002.jpg', 'blizzardworld-screenshot-001.jpg', 'blizzardworld-screenshot-002.jpg', 'busan-screenshot-001.jpg',
+                            'dorado-screenshot-001.jpg', 'dorado-screenshot-002.jpg', 'dorado-screenshot-003.jpg', 'hanamura-screenshot-001.jpg', 
+                            'junkertown-screenshot-001.jpg', 'kings-row-screenshot-001.jpg', 'paris-screenshot-001.jpg', 'petra-screenshot-001.jpg', 'rialto-screenshot-001.jpg'];
 
 let dataDownload = {};
 
@@ -129,9 +131,10 @@ function changeDocumentData() {
         document.getElementById("profilePictureImage").src = dataDownload['icon'];
         
         var profileBackgroundImage = profileImageArray[Math.floor(Math.random()*profileImageArray.length)]
-        var profileBackground = document.getElementById("profileBackground");
-        profileBackground.style.background = `url("../images/${profileBackgroundImage}") no-repeat center center`;
-       /* profileBackground.style.backgroundsize = "cover";*/
+        var profileBackground = document.createElement('style');
+        document.head.appendChild(profileBackground);
+        profileBackground.sheet.insertRule(`#profileBackground { background: url("./assets/images/${profileBackgroundImage}") no-repeat center center;`)
+        /*profileBackground.style.background = `url("../images/${profileBackgroundImage}") no-repeat center center`;*/
         /*document.getElementById("profileLevelImage").src = dataDownload['levelIcon'];
         document.getElementById("profileEndoresmentImage").src = dataDownload['endorsementIcon'];
         document.getElementById("profilePrestigeImage").src = dataDownload['prestigeIcon'];*/
