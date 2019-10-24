@@ -118,6 +118,13 @@ function hideLoadingScreen() {
     document.getElementById("loader").classList.remove('loader');
 }
 
+function randomBackground() {
+    var profileBackgroundImage = profileImageArray[Math.floor(Math.random() * profileImageArray.length)]
+    var profileBackground = document.createElement('style');
+    document.head.appendChild(profileBackground);
+    profileBackground.sheet.insertRule(`#profileBackground { background: url("./assets/images/${profileBackgroundImage}") no-repeat center center;`)
+}
+
 //To split out the data from the URL if sent from index
 function GetURLParameter(param) {
     var pageURL = window.location.search.substring(1);
@@ -333,7 +340,7 @@ function writeToComparison(platformInput, usernameInput) {
 
 
             //Checks if profile is private and gives error if so. Otherwise inserts random profile background & populates dashboard.
-            if (dataDownload['private'] === true) {
+            if (data['private'] === true) {
                 document.getElementById("errorMessage").innerHTML = "Profile is Private - Please set to public in Overwatch > Social settings";
             }
             else {
