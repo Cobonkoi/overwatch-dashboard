@@ -17,7 +17,7 @@ The goals of the website are to:
 
 A demo can be viewed on Github Pages [here](https://cobonkoi.github.io/overwatch-dashboard/).
 
-If you don't play Overwatch, here is a list of example profiles to use on the website:
+If you don't play Overwatch, here is a list of example profiles to use on the demo:
 Sharpy-2695 (PC)
 MLGesus-21679 (PC)
 LicensedCntrctr (Xbox)
