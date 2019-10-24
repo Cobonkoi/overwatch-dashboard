@@ -41,6 +41,24 @@ This website is for users who want to look at their statistics outside of the ga
 
 #### Wireframe Mockups
 
+Here are the wireframe mockups that I made before starting the project.
+
+You will see some changes on the search page compared to the demo.
+I made the change to the data so that only one set is shown at a time, this change was made due to some feedback from my mentor.
+
+- [Index - Web](wireframes/index-web.png).
+- [Index - Tablet](wireframes/index-tablet.png).
+- [Index - Mobile](wireframes/index-mobile.png).
+- [Index - Mobile - Menu Open](wireframes/index-mobile-menuopen.png).
+- [Index - Mobile - Dropdown Open](wireframes/index-mobile-dropdownopen.png).
+- [Search - Web](wireframes/search-web.png).
+- [Search - Tablet](wireframes/search-tablet.png).
+- [Search - Mobile](wireframes/search-mobile.png).
+- [Contact - Web](wireframes/contact-web.png).
+- [Contact - Tablet](wireframes/contact-tablet.png).
+- [Contact - Mobile](wireframes/contact-mobile.png).
+- [Contact - Web](wireframes/compare-web.png).
+- [Contact - Mobile](wireframes/compare-mobile.png).
 
 ## Features
 Each page features a navigation bar that is responsive to screen sizes. This contains links to each other page, as well as the site logo in the top left which links back to the index page.
@@ -59,10 +77,6 @@ Beneath the search is the profile overview which shows profile picture, username
 Beneath the profile overview, are the profiles full statistics.
 This has 2 dropdown menus to change the information that appears in the tables below them.
 The tables are laid out in tabs which can easily be switch between by clicking the titles.
-
-#### Compare
-
-
 
 #### Feature Request/Bug Report
 
@@ -87,38 +101,38 @@ They also feature a form to fill in to either report a bug or request a feature.
 5. Javascript
 
 ## Testing
+1. Index - Search Form:
+    1. Went to the "Index" page
+    2. Tried to submit the empty form and confirmed that an error message about the required fields appears.
+    3. Tried to submit the form with all inputs and verify it submits the correct variables to search page.
 
-In this section, you need to convince the assessor that you have conducted enough testing to legitimately believe that the site works well. Essentially, in this part you will want to go over all of your user stories from the UX section and ensure that they all work as intended, with the project providing an easy and straightforward way for the users to achieve their goals.
+2. Search Page - Search Form:
+    1. Went to the "Search" page
+    2. Tried to submit the empty form and confirmed that an error message appears.
+    3. Tried to submit the form with an invalid platform for a PC username, confirmed an error message about the profile not being found appears.
+    4. Tried to submit the form with an invalid format for PC, confirmed an error message about format appears.
+    5. Tried to submit the form with an private profile, confirmed error about profile being private appears.
+    4. Tried to submit the form with all inputs valid and verify it populates dashboard correctly.
 
-Whenever it is feasible, prefer to automate your tests, and if you've done so, provide a brief explanation of your approach, link to the test file(s) and explain how to run them.
+1. Bug Report Form:
+    1. Go to the "Bug Report" page
+    2. Tried to submit the empty form and confirmed that an error message about the required fields appears.
+    3. Tried to submit the form with an invalid email address and verify that a relevant error message appears
+    4. Tried to submit the form with all inputs valid and verify it submits.
 
-For any scenarios that have not been automated, test the user stories manually and provide as much detail as is relevant. A particularly useful form for describing your testing process is via scenarios, such as:
-
-1. Contact form:
-    1. Go to the "Contact Us" page
-    2. Try to submit the empty form and verify that an error message about the required fields appears
-    3. Try to submit the form with an invalid email address and verify that a relevant error message appears
-    4. Try to submit the form with all inputs valid and verify that a success message appears.
-
-In addition, you should mention in this section how your project looks and works on different browsers and screen sizes.
-
-You should also mention in this section any interesting bugs or problems you discovered during your testing, even if you haven't addressed them yet.
-
-If this section grows too long, you may want to split it off into a separate file and link to it from here.
+1. Feature Request Form:
+    1. Go to the "Feature Request" page
+    2. Tried to submit the empty form and confirmed that an error message about the required fields appears.
+    3. Tried to submit the form with an invalid email address and verify that a relevant error message appears
+    4. Tried to submit the form with all inputs valid and verify it submits.
 
 ## Deployment
 
-This section should describe the process you went through to deploy the project to a hosting platform (e.g. GitHub Pages or Heroku).
+This site is hosted using GitHub pages, deployed directly from the master branch. The deployed site will update automatically everytime there's a new commit to the master branch. In order for the deployed site to work correctly on GitHub pages, the landing page must be named `index.html`.
 
-In particular, you should provide all details of the differences between the deployed version and the development version, if any, including:
-- Different values for environment variables (Heroku Config Vars)?
-- Different configuration files?
-- Separate git branch?
+For you to run this locally, you could clone this repository into any editor you want by pasting `git clone https://github.com/Cobonkoi/overwatch-dashboard.git` into your terminal. To cut ties with this GitHub repository, type `git remote rm origin` into the terminal.
 
-In addition, if it is not obvious, you should also describe how to run your code locally.
-
-
-## Credits
+A demo can be viewed on Github Pages [here](https://cobonkoi.github.io/overwatch-dashboard/).
 
 ### Media
 - The screenshots used on this site were obtained from the game Overwatch.

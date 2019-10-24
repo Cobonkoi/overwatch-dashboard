@@ -4,27 +4,31 @@ const bestArray = ['allDamageDoneMostInGame', 'barrierDamageDoneMostInGame', 'de
     'heroDamageDoneMostInGame', 'killsStreakBest', 'meleeFinalBlowsMostInGame', 'multikillsBest', 'objectiveKillsMostInGame', 'objectiveTimeMostInGame',
     'offensiveAssistsMostInGame', 'soloKillsMostInGame', 'timeSpentOnFireMostInGame', 'turretsDestroyedMostInGame'
 ];
+
 const combatArray = ['barrierDamageDone', 'damageDone', 'deaths', 'eliminations', 'finalBlows', 'heroDamageDone', 'meleeFinalBlows', 'multikills', 'objectiveKills',
     'objectiveTime', 'soloKills', 'timeSpentOnFire'
 ];
+
 const assistsArray = ['defensiveAssists', 'healingDone', 'offensiveAssists'];
 const averageArray = ['allDamageDoneAvgPer10Min', 'barrierDamageDoneAvgPer10Min', 'deathsAvgPer10Min', 'eliminationsAvgPer10Min', 'finalBlowsAvgPer10Min', 'healingDoneAvgPer10Min',
     'heroDamageDoneAvgPer10Min', 'objectiveKillsAvgPer10Min', 'objectiveTimeAvgPer10Min', 'soloKillsAvgPer10Min', 'timeSpentOnFireAvgPer10Min'
 ];
+
 const awardsArray = ['cards', 'medals', 'medalsBronze', 'medalsGold', 'medalsSilver'];
 const gameArray = ['gamesWon', 'timePlayed'];
 const miscellaneousArray = ['teleporterPadsDestroyed', 'turretsDestroyed'];
 
 const profileImageArray = ['havana-screenshot-001.jpg', 'havana-screenshot-002.jpg', 'blizzardworld-screenshot-001.jpg', 'blizzardworld-screenshot-002.jpg', 'busan-screenshot-001.jpg',
-                            'dorado-screenshot-001.jpg', 'dorado-screenshot-002.jpg', 'dorado-screenshot-003.jpg', 'hanamura-screenshot-001.jpg', 
-                            'junkertown-screenshot-001.jpg', 'kings-row-screenshot-001.jpg', 'paris-screenshot-001.jpg', 'petra-screenshot-001.jpg', 'rialto-screenshot-001.jpg'];
+    'dorado-screenshot-001.jpg', 'dorado-screenshot-002.jpg', 'dorado-screenshot-003.jpg', 'hanamura-screenshot-001.jpg',
+    'junkertown-screenshot-001.jpg', 'kings-row-screenshot-001.jpg', 'paris-screenshot-001.jpg', 'petra-screenshot-001.jpg', 'rialto-screenshot-001.jpg'
+];
 
 let dataDownload = {};
 
 //Used to get data from API using information the user has inputted.
 function getData(platformInput, usernameInput, cb) {
     var xhr = new XMLHttpRequest();
-    
+
     //Creating the URL for the API using data in the dropdown boxes - region required for PC but doesn't need to change.
     var platform = document.getElementById(platformInput).value;
     var region = 'eu';
@@ -41,16 +45,20 @@ function getData(platformInput, usernameInput, cb) {
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             cb(JSON.parse(this.responseText));
-        } else if (this.readyState == 4 && this.status == 400) {
+        }
+        else if (this.readyState == 4 && this.status == 400) {
             document.getElementById("errorMessage").innerHTML = "Bad Request - Please follow correct format for PC (Username-12345)";
             hideLoadingScreen();
-        } else if (this.readyState == 4 && this.status == 404) {
+        }
+        else if (this.readyState == 4 && this.status == 404) {
             document.getElementById("errorMessage").innerHTML = "Profile not found - Please check Platform - Profiles are case sensitive";
             hideLoadingScreen();
-        } else if (this.readyState == 4 && this.status == 500) {
+        }
+        else if (this.readyState == 4 && this.status == 500) {
             document.getElementById("errorMessage").innerHTML = "Internal Server Error – We had a problem with our server. Try again later.";
             hideLoadingScreen();
-        } else if (this.readyState == 4 && this.status == 503) {
+        }
+        else if (this.readyState == 4 && this.status == 503) {
             document.getElementById("errorMessage").innerHTML = "Service Unavailable – We’re temporarily offline for maintenance. Please try again later.";
             hideLoadingScreen();
         }
@@ -63,25 +71,31 @@ function getData(platformInput, usernameInput, cb) {
 //Populates the dashboard using plaform and username information
 function writeToDocument(platformInput, usernameInput) {
     showLoadingScreen();
+    
+    //Check that they have entered a username and platform before going any further
+    if (document.getElementById(platformInput).value !== '' && document.getElementById(usernameInput).value !== '') {
 
-    getData(platformInput, usernameInput, function(data) {
-        dataDownload = data;
-        
-        console.dir(dataDownload);
-        
-        //Checks if profile is private and gives error if so. Otherwise inserts random profile background & populates dashboard.
-        if (dataDownload['private'] === true) {
-            document.getElementById("errorMessage").innerHTML = "Profile is Private - Please set to public in Overwatch > Social settings";
-        }
-        else {
-            var profileBackgroundImage = profileImageArray[Math.floor(Math.random()*profileImageArray.length)]
-            var profileBackground = document.createElement('style');
-            document.head.appendChild(profileBackground);
-            profileBackground.sheet.insertRule(`#profileBackground { background: url("./assets/images/${profileBackgroundImage}") no-repeat center center;`)
-            changeDocumentData();
-        }
+        getData(platformInput, usernameInput, function(data) {
+            dataDownload = data;
+
+            //Checks if profile is private and gives error if so. Otherwise inserts random profile background & populates dashboard.
+            if (dataDownload['private'] === true) {
+                document.getElementById("errorMessage").innerHTML = "Profile is Private - Please set to public in Overwatch > Social settings";
+            }
+            else {
+                var profileBackgroundImage = profileImageArray[Math.floor(Math.random() * profileImageArray.length)]
+                var profileBackground = document.createElement('style');
+                document.head.appendChild(profileBackground);
+                profileBackground.sheet.insertRule(`#profileBackground { background: url("./assets/images/${profileBackgroundImage}") no-repeat center center;`)
+                changeDocumentData();
+            }
+            hideLoadingScreen();
+        });
+    }
+    else {
+        document.getElementById("errorMessage").innerHTML = "Error - Please enter a username";
         hideLoadingScreen();
-    });
+    }
 
 }
 
