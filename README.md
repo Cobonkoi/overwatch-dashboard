@@ -57,8 +57,8 @@ I made the change to the data so that only one set is shown at a time, this chan
 - [Contact - Web](wireframes/contact-web.png).
 - [Contact - Tablet](wireframes/contact-tablet.png).
 - [Contact - Mobile](wireframes/contact-mobile.png).
-- [Contact - Web](wireframes/compare-web.png).
-- [Contact - Mobile](wireframes/compare-mobile.png).
+- [Compare - Web](wireframes/compare-web.png).
+- [Compare - Mobile](wireframes/compare-mobile.png).
 
 ## Features
 Each page features a navigation bar that is responsive to screen sizes. This contains links to each other page, as well as the site logo in the top left which links back to the index page.
