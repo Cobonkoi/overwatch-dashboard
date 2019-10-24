@@ -64,6 +64,17 @@ p {
     background-size: cover;
 }
 
+.comparison-header-container {
+    color: white;
+    
+    background: url("../images/profile-background.png") no-repeat center center;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 
 /* -- FORM ASSETS -- */
 
@@ -169,6 +180,17 @@ p {
     /* -- CONTAINERS -- */
     .search-header-container {
         min-height: 30vh !important;
+
+        background: url("../images/profile-background.png") no-repeat center center;
+
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+    
+    .comparison-header-container {
+        min-height: 40vh !important;
 
         background: url("../images/profile-background.png") no-repeat center center;
 

@@ -25,6 +25,12 @@ const profileImageArray = ['havana-screenshot-001.jpg', 'havana-screenshot-002.j
 
 let dataDownload = {};
 
+let comparisonProfile1 = {};
+let comparisonProfile2 = {};
+let comparisonProfile3 = {};
+let comparisonProfile4 = {};
+let comparisonProfile5 = {};
+
 //Used to get data from API using information the user has inputted.
 function getData(platformInput, usernameInput, cb) {
     var xhr = new XMLHttpRequest();
@@ -71,7 +77,7 @@ function getData(platformInput, usernameInput, cb) {
 //Populates the dashboard using plaform and username information
 function writeToDocument(platformInput, usernameInput) {
     showLoadingScreen();
-    
+
     //Check that they have entered a username and platform before going any further
     if (document.getElementById(platformInput).value !== '' && document.getElementById(usernameInput).value !== '') {
 
@@ -316,3 +322,92 @@ function changeUsernamePlaceholderMobile() {
         document.getElementById("searchFormUsernameMobile").placeholder = "PSN ID";
     }
 }
+
+
+
+function writeToComparison(platformInput, usernameInput) {
+    //Check that they have entered a username and platform before going any further
+    if (document.getElementById(platformInput).value !== '' && document.getElementById(usernameInput).value !== '') {
+
+        getData(platformInput, usernameInput, function(data) {
+
+
+            //Checks if profile is private and gives error if so. Otherwise inserts random profile background & populates dashboard.
+            if (dataDownload['private'] === true) {
+                document.getElementById("errorMessage").innerHTML = "Profile is Private - Please set to public in Overwatch > Social settings";
+            }
+            else {
+                if (Object.entries(comparisonProfile1).length === 0) {
+                    comparisonProfile1 = data;
+                    console.dir(comparisonProfile1);
+                }
+                else if (Object.entries(comparisonProfile2).length === 0) {
+                    comparisonProfile2 = data;
+                    console.dir(comparisonProfile2);
+                }
+                else if (Object.entries(comparisonProfile3).length === 0) {
+                    comparisonProfile3 = data;
+                    console.dir(comparisonProfile3);
+                }
+                else if (Object.entries(comparisonProfile4).length === 0) {
+                    comparisonProfile4 = data;
+                    console.dir(comparisonProfile4);
+                }
+                else if (Object.entries(comparisonProfile5).length === 0) {
+                    comparisonProfile5 = data;
+                    console.dir(comparisonProfile5);
+                } else {
+                    document.getElementById("errorMessage").innerHTML = "Comparison Slots Full - Please remove a profile first";
+                }
+            }
+        });
+    }
+    else {
+        document.getElementById("errorMessage").innerHTML = "Error - Please enter a username";
+        hideLoadingScreen();
+    }
+
+}
+
+
+
+function addProfile(platformInput, usernameInput) {
+    showLoadingScreen();
+    
+    /* 
+    look up profile data as normal
+    save to temp variable
+    look for next empty array slot
+    put data into that slot
+    */
+    writeToComparison(platformInput, usernameInput);
+    
+    
+    
+    /*
+    populate fields for that slot on page
+    show those fields on page
+    comparestats()
+    */
+    hideLoadingScreen();
+}
+
+/*
+function removeProfile() {
+    showLoadingScreen();
+    check which profile is to be removed
+    remove data from array slot
+    remove data from page
+    hide those fields on page
+    comparestats()
+    hideLoadingScreen();
+} 
+
+function comparestats() {
+    forEach row {
+        look at stats in each column
+        find highest
+        turn background green
+    }
+}
+*/

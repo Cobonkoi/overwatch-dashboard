@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Overwatch Dashboard</title>
+    <link rel="stylesheet" href="libraries/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300|Source+Sans+Pro:300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-sm navbar-light my-2">
+        <a href="index.html" class="navbar-brand ml-4"><img src="assets/images/brand-image.png" alt="Website Logo" width="80" height="45"></a>
+
+        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span></button>
+
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto mr-4">
+                <li class="nav-item mr-5"><a class="nav-link" href="search.html">Search</a></li>
+                <li class="mr-5 d-none d-sm-block"><a class="nav-link">|</a></li>
+                <li class="nav-item mr-5"><a class="nav-link" href="compare.html">Compare</a></li>
+                <li class="mr-5 d-none d-sm-block"><a class="nav-link">|</a></li>
+                <li class="nav-item dropdown mr-5">
+                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Contact
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="featurerequest.html">Feature Request</a>
+                        <a class="dropdown-item" href="bugreport.html">Bug Report</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- /NAVBAR -->
+
+    <!-- LOADER -->
+    <div id="loaderBackground" class="">
+        <div id="loader" class=""></div>
+    </div>
+    <!-- /LOADER -->
+
+    <!-- SEARCH -->
+    <div class="container search-container text-center d-none d-sm-block">
+        <div class="row">
+            <div class="col-md-11 col-lg-8 mt-3 mx-auto">
+                <div class="input-group mb-3">
+                    <select class="custom-select rounded-left" id="searchFormPlatform" onchange="changeUsernamePlaceholder();">
+                            <option disabled>Platform...</option>
+                            <option value="pc">PC</option>
+                            <option value="psn">PS4</option>
+                            <option value="xbl">Xbox</option>
+                        </select>
+                    <div class="input-group-append">
+                        <input type="text" class="input-group-text" id="searchFormUsername" placeholder="Blizzard ID (Username-12345)" size="55" required>
+                    </div>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-dark rounded-right" onclick="addProfile('searchFormPlatform', 'searchFormUsername')">Add Profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /SEARCH -->
+
+    <!-- SEARCH-MOBILE -->
+    <div class="container search-container text-center d-sm-none">
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-3 mx-auto">
+                    <select class="form-control my-4" id="searchFormPlatformMobile" onchange="changeUsernamePlaceholderMobile();">
+                            <option disabled>Platform...</option>
+                            <option value="pc">PC</option>
+                            <option value="psn">PS4</option>
+                            <option value="xbl">Xbox</option>
+                        </select>
+                    <div class="input-group-append my-4">
+                        <input type="text" class="form-control" id="searchFormUsernameMobile" placeholder="Blizzard ID (Username-12345)" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-center d-sm-none">
+        <div class="row">
+            <div class="col-12 mb-5">
+                <button class="btn btn-outline-dark rounded-right" onclick="writeToDocument('searchFormPlatformMobile', 'searchFormUsernameMobile')">Search</button>
+            </div>
+        </div>
+    </div>
+    <!-- /SEARCH MOBILE -->
+
+    <!-- ERROR MESSAGES -->
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <p class="mx-auto text-center" id="errorMessage"></p>
+            </div>
+        </div>
+    </div>
+    <!-- /ERROR MESSAGES -->
+
+    <!-- HEADER -->
+    <div class="container comparison-header-container" id="profileBackground">
+        <div class="row">
+            <div class="col-sm-12 col-md-8 mt-3 mb-2">
+            </div>
+            <div class="col-sm-12 col-md-2 mt-3">
+                <select class="form-control" id="gameTypeSelect" onchange="changeDocumentData()">
+                    <option style="font-weight:600" disabled>Game Type</option>
+                    <option value="quickPlayStats">Quickplay</option>
+                    <option value="competitiveStats">Competitive</option>
+                </select>
+            </div>
+            <div class="col-sm-12 col-md-2 mt-3">
+                <select class="form-control" id="heroNameSelect" onchange="changeDocumentData()">
+                    <option style="font-weight:600" disabled>Hero</option>
+                    <option value="allHeroes">All Heroes</option>
+                    <option value="ana">Ana</option>
+                    <option value="ashe">Ashe</option>
+                    <option value="baptiste">Baptiste</option>
+                    <option value="brigitte">Brigitte</option>
+                    <option value="junkrat">Junkrat</option>
+                    <option value="lucio">Lucio</option>
+                    <option value="mercy">Mercy</option>
+                    <option value="moira">Moira</option>
+                    <option value="pharah">Pharah</option>
+                    <option value="reinhardt">reinhardt</option>
+                    <option value="roadhog">Roadhog</option>
+                    <option value="zarya">Zarya</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2 my-3 profile-picture">
+            </div>
+            <div class="col-2 my-3 profile-picture text-center">
+                <img src="assets/images/profile-picture.png" class="" id="profilePictureImage1" alt="profile picture 1" width="100" height="100">
+            </div>
+            <div class="col-2 my-3 profile-picture text-center">
+                <img src="assets/images/profile-picture.png" class="" id="profilePictureImage2" alt="profile picture 1" width="100" height="100">
+            </div>
+            <div class="col-2 my-3 profile-picture text-center">
+                <img src="assets/images/profile-picture.png" class="" id="profilePictureImage3" alt="profile picture 1" width="100" height="100">
+            </div>
+            <div class="col-2 my-3 profile-picture text-center">
+                <img src="assets/images/profile-picture.png" class="" id="profilePictureImage4" alt="profile picture 1" width="100" height="100">
+            </div>
+            <div class="col-2 my-3 profile-picture text-center">
+                <img src="assets/images/profile-picture.png" class="" id="profilePictureImage5" alt="profile picture 1" width="100" height="100">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2 my-3 username">
+            </div>
+            <div class="col-2 my-3 username text-center">
+                <h5 class="mb-0" id="profileUsername1">Username</h5>
+            </div>
+            <div class="col-2 my-3 username text-center">
+                <h5 class="mb-0" id="profileUsername2">Username</h5>
+            </div>
+            <div class="col-2 my-3 username text-center">
+                <h5 class="mb-0" id="profileUsername3">Username</h5>
+            </div>
+            <div class="col-2 my-3 username text-center">
+                <h5 class="mb-0" id="profileUsername4">Username</h5>
+            </div>
+            <div class="col-2 my-3 username text-center">
+                <h5 class="mb-0" id="profileUsername5">Username</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2 pl-0 my-3 pr-0 text-center">
+            </div>
+            <div class="col-2 pl-0 my-3 pr-0 text-center">
+                <span class="mb-0">Profile Level: </span>
+                <span id="profileLevel1">999</span>
+            </div>
+            <div class="col-2 pl-0 my-3 pr-0 text-center">
+                <span class="mb-0">Profile Level: </span>
+                <span id="profileLevel2">999</span>
+            </div>
+            <div class="col-2 pl-0 my-3 pr-0 text-center">
+                <span class="mb-0">Profile Level: </span>
+                <span id="profileLevel3">999</span>
+            </div>
+            <div class="col-2 pl-0 my-3 pr-0 text-center">
+                <span class="mb-0">Profile Level: </span>
+                <span id="profileLevel4">999</span>
+            </div>
+            <div class="col-2 pl-0 my-3 pr-0 text-center">
+                <span class="mb-0">Profile Level: </span>
+                <span id="profileLevel5">999</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2 pl-0 my-3 pr-0 text-center">
+            </div>
+            <div class="col-2 pl-0 my-3 pr-0 text-center">
+                <span class="mb-0">Endorsement Level: </span>
+                <span id="profileEndoresmentLevel1">99</span>
+            </div>
+            <div class="col-2 pl-0 my-3 pr-0 text-center">
+                <span class="mb-0">Endorsement Level: </span>
+                <span id="profileEndoresmentLevel2">99</span>
+            </div>
+            <div class="col-2 pl-0 my-3 pr-0 text-center">
+                <span class="mb-0">Endorsement Level: </span>
+                <span id="profileEndoresmentLevel3">99</span>
+            </div>
+            <div class="col-2 pl-0 my-3 pr-0 text-center">
+                <span class="mb-0">Endorsement Level: </span>
+                <span id="profileEndoresmentLevel4">99</span>
+            </div>
+            <div class="col-2 pl-0 my-3 pr-0 text-center">
+                <span class="mb-0">Endorsement Level: </span>
+                <span id="profileEndoresmentLevel5">99</span>
+            </div>
+        </div>
+
+    </div>
+    <!-- /HEADER -->
+
+    <!-- COMPARISON TABLE -->
+    <div class="container search-statistics-container before-footer">
+        <div class="row">
+            <div class="col-12 my-3 px-0">
+                <!-- NAV TABS -->
+                <ul class="nav nav-tabs" id="searchTabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="bestTab" data-toggle="tab" href="#best" role="tab" aria-controls="best" aria-selected="true">Best (Most In Game)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="combatTab" data-toggle="tab" href="#combat" role="tab" aria-controls="combat" aria-selected="false">Combat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="assistsTab" data-toggle="tab" href="#assists" role="tab" aria-controls="assists" aria-selected="false">Assists</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="averageTab" data-toggle="tab" href="#average" role="tab" aria-controls="average" aria-selected="false">Average (Per 10 Min)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="awardsTab" data-toggle="tab" href="#awards" role="tab" aria-controls="awards" aria-selected="false">Match Awards</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="gameTab" data-toggle="tab" href="#game" role="tab" aria-controls="game" aria-selected="false">Game</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="miscellaneousTab" data-toggle="tab" href="#miscellaneous" role="tab" aria-controls="miscellaneous" aria-selected="false">Miscellaneous</a>
+                    </li>
+                </ul>
+                <!-- /NAV TABS -->
+
+                <!-- TAB PANES -->
+                <div class="tab-content" id="searchTabsContent">
+                    <div class="tab-pane fade show active" id="best" role="tabpanel" aria-labelledby="bestTab">
+                        <table class="table table-bordered table-hover table-striped">
+                            <tbody>
+                                <tr>
+                                    <th style="width:16.66%" scope="row">All Damage Done:</th>
+                                    <td class="text-center" id="allDamageDoneMostInGame1"></td>
+                                    <td class="text-center" id="allDamageDoneMostInGame2"></td>
+                                    <td class="text-center" id="allDamageDoneMostInGame3"></td>
+                                    <td class="text-center" id="allDamageDoneMostInGame4"></td>
+                                    <td class="text-center" id="allDamageDoneMostInGame5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Barrier Damage Done:</th>
+                                    <td class="text-center" id="barrierDamageDoneMostInGame1"></td>
+                                    <td class="text-center" id="barrierDamageDoneMostInGame2"></td>
+                                    <td class="text-center" id="barrierDamageDoneMostInGame3"></td>
+                                    <td class="text-center" id="barrierDamageDoneMostInGame4"></td>
+                                    <td class="text-center" id="barrierDamageDoneMostInGame5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Defensive Assists:</th>
+                                    <td class="text-center" id="defensiveAssistsMostInGame1"></td>
+                                    <td class="text-center" id="defensiveAssistsMostInGame2"></td>
+                                    <td class="text-center" id="defensiveAssistsMostInGame3"></td>
+                                    <td class="text-center" id="defensiveAssistsMostInGame4"></td>
+                                    <td class="text-center" id="defensiveAssistsMostInGame5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Eliminations:</th>
+                                    <td class="text-center" id="eliminationsMostInGame1"></td>
+                                    <td class="text-center" id="eliminationsMostInGame2"></td>
+                                    <td class="text-center" id="eliminationsMostInGame3"></td>
+                                    <td class="text-center" id="eliminationsMostInGame4"></td>
+                                    <td class="text-center" id="eliminationsMostInGame5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Environmental Kills:</th>
+                                    <td class="text-center" id="finalBlowsMostInGame1"></td>
+                                    <td class="text-center" id="finalBlowsMostInGame2"></td>
+                                    <td class="text-center" id="finalBlowsMostInGame3"></td>
+                                    <td class="text-center" id="finalBlowsMostInGame4"></td>
+                                    <td class="text-center" id="finalBlowsMostInGame5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Final Blows:</th>
+                                    <td class="text-center" id="healingDoneMostInGame1"></td>
+                                    <td class="text-center" id="healingDoneMostInGame2"></td>
+                                    <td class="text-center" id="healingDoneMostInGame3"></td>
+                                    <td class="text-center" id="healingDoneMostInGame4"></td>
+                                    <td class="text-center" id="healingDoneMostInGame5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Healing Done:</th>
+                                    <td class="text-center" id="heroDamageDoneMostInGame1"></td>
+                                    <td class="text-center" id="heroDamageDoneMostInGame2"></td>
+                                    <td class="text-center" id="heroDamageDoneMostInGame3"></td>
+                                    <td class="text-center" id="heroDamageDoneMostInGame4"></td>
+                                    <td class="text-center" id="heroDamageDoneMostInGame5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Hero Damage Done:</th>
+                                    <td class="text-center" id="killsStreakBest1"></td>
+                                    <td class="text-center" id="killsStreakBest2"></td>
+                                    <td class="text-center" id="killsStreakBest3"></td>
+                                    <td class="text-center" id="killsStreakBest4"></td>
+                                    <td class="text-center" id="killsStreakBest5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Kills Streak - Best:</th>
+                                    <td class="text-center" id="meleeFinalBlowsMostInGame1"></td>
+                                    <td class="text-center" id="meleeFinalBlowsMostInGame2"></td>
+                                    <td class="text-center" id="meleeFinalBlowsMostInGame3"></td>
+                                    <td class="text-center" id="meleeFinalBlowsMostInGame4"></td>
+                                    <td class="text-center" id="meleeFinalBlowsMostInGame5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Melee Final Blows:</th>
+                                    <td class="text-center" id="multikillsBest1"></td>
+                                    <td class="text-center" id="multikillsBest2"></td>
+                                    <td class="text-center" id="multikillsBest3"></td>
+                                    <td class="text-center" id="multikillsBest4"></td>
+                                    <td class="text-center" id="multikillsBest5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Multikills - Best:</th>
+                                    <td class="text-center" id="objectiveKillsMostInGame1"></td>
+                                    <td class="text-center" id="objectiveKillsMostInGame2"></td>
+                                    <td class="text-center" id="objectiveKillsMostInGame3"></td>
+                                    <td class="text-center" id="objectiveKillsMostInGame4"></td>
+                                    <td class="text-center" id="objectiveKillsMostInGame5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Objective Kills:</th>
+                                    <td class="text-center" id="objectiveTimeMostInGame1"></td>
+                                    <td class="text-center" id="objectiveTimeMostInGame2"></td>
+                                    <td class="text-center" id="objectiveTimeMostInGame3"></td>
+                                    <td class="text-center" id="objectiveTimeMostInGame4"></td>
+                                    <td class="text-center" id="objectiveTimeMostInGame5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Objective Time:</th>
+                                    <td class="text-center" id="offensiveAssistsMostInGame1"></td>
+                                    <td class="text-center" id="offensiveAssistsMostInGame2"></td>
+                                    <td class="text-center" id="offensiveAssistsMostInGame3"></td>
+                                    <td class="text-center" id="offensiveAssistsMostInGame4"></td>
+                                    <td class="text-center" id="offensiveAssistsMostInGame5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Offensive Assists:</th>
+                                    <td class="text-center" id="soloKillsMostInGame1"></td>
+                                    <td class="text-center" id="soloKillsMostInGame2"></td>
+                                    <td class="text-center" id="soloKillsMostInGame3"></td>
+                                    <td class="text-center" id="soloKillsMostInGame4"></td>
+                                    <td class="text-center" id="soloKillsMostInGame5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Recon Assists:</th>
+                                    <td class="text-center" id="timeSpentOnFireMostInGame1"></td>
+                                    <td class="text-center" id="timeSpentOnFireMostInGame2"></td>
+                                    <td class="text-center" id="timeSpentOnFireMostInGame3"></td>
+                                    <td class="text-center" id="timeSpentOnFireMostInGame4"></td>
+                                    <td class="text-center" id="timeSpentOnFireMostInGame5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Solo Kills:</th>
+                                    <td class="text-center" id="turretsDestroyedMostInGame1"></td>
+                                    <td class="text-center" id="turretsDestroyedMostInGame2"></td>
+                                    <td class="text-center" id="turretsDestroyedMostInGame3"></td>
+                                    <td class="text-center" id="turretsDestroyedMostInGame4"></td>
+                                    <td class="text-center" id="turretsDestroyedMostInGame5"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="combat" role="tabpanel" aria-labelledby="combatTab">
+                        <table class="table table-bordered table-hover table-striped">
+                            <tbody>
+                                <tr>
+                                    <th style="width:16.66%" scope="row">Barrier Damage Done:</th>
+                                    <td class="text-center" id="barrierDamageDone1"></td>
+                                    <td class="text-center" id="barrierDamageDone2"></td>
+                                    <td class="text-center" id="barrierDamageDone3"></td>
+                                    <td class="text-center" id="barrierDamageDone4"></td>
+                                    <td class="text-center" id="barrierDamageDone5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Damage Done:</th>
+                                    <td class="text-center" id="damageDone1"></td>
+                                    <td class="text-center" id="damageDone2"></td>
+                                    <td class="text-center" id="damageDone3"></td>
+                                    <td class="text-center" id="damageDone4"></td>
+                                    <td class="text-center" id="damageDone5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Deaths:</th>
+                                    <td class="text-center" id="deaths1"></td>
+                                    <td class="text-center" id="deaths2"></td>
+                                    <td class="text-center" id="deaths3"></td>
+                                    <td class="text-center" id="deaths4"></td>
+                                    <td class="text-center" id="deaths5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Eliminations:</th>
+                                    <td class="text-center" id="eliminations1"></td>
+                                    <td class="text-center" id="eliminations2"></td>
+                                    <td class="text-center" id="eliminations3"></td>
+                                    <td class="text-center" id="eliminations4"></td>
+                                    <td class="text-center" id="eliminations5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Final Blows:</th>
+                                    <td class="text-center" id="finalBlows1"></td>
+                                    <td class="text-center" id="finalBlows2"></td>
+                                    <td class="text-center" id="finalBlows3"></td>
+                                    <td class="text-center" id="finalBlows4"></td>
+                                    <td class="text-center" id="finalBlows5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Hero Damage Done:</th>
+                                    <td class="text-center" id="heroDamageDone1"></td>
+                                    <td class="text-center" id="heroDamageDone2"></td>
+                                    <td class="text-center" id="heroDamageDone3"></td>
+                                    <td class="text-center" id="heroDamageDone4"></td>
+                                    <td class="text-center" id="heroDamageDone5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Melee Final Blows:</th>
+                                    <td class="text-center" id="meleeFinalBlows1"></td>
+                                    <td class="text-center" id="meleeFinalBlows2"></td>
+                                    <td class="text-center" id="meleeFinalBlows3"></td>
+                                    <td class="text-center" id="meleeFinalBlows4"></td>
+                                    <td class="text-center" id="meleeFinalBlows5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Multikills:</th>
+                                    <td class="text-center" id="multikills1"></td>
+                                    <td class="text-center" id="multikills2"></td>
+                                    <td class="text-center" id="multikills3"></td>
+                                    <td class="text-center" id="multikills4"></td>
+                                    <td class="text-center" id="multikills5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Objective Kills:</th>
+                                    <td class="text-center" id="objectiveKills1"></td>
+                                    <td class="text-center" id="objectiveKills2"></td>
+                                    <td class="text-center" id="objectiveKills3"></td>
+                                    <td class="text-center" id="objectiveKills4"></td>
+                                    <td class="text-center" id="objectiveKills5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Objective Time:</th>
+                                    <td class="text-center" id="objectiveTime1"></td>
+                                    <td class="text-center" id="objectiveTime2"></td>
+                                    <td class="text-center" id="objectiveTime3"></td>
+                                    <td class="text-center" id="objectiveTime4"></td>
+                                    <td class="text-center" id="objectiveTime5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Solo Kills:</th>
+                                    <td class="text-center" id="soloKills1"></td>
+                                    <td class="text-center" id="soloKills2"></td>
+                                    <td class="text-center" id="soloKills3"></td>
+                                    <td class="text-center" id="soloKills4"></td>
+                                    <td class="text-center" id="soloKills5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Time Spent On Fire:</th>
+                                    <td class="text-center" id="timeSpentOnFire1"></td>
+                                    <td class="text-center" id="timeSpentOnFire2"></td>
+                                    <td class="text-center" id="timeSpentOnFire3"></td>
+                                    <td class="text-center" id="timeSpentOnFire4"></td>
+                                    <td class="text-center" id="timeSpentOnFire5"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="assists" role="tabpanel" aria-labelledby="assistsTab">
+                        <table class="table table-bordered table-hover table-striped">
+                            <tbody>
+                                <tr>
+                                    <th style="width:16.66%" scope="row">Defensive Assists:</th>
+                                    <td class="text-center" id="defensiveAssists1"></td>
+                                    <td class="text-center" id="defensiveAssists2"></td>
+                                    <td class="text-center" id="defensiveAssists3"></td>
+                                    <td class="text-center" id="defensiveAssists4"></td>
+                                    <td class="text-center" id="defensiveAssists5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Healing Done:</th>
+                                    <td class="text-center" id="healingDone1"></td>
+                                    <td class="text-center" id="healingDone2"></td>
+                                    <td class="text-center" id="healingDone3"></td>
+                                    <td class="text-center" id="healingDone4"></td>
+                                    <td class="text-center" id="healingDone5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Offensive Assists:</th>
+                                    <td class="text-center" id="offensiveAssists1"></td>
+                                    <td class="text-center" id="offensiveAssists2"></td>
+                                    <td class="text-center" id="offensiveAssists3"></td>
+                                    <td class="text-center" id="offensiveAssists4"></td>
+                                    <td class="text-center" id="offensiveAssists5"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="average" role="tabpanel" aria-labelledby="averageTab">
+                        <table class="table table-bordered table-hover table-striped">
+                            <tbody>
+                                <tr>
+                                    <th style="width:16.66%" scope="row">All Damage Done Avg:</th>
+                                    <td class="text-center" id="allDamageDoneAvgPer10Min1"></td>
+                                    <td class="text-center" id="allDamageDoneAvgPer10Min2"></td>
+                                    <td class="text-center" id="allDamageDoneAvgPer10Min3"></td>
+                                    <td class="text-center" id="allDamageDoneAvgPer10Min4"></td>
+                                    <td class="text-center" id="allDamageDoneAvgPer10Min5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Barrier Damage Done Avg:</th>
+                                    <td class="text-center" id="barrierDamageDoneAvgPer10Min1"></td>
+                                    <td class="text-center" id="barrierDamageDoneAvgPer10Min2"></td>
+                                    <td class="text-center" id="barrierDamageDoneAvgPer10Min3"></td>
+                                    <td class="text-center" id="barrierDamageDoneAvgPer10Min4"></td>
+                                    <td class="text-center" id="barrierDamageDoneAvgPer10Min5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Deaths Avg:</th>
+                                    <td class="text-center" id="deathsAvgPer10Min1"></td>
+                                    <td class="text-center" id="deathsAvgPer10Min2"></td>
+                                    <td class="text-center" id="deathsAvgPer10Min3"></td>
+                                    <td class="text-center" id="deathsAvgPer10Min4"></td>
+                                    <td class="text-center" id="deathsAvgPer10Min5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Eliminations Avg:</th>
+                                    <td class="text-center" id="eliminationsAvgPer10Min1"></td>
+                                    <td class="text-center" id="eliminationsAvgPer10Min2"></td>
+                                    <td class="text-center" id="eliminationsAvgPer10Min3"></td>
+                                    <td class="text-center" id="eliminationsAvgPer10Min4"></td>
+                                    <td class="text-center" id="eliminationsAvgPer10Min5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Final Blows Avg:</th>
+                                    <td class="text-center" id="finalBlowsAvgPer10Min1"></td>
+                                    <td class="text-center" id="finalBlowsAvgPer10Min2"></td>
+                                    <td class="text-center" id="finalBlowsAvgPer10Min3"></td>
+                                    <td class="text-center" id="finalBlowsAvgPer10Min4"></td>
+                                    <td class="text-center" id="finalBlowsAvgPer10Min5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Healing Done Avg:</th>
+                                    <td class="text-center" id="healingDoneAvgPer10Min1"></td>
+                                    <td class="text-center" id="healingDoneAvgPer10Min2"></td>
+                                    <td class="text-center" id="healingDoneAvgPer10Min3"></td>
+                                    <td class="text-center" id="healingDoneAvgPer10Min4"></td>
+                                    <td class="text-center" id="healingDoneAvgPer10Min5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Hero Damage Done Avg:</th>
+                                    <td class="text-center" id="heroDamageDoneAvgPer10Min1"></td>
+                                    <td class="text-center" id="heroDamageDoneAvgPer10Min2"></td>
+                                    <td class="text-center" id="heroDamageDoneAvgPer10Min3"></td>
+                                    <td class="text-center" id="heroDamageDoneAvgPer10Min4"></td>
+                                    <td class="text-center" id="heroDamageDoneAvgPer10Min5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Objective Kills Avg:</th>
+                                    <td class="text-center" id="objectiveKillsAvgPer10Min1"></td>
+                                    <td class="text-center" id="objectiveKillsAvgPer10Min2"></td>
+                                    <td class="text-center" id="objectiveKillsAvgPer10Min3"></td>
+                                    <td class="text-center" id="objectiveKillsAvgPer10Min4"></td>
+                                    <td class="text-center" id="objectiveKillsAvgPer10Min5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Objective Time Avg:</th>
+                                    <td class="text-center" id="objectiveTimeAvgPer10Min1"></td>
+                                    <td class="text-center" id="objectiveTimeAvgPer10Min2"></td>
+                                    <td class="text-center" id="objectiveTimeAvgPer10Min3"></td>
+                                    <td class="text-center" id="objectiveTimeAvgPer10Min4"></td>
+                                    <td class="text-center" id="objectiveTimeAvgPer10Min5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Solo Kills Avg:</th>
+                                    <td class="text-center" id="soloKillsAvgPer10Min1"></td>
+                                    <td class="text-center" id="soloKillsAvgPer10Min2"></td>
+                                    <td class="text-center" id="soloKillsAvgPer10Min3"></td>
+                                    <td class="text-center" id="soloKillsAvgPer10Min4"></td>
+                                    <td class="text-center" id="soloKillsAvgPer10Min5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Time Spent On Fire Avg:</th>
+                                    <td class="text-center" id="timeSpentOnFireAvgPer10Min1"></td>
+                                    <td class="text-center" id="timeSpentOnFireAvgPer10Min2"></td>
+                                    <td class="text-center" id="timeSpentOnFireAvgPer10Min3"></td>
+                                    <td class="text-center" id="timeSpentOnFireAvgPer10Min4"></td>
+                                    <td class="text-center" id="timeSpentOnFireAvgPer10Min5"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="awards" role="tabpanel" aria-labelledby="awardsTab">
+                        <table class="table table-bordered table-hover table-striped">
+                            <tbody>
+                                <tr>
+                                    <th style="width:16.66%" scope="row">Cards:</th>
+                                    <td class="text-center" id="cards1"></td>
+                                    <td class="text-center" id="cards2"></td>
+                                    <td class="text-center" id="cards3"></td>
+                                    <td class="text-center" id="cards4"></td>
+                                    <td class="text-center" id="cards5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Medals:</th>
+                                    <td class="text-center" id="medals1"></td>
+                                    <td class="text-center" id="medals2"></td>
+                                    <td class="text-center" id="medals3"></td>
+                                    <td class="text-center" id="medals4"></td>
+                                    <td class="text-center" id="medals5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Medals Bronze:</th>
+                                    <td class="text-center" id="medalsBronze1"></td>
+                                    <td class="text-center" id="medalsBronze2"></td>
+                                    <td class="text-center" id="medalsBronze3"></td>
+                                    <td class="text-center" id="medalsBronze4"></td>
+                                    <td class="text-center" id="medalsBronze5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Medals Silver:</th>
+                                    <td class="text-center" id="medalsSilver1"></td>
+                                    <td class="text-center" id="medalsSilver2"></td>
+                                    <td class="text-center" id="medalsSilver3"></td>
+                                    <td class="text-center" id="medalsSilver4"></td>
+                                    <td class="text-center" id="medalsSilver5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Medals Gold:</th>
+                                    <td class="text-center" id="medalsGold1"></td>
+                                    <td class="text-center" id="medalsGold2"></td>
+                                    <td class="text-center" id="medalsGold3"></td>
+                                    <td class="text-center" id="medalsGold4"></td>
+                                    <td class="text-center" id="medalsGold5"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="game" role="tabpanel" aria-labelledby="gameTab">
+                        <table class="table table-bordered table-hover table-striped">
+                            <tbody>
+                                <tr>
+                                    <th style="width:16.66%" scope="row">Games Won:</th>
+                                    <td class="text-center" id="gamesWon1"></td>
+                                    <td class="text-center" id="gamesWon2"></td>
+                                    <td class="text-center" id="gamesWon3"></td>
+                                    <td class="text-center" id="gamesWon4"></td>
+                                    <td class="text-center" id="gamesWon5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Time Played:</th>
+                                    <td class="text-center" id="timePlayed1"></td>
+                                    <td class="text-center" id="timePlayed2"></td>
+                                    <td class="text-center" id="timePlayed3"></td>
+                                    <td class="text-center" id="timePlayed4"></td>
+                                    <td class="text-center" id="timePlayed5"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="miscellaneous" role="tabpanel" aria-labelledby="miscellaneousTab">
+                        <table class="table table-bordered table-hover table-striped">
+                            <tbody>
+                                <tr>
+                                    <th style="width:16.66%" scope="row">Teleporter Pads Destroyed:</th>
+                                    <td class="text-center" id="teleporterPadsDestroyed1"></td>
+                                    <td class="text-center" id="teleporterPadsDestroyed2"></td>
+                                    <td class="text-center" id="teleporterPadsDestroyed3"></td>
+                                    <td class="text-center" id="teleporterPadsDestroyed4"></td>
+                                    <td class="text-center" id="teleporterPadsDestroyed5"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Turrets Destroyed:</th>
+                                    <td class="text-center" id="turretsDestroyed1"></td>
+                                    <td class="text-center" id="turretsDestroyed2"></td>
+                                    <td class="text-center" id="turretsDestroyed3"></td>
+                                    <td class="text-center" id="turretsDestroyed4"></td>
+                                    <td class="text-center" id="turretsDestroyed5"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <!-- /TAB PANES -->
+            </div>
+        </div>
+    </div>
+    <!-- /COMPARISON TABLE -->
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 text-left">
+                    <p>© Daniel Tierney 2019</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- /FOOTER -->
+
+    <!-- SCRIPTS -->
+    <script src="libraries/jquery.slim.min.js"></script>
+    <script src="libraries/bootstrap.bundle.min.js"></script>
+    <script src="assets/javascript/main.js"></script>
+    <!-- /SCRIPTS -->
+
+    <!-- ONLOAD -->
+    <script>
+        //     window.onload = indexSearch();
+        //
+    </script>
+    <!-- /ONLOAD -->
+
+</body>
+
+</html>
