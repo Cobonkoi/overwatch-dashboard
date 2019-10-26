@@ -18,7 +18,7 @@ const awardsArray = ['cards', 'medals', 'medalsBronze', 'medalsGold', 'medalsSil
 const gameArray = ['gamesWon', 'timePlayed'];
 const miscellaneousArray = ['teleporterPadsDestroyed', 'turretsDestroyed'];
 
-const profileImageArray = ['havana-screenshot-001.jpg', 'havana-screenshot-002.jpg', 'blizzardworld-screenshot-001.jpg', 'blizzardworld-screenshot-002.jpg', 'busan-screenshot-001.jpg',
+const profileImageArray = ['havana-screenshot-001.jpg', 'blizzardworld-screenshot-001.jpg', 'blizzardworld-screenshot-002.jpg', 'busan-screenshot-001.jpg',
     'dorado-screenshot-001.jpg', 'dorado-screenshot-002.jpg', 'dorado-screenshot-003.jpg', 'hanamura-screenshot-001.jpg',
     'junkertown-screenshot-001.jpg', 'kings-row-screenshot-001.jpg', 'paris-screenshot-001.jpg', 'petra-screenshot-001.jpg', 'rialto-screenshot-001.jpg'
 ];
@@ -350,27 +350,22 @@ function writeToComparison(platformInput, usernameInput) {
             else {
                 if (Object.entries(comparisonProfile1).length === 0) {
                     comparisonProfile1 = data;
-                    console.dir(comparisonProfile1);
                     addComparisonData(comparisonProfile1, "1");
                 }
                 else if (Object.entries(comparisonProfile2).length === 0) {
                     comparisonProfile2 = data;
-                    console.dir(comparisonProfile2);
                     addComparisonData(comparisonProfile2, "2");
                 }
                 else if (Object.entries(comparisonProfile3).length === 0 && platformInput !== "searchFormPlatformMobile") {
                     comparisonProfile3 = data;
-                    console.dir(comparisonProfile3);
                     addComparisonData(comparisonProfile3, "3");
                 }
                 else if (Object.entries(comparisonProfile4).length === 0 && platformInput !== "searchFormPlatformMobile") {
                     comparisonProfile4 = data;
-                    console.dir(comparisonProfile4);
                     addComparisonData(comparisonProfile4, "4");
                 }
                 else if (Object.entries(comparisonProfile5).length === 0 && platformInput !== "searchFormPlatformMobile") {
                     comparisonProfile5 = data;
-                    console.dir(comparisonProfile5);
                     addComparisonData(comparisonProfile5, "5");
                 }
                 else {
@@ -614,144 +609,633 @@ function removeProfile(profileData, profileNumber) {
 function comparestats() {
     bestArray.forEach(function(statistic) {
 
-        let maxNumber = Math.max(document.getElementById(`${statistic}1`).innerHTML, document.getElementById(`${statistic}2`).innerHTML,
-            document.getElementById(`${statistic}3`).innerHTML, document.getElementById(`${statistic}4`).innerHTML,
-            document.getElementById(`${statistic}5`).innerHTML);
+        let profileOne = 0;
+        let profileTwo = 0;
+        let profileThree = 0;
+        let profileFour = 0;
+        let profileFive = 0;
 
         let profileNumberArray = [1, 2, 3, 4, 5];
+
+        if (document.getElementById(`${statistic}1`).innerHTML === "N/A") {
+            profileOne = 0;
+        }
+        else if (document.getElementById(`${statistic}1`).innerHTML.includes(':')) {
+            profileOne = parseInt(document.getElementById(`${statistic}1`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileOne = document.getElementById(`${statistic}1`).innerHTML;
+        }
+
+        if (document.getElementById(`${statistic}2`).innerHTML === "N/A") {
+            profileTwo = 0;
+        }
+        else if (document.getElementById(`${statistic}2`).innerHTML.includes(':')) {
+            profileTwo = parseInt(document.getElementById(`${statistic}2`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileTwo = document.getElementById(`${statistic}2`).innerHTML;
+        }
+
+        if (document.getElementById(`${statistic}3`).innerHTML === "N/A") {
+            profileThree = 0;
+        }
+        else if (document.getElementById(`${statistic}3`).innerHTML.includes(':')) {
+            profileThree = parseInt(document.getElementById(`${statistic}3`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileThree = document.getElementById(`${statistic}3`).innerHTML;
+        }
+
+        if (document.getElementById(`${statistic}4`).innerHTML === "N/A") {
+            profileFour = 0;
+        }
+        else if (document.getElementById(`${statistic}4`).innerHTML.includes(':')) {
+            profileFour = parseInt(document.getElementById(`${statistic}4`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileFour = document.getElementById(`${statistic}4`).innerHTML;
+        }
+
+        if (document.getElementById(`${statistic}5`).innerHTML === "N/A") {
+            profileFive = 0;
+        }
+        else if (document.getElementById(`${statistic}5`).innerHTML.includes(':')) {
+            profileFive = parseInt(document.getElementById(`${statistic}5`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileFive = document.getElementById(`${statistic}5`).innerHTML;
+        }
+
+
+        let arrayMaxNumber = [profileOne, profileTwo, profileThree, profileFour, profileFive];
+
+        let maxNumber = Math.max(...arrayMaxNumber);
 
         profileNumberArray.forEach(function(profile) {
             if (document.getElementById(`${statistic}${profile}`).innerHTML === String(maxNumber)) {
                 var profileBackground = document.createElement('style');
                 document.head.appendChild(profileBackground);
                 profileBackground.sheet.insertRule(`#${statistic}${profile} { background:green; color:white;`)
-            } else {
+            }
+            else if (document.getElementById(`${statistic}${profile}`).innerHTML.includes(":")) {
+                if (parseInt(document.getElementById(`${statistic}${profile}`).innerHTML.replace(':', ''), 10) === maxNumber) {
+                    var profileBackground = document.createElement('style');
+                    document.head.appendChild(profileBackground);
+                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:green; color:white;`)
+                }
+                else {
+                    var profileBackground = document.createElement('style');
+                    document.head.appendChild(profileBackground);
+                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`)
+                }
+            }
+            else {
                 var profileBackground = document.createElement('style');
                 document.head.appendChild(profileBackground);
                 profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`)
             }
         });
     });
-    
+
     combatArray.forEach(function(statistic) {
 
-        let maxNumber = Math.max(document.getElementById(`${statistic}1`).innerHTML, document.getElementById(`${statistic}2`).innerHTML,
-            document.getElementById(`${statistic}3`).innerHTML, document.getElementById(`${statistic}4`).innerHTML,
-            document.getElementById(`${statistic}5`).innerHTML);
+        let profileOne = 0;
+        let profileTwo = 0;
+        let profileThree = 0;
+        let profileFour = 0;
+        let profileFive = 0;
 
         let profileNumberArray = [1, 2, 3, 4, 5];
+
+        if (document.getElementById(`${statistic}1`).innerHTML === "N/A") {
+            profileOne = 0;
+        }
+        else if (document.getElementById(`${statistic}1`).innerHTML.includes(':')) {
+            profileOne = parseInt(document.getElementById(`${statistic}1`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileOne = document.getElementById(`${statistic}1`).innerHTML;
+        }
+
+        if (document.getElementById(`${statistic}2`).innerHTML === "N/A") {
+            profileTwo = 0;
+        }
+        else if (document.getElementById(`${statistic}2`).innerHTML.includes(':')) {
+            profileTwo = parseInt(document.getElementById(`${statistic}2`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileTwo = document.getElementById(`${statistic}2`).innerHTML;
+        }
+
+        if (document.getElementById(`${statistic}3`).innerHTML === "N/A") {
+            profileThree = 0;
+        }
+        else if (document.getElementById(`${statistic}3`).innerHTML.includes(':')) {
+            profileThree = parseInt(document.getElementById(`${statistic}3`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileThree = document.getElementById(`${statistic}3`).innerHTML;
+        }
+
+        if (document.getElementById(`${statistic}4`).innerHTML === "N/A") {
+            profileFour = 0;
+        }
+        else if (document.getElementById(`${statistic}4`).innerHTML.includes(':')) {
+            profileFour = parseInt(document.getElementById(`${statistic}4`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileFour = document.getElementById(`${statistic}4`).innerHTML;
+        }
+
+        if (document.getElementById(`${statistic}5`).innerHTML === "N/A") {
+            profileFive = 0;
+        }
+        else if (document.getElementById(`${statistic}5`).innerHTML.includes(':')) {
+            profileFive = parseInt(document.getElementById(`${statistic}5`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileFive = document.getElementById(`${statistic}5`).innerHTML;
+        }
+
+        let arrayMaxNumber = [profileOne, profileTwo, profileThree, profileFour, profileFive];
+
+        let maxNumber = Math.max(...arrayMaxNumber);
 
         profileNumberArray.forEach(function(profile) {
             if (document.getElementById(`${statistic}${profile}`).innerHTML === String(maxNumber)) {
                 var profileBackground = document.createElement('style');
                 document.head.appendChild(profileBackground);
                 profileBackground.sheet.insertRule(`#${statistic}${profile} { background:green; color:white;`)
-            } else {
+            }
+            else if (document.getElementById(`${statistic}${profile}`).innerHTML.includes(":")) {
+                if (parseInt(document.getElementById(`${statistic}${profile}`).innerHTML.replace(':', ''), 10) === maxNumber) {
+                    var profileBackground = document.createElement('style');
+                    document.head.appendChild(profileBackground);
+                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:green; color:white;`)
+                }
+                else {
+                    var profileBackground = document.createElement('style');
+                    document.head.appendChild(profileBackground);
+                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`)
+                }
+            }
+            else {
                 var profileBackground = document.createElement('style');
                 document.head.appendChild(profileBackground);
                 profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`)
             }
         });
     });
-    
+
     assistsArray.forEach(function(statistic) {
 
-        let maxNumber = Math.max(document.getElementById(`${statistic}1`).innerHTML, document.getElementById(`${statistic}2`).innerHTML,
-            document.getElementById(`${statistic}3`).innerHTML, document.getElementById(`${statistic}4`).innerHTML,
-            document.getElementById(`${statistic}5`).innerHTML);
+        let profileOne = 0;
+        let profileTwo = 0;
+        let profileThree = 0;
+        let profileFour = 0;
+        let profileFive = 0;
 
         let profileNumberArray = [1, 2, 3, 4, 5];
+
+        if (document.getElementById(`${statistic}1`).innerHTML === "N/A") {
+            profileOne = 0;
+        }
+        else if (document.getElementById(`${statistic}1`).innerHTML.includes(':')) {
+            profileOne = parseInt(document.getElementById(`${statistic}1`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileOne = document.getElementById(`${statistic}1`).innerHTML;
+        }
+
+        if (document.getElementById(`${statistic}2`).innerHTML === "N/A") {
+            profileTwo = 0;
+        }
+        else if (document.getElementById(`${statistic}2`).innerHTML.includes(':')) {
+            profileTwo = parseInt(document.getElementById(`${statistic}2`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileTwo = document.getElementById(`${statistic}2`).innerHTML;
+        }
+
+        if (document.getElementById(`${statistic}3`).innerHTML === "N/A") {
+            profileThree = 0;
+        }
+        else if (document.getElementById(`${statistic}3`).innerHTML.includes(':')) {
+            profileThree = parseInt(document.getElementById(`${statistic}3`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileThree = document.getElementById(`${statistic}3`).innerHTML;
+        }
+
+        if (document.getElementById(`${statistic}4`).innerHTML === "N/A") {
+            profileFour = 0;
+        }
+        else if (document.getElementById(`${statistic}4`).innerHTML.includes(':')) {
+            profileFour = parseInt(document.getElementById(`${statistic}4`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileFour = document.getElementById(`${statistic}4`).innerHTML;
+        }
+
+        if (document.getElementById(`${statistic}5`).innerHTML === "N/A") {
+            profileFive = 0;
+        }
+        else if (document.getElementById(`${statistic}5`).innerHTML.includes(':')) {
+            profileFive = parseInt(document.getElementById(`${statistic}5`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileFive = document.getElementById(`${statistic}5`).innerHTML;
+        }
+
+
+        let arrayMaxNumber = [profileOne, profileTwo, profileThree, profileFour, profileFive];
+
+        let maxNumber = Math.max(...arrayMaxNumber);
 
         profileNumberArray.forEach(function(profile) {
             if (document.getElementById(`${statistic}${profile}`).innerHTML === String(maxNumber)) {
                 var profileBackground = document.createElement('style');
                 document.head.appendChild(profileBackground);
                 profileBackground.sheet.insertRule(`#${statistic}${profile} { background:green; color:white;`)
-            } else {
+            }
+            else if (document.getElementById(`${statistic}${profile}`).innerHTML.includes(":")) {
+                if (parseInt(document.getElementById(`${statistic}${profile}`).innerHTML.replace(':', ''), 10) === maxNumber) {
+                    var profileBackground = document.createElement('style');
+                    document.head.appendChild(profileBackground);
+                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:green; color:white;`)
+                }
+                else {
+                    var profileBackground = document.createElement('style');
+                    document.head.appendChild(profileBackground);
+                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`)
+                }
+            }
+            else {
                 var profileBackground = document.createElement('style');
                 document.head.appendChild(profileBackground);
                 profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`)
             }
         });
     });
-    
+
     averageArray.forEach(function(statistic) {
 
-        let maxNumber = Math.max(document.getElementById(`${statistic}1`).innerHTML, document.getElementById(`${statistic}2`).innerHTML,
-            document.getElementById(`${statistic}3`).innerHTML, document.getElementById(`${statistic}4`).innerHTML,
-            document.getElementById(`${statistic}5`).innerHTML);
+        let profileOne = 0;
+        let profileTwo = 0;
+        let profileThree = 0;
+        let profileFour = 0;
+        let profileFive = 0;
 
         let profileNumberArray = [1, 2, 3, 4, 5];
+
+        if (document.getElementById(`${statistic}1`).innerHTML === "N/A") {
+            profileOne = 0;
+        }
+        else if (document.getElementById(`${statistic}1`).innerHTML.includes(':')) {
+            profileOne = parseInt(document.getElementById(`${statistic}1`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileOne = document.getElementById(`${statistic}1`).innerHTML;
+        }
+
+        if (document.getElementById(`${statistic}2`).innerHTML === "N/A") {
+            profileTwo = 0;
+        }
+        else if (document.getElementById(`${statistic}2`).innerHTML.includes(':')) {
+            profileTwo = parseInt(document.getElementById(`${statistic}2`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileTwo = document.getElementById(`${statistic}2`).innerHTML;
+        }
+
+        if (document.getElementById(`${statistic}3`).innerHTML === "N/A") {
+            profileThree = 0;
+        }
+        else if (document.getElementById(`${statistic}3`).innerHTML.includes(':')) {
+            profileThree = parseInt(document.getElementById(`${statistic}3`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileThree = document.getElementById(`${statistic}3`).innerHTML;
+        }
+
+        if (document.getElementById(`${statistic}4`).innerHTML === "N/A") {
+            profileFour = 0;
+        }
+        else if (document.getElementById(`${statistic}4`).innerHTML.includes(':')) {
+            profileFour = parseInt(document.getElementById(`${statistic}4`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileFour = document.getElementById(`${statistic}4`).innerHTML;
+        }
+
+        if (document.getElementById(`${statistic}5`).innerHTML === "N/A") {
+            profileFive = 0;
+        }
+        else if (document.getElementById(`${statistic}5`).innerHTML.includes(':')) {
+            profileFive = parseInt(document.getElementById(`${statistic}5`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileFive = document.getElementById(`${statistic}5`).innerHTML;
+        }
+
+
+        let arrayMaxNumber = [profileOne, profileTwo, profileThree, profileFour, profileFive];
+
+        let maxNumber = Math.max(...arrayMaxNumber);
 
         profileNumberArray.forEach(function(profile) {
             if (document.getElementById(`${statistic}${profile}`).innerHTML === String(maxNumber)) {
                 var profileBackground = document.createElement('style');
                 document.head.appendChild(profileBackground);
                 profileBackground.sheet.insertRule(`#${statistic}${profile} { background:green; color:white;`)
-            } else {
+            }
+            else if (document.getElementById(`${statistic}${profile}`).innerHTML.includes(":")) {
+                if (parseInt(document.getElementById(`${statistic}${profile}`).innerHTML.replace(':', ''), 10) === maxNumber) {
+                    var profileBackground = document.createElement('style');
+                    document.head.appendChild(profileBackground);
+                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:green; color:white;`)
+                }
+                else {
+                    var profileBackground = document.createElement('style');
+                    document.head.appendChild(profileBackground);
+                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`)
+                }
+            }
+            else {
                 var profileBackground = document.createElement('style');
                 document.head.appendChild(profileBackground);
                 profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`)
             }
         });
     });
-    
+
     awardsArray.forEach(function(statistic) {
 
-        let maxNumber = Math.max(document.getElementById(`${statistic}1`).innerHTML, document.getElementById(`${statistic}2`).innerHTML,
-            document.getElementById(`${statistic}3`).innerHTML, document.getElementById(`${statistic}4`).innerHTML,
-            document.getElementById(`${statistic}5`).innerHTML);
+        let profileOne = 0;
+        let profileTwo = 0;
+        let profileThree = 0;
+        let profileFour = 0;
+        let profileFive = 0;
 
         let profileNumberArray = [1, 2, 3, 4, 5];
+
+        if (document.getElementById(`${statistic}1`).innerHTML === "N/A") {
+            profileOne = 0;
+        }
+        else if (document.getElementById(`${statistic}1`).innerHTML.includes(':')) {
+            profileOne = parseInt(document.getElementById(`${statistic}1`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileOne = document.getElementById(`${statistic}1`).innerHTML;
+        }
+
+        if (document.getElementById(`${statistic}2`).innerHTML === "N/A") {
+            profileTwo = 0;
+        }
+        else if (document.getElementById(`${statistic}2`).innerHTML.includes(':')) {
+            profileTwo = parseInt(document.getElementById(`${statistic}2`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileTwo = document.getElementById(`${statistic}2`).innerHTML;
+        }
+
+        if (document.getElementById(`${statistic}3`).innerHTML === "N/A") {
+            profileThree = 0;
+        }
+        else if (document.getElementById(`${statistic}3`).innerHTML.includes(':')) {
+            profileThree = parseInt(document.getElementById(`${statistic}3`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileThree = document.getElementById(`${statistic}3`).innerHTML;
+        }
+
+        if (document.getElementById(`${statistic}4`).innerHTML === "N/A") {
+            profileFour = 0;
+        }
+        else if (document.getElementById(`${statistic}4`).innerHTML.includes(':')) {
+            profileFour = parseInt(document.getElementById(`${statistic}4`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileFour = document.getElementById(`${statistic}4`).innerHTML;
+        }
+
+        if (document.getElementById(`${statistic}5`).innerHTML === "N/A") {
+            profileFive = 0;
+        }
+        else if (document.getElementById(`${statistic}5`).innerHTML.includes(':')) {
+            profileFive = parseInt(document.getElementById(`${statistic}5`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileFive = document.getElementById(`${statistic}5`).innerHTML;
+        }
+
+
+        let arrayMaxNumber = [profileOne, profileTwo, profileThree, profileFour, profileFive];
+
+        let maxNumber = Math.max(...arrayMaxNumber);
 
         profileNumberArray.forEach(function(profile) {
             if (document.getElementById(`${statistic}${profile}`).innerHTML === String(maxNumber)) {
                 var profileBackground = document.createElement('style');
                 document.head.appendChild(profileBackground);
                 profileBackground.sheet.insertRule(`#${statistic}${profile} { background:green; color:white;`)
-            } else {
+            }
+            else if (document.getElementById(`${statistic}${profile}`).innerHTML.includes(":")) {
+                if (parseInt(document.getElementById(`${statistic}${profile}`).innerHTML.replace(':', ''), 10) === maxNumber) {
+                    var profileBackground = document.createElement('style');
+                    document.head.appendChild(profileBackground);
+                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:green; color:white;`)
+                }
+                else {
+                    var profileBackground = document.createElement('style');
+                    document.head.appendChild(profileBackground);
+                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`)
+                }
+            }
+            else {
                 var profileBackground = document.createElement('style');
                 document.head.appendChild(profileBackground);
                 profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`)
             }
         });
     });
-    
+
     gameArray.forEach(function(statistic) {
 
-        let maxNumber = Math.max(document.getElementById(`${statistic}1`).innerHTML, document.getElementById(`${statistic}2`).innerHTML,
-            document.getElementById(`${statistic}3`).innerHTML, document.getElementById(`${statistic}4`).innerHTML,
-            document.getElementById(`${statistic}5`).innerHTML);
+        let profileOne = 0;
+        let profileTwo = 0;
+        let profileThree = 0;
+        let profileFour = 0;
+        let profileFive = 0;
 
         let profileNumberArray = [1, 2, 3, 4, 5];
+
+        if (document.getElementById(`${statistic}1`).innerHTML === "N/A") {
+            profileOne = 0;
+        }
+        else if (document.getElementById(`${statistic}1`).innerHTML.includes(':')) {
+            profileOne = parseInt(document.getElementById(`${statistic}1`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileOne = document.getElementById(`${statistic}1`).innerHTML;
+        }
+
+        if (document.getElementById(`${statistic}2`).innerHTML === "N/A") {
+            profileTwo = 0;
+        }
+        else if (document.getElementById(`${statistic}2`).innerHTML.includes(':')) {
+            profileTwo = parseInt(document.getElementById(`${statistic}2`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileTwo = document.getElementById(`${statistic}2`).innerHTML;
+        }
+
+        if (document.getElementById(`${statistic}3`).innerHTML === "N/A") {
+            profileThree = 0;
+        }
+        else if (document.getElementById(`${statistic}3`).innerHTML.includes(':')) {
+            profileThree = parseInt(document.getElementById(`${statistic}3`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileThree = document.getElementById(`${statistic}3`).innerHTML;
+        }
+
+        if (document.getElementById(`${statistic}4`).innerHTML === "N/A") {
+            profileFour = 0;
+        }
+        else if (document.getElementById(`${statistic}4`).innerHTML.includes(':')) {
+            profileFour = parseInt(document.getElementById(`${statistic}4`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileFour = document.getElementById(`${statistic}4`).innerHTML;
+        }
+
+        if (document.getElementById(`${statistic}5`).innerHTML === "N/A") {
+            profileFive = 0;
+        }
+        else if (document.getElementById(`${statistic}5`).innerHTML.includes(':')) {
+            profileFive = parseInt(document.getElementById(`${statistic}5`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileFive = document.getElementById(`${statistic}5`).innerHTML;
+        }
+
+
+        let arrayMaxNumber = [profileOne, profileTwo, profileThree, profileFour, profileFive];
+
+        let maxNumber = Math.max(...arrayMaxNumber);
 
         profileNumberArray.forEach(function(profile) {
             if (document.getElementById(`${statistic}${profile}`).innerHTML === String(maxNumber)) {
                 var profileBackground = document.createElement('style');
                 document.head.appendChild(profileBackground);
                 profileBackground.sheet.insertRule(`#${statistic}${profile} { background:green; color:white;`)
-            } else {
+            }
+            else if (document.getElementById(`${statistic}${profile}`).innerHTML.includes(":")) {
+                if (parseInt(document.getElementById(`${statistic}${profile}`).innerHTML.replace(':', ''), 10) === maxNumber) {
+                    var profileBackground = document.createElement('style');
+                    document.head.appendChild(profileBackground);
+                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:green; color:white;`)
+                }
+                else {
+                    var profileBackground = document.createElement('style');
+                    document.head.appendChild(profileBackground);
+                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`)
+                }
+            }
+            else {
                 var profileBackground = document.createElement('style');
                 document.head.appendChild(profileBackground);
                 profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`)
             }
         });
     });
-    
+
     miscellaneousArray.forEach(function(statistic) {
 
-        let maxNumber = Math.max(document.getElementById(`${statistic}1`).innerHTML, document.getElementById(`${statistic}2`).innerHTML,
-            document.getElementById(`${statistic}3`).innerHTML, document.getElementById(`${statistic}4`).innerHTML,
-            document.getElementById(`${statistic}5`).innerHTML);
+        let profileOne = 0;
+        let profileTwo = 0;
+        let profileThree = 0;
+        let profileFour = 0;
+        let profileFive = 0;
 
         let profileNumberArray = [1, 2, 3, 4, 5];
 
+        if (document.getElementById(`${statistic}1`).innerHTML === "N/A") {
+            profileOne = 0;
+        }
+        else if (document.getElementById(`${statistic}1`).innerHTML.includes(':')) {
+            profileOne = parseInt(document.getElementById(`${statistic}1`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileOne = document.getElementById(`${statistic}1`).innerHTML;
+        }
+
+        if (document.getElementById(`${statistic}2`).innerHTML === "N/A") {
+            profileTwo = 0;
+        }
+        else if (document.getElementById(`${statistic}2`).innerHTML.includes(':')) {
+            profileTwo = parseInt(document.getElementById(`${statistic}2`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileTwo = document.getElementById(`${statistic}2`).innerHTML;
+        }
+
+        if (document.getElementById(`${statistic}3`).innerHTML === "N/A") {
+            profileThree = 0;
+        }
+        else if (document.getElementById(`${statistic}3`).innerHTML.includes(':')) {
+            profileThree = parseInt(document.getElementById(`${statistic}3`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileThree = document.getElementById(`${statistic}3`).innerHTML;
+        }
+
+        if (document.getElementById(`${statistic}4`).innerHTML === "N/A") {
+            profileFour = 0;
+        }
+        else if (document.getElementById(`${statistic}4`).innerHTML.includes(':')) {
+            profileFour = parseInt(document.getElementById(`${statistic}4`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileFour = document.getElementById(`${statistic}4`).innerHTML;
+        }
+
+        if (document.getElementById(`${statistic}5`).innerHTML === "N/A") {
+            profileFive = 0;
+        }
+        else if (document.getElementById(`${statistic}5`).innerHTML.includes(':')) {
+            profileFive = parseInt(document.getElementById(`${statistic}5`).innerHTML.replace(':', ''), 10);
+        }
+        else {
+            profileFive = document.getElementById(`${statistic}5`).innerHTML;
+        }
+
+
+        let arrayMaxNumber = [profileOne, profileTwo, profileThree, profileFour, profileFive];
+
+        let maxNumber = Math.max(...arrayMaxNumber);
+        
         profileNumberArray.forEach(function(profile) {
             if (document.getElementById(`${statistic}${profile}`).innerHTML === String(maxNumber)) {
                 var profileBackground = document.createElement('style');
                 document.head.appendChild(profileBackground);
                 profileBackground.sheet.insertRule(`#${statistic}${profile} { background:green; color:white;`)
-            } else {
+            }
+            else if (document.getElementById(`${statistic}${profile}`).innerHTML.includes(":")) {
+                if (parseInt(document.getElementById(`${statistic}${profile}`).innerHTML.replace(':', ''), 10) === maxNumber) {
+                    var profileBackground = document.createElement('style');
+                    document.head.appendChild(profileBackground);
+                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:green; color:white;`)
+                }
+                else {
+                    var profileBackground = document.createElement('style');
+                    document.head.appendChild(profileBackground);
+                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`)
+                }
+            }
+            else {
                 var profileBackground = document.createElement('style');
                 document.head.appendChild(profileBackground);
                 profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`)
