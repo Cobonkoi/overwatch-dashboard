@@ -75,9 +75,6 @@ p {
     background-size: cover;
 }
 
-
-/* -- FORM ASSETS -- */
-
 /* -- BUTTONS -- */
 
 .btn--search {
@@ -110,6 +107,13 @@ p {
     font-size: 1.5rem;
     font-weight: 600;
     color: red;
+}
+
+/* -- TABLES -- */
+
+#comparisonTabsContent div table tbody tr td {
+    width: 16.66%;
+    text-align: center;
 }
 
 /* -- LOADERS -- */
@@ -190,8 +194,6 @@ p {
     }
     
     .comparison-header-container {
-        min-height: 45vh !important;
-
         background: url("../images/profile-background.png") no-repeat center center;
 
         -webkit-background-size: cover;

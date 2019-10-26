@@ -61,7 +61,7 @@
                         <input type="text" class="input-group-text" id="searchFormUsername" placeholder="Blizzard ID (Username-12345)" size="55" required>
                     </div>
                     <div class="input-group-append">
-                        <button class="btn btn-outline-dark rounded-right" onclick="addProfile('searchFormPlatform', 'searchFormUsername')">Add Profile</button>
+                        <button class="btn btn-outline-dark rounded-right" onclick="writeToComparison('searchFormPlatform', 'searchFormUsername')">Add Profile</button>
                     </div>
                 </div>
             </div>
@@ -91,7 +91,7 @@
     <div class="container text-center d-sm-none">
         <div class="row">
             <div class="col-12 mb-5">
-                <button class="btn btn-outline-dark rounded-right" onclick="writeToDocument('searchFormPlatformMobile', 'searchFormUsernameMobile')">Search</button>
+                <button class="btn btn-outline-dark rounded-right" onclick="addProfile('searchFormPlatformMobile', 'searchFormUsernameMobile')">Search</button>
             </div>
         </div>
     </div>
@@ -113,14 +113,14 @@
             <div class="col-sm-12 col-md-8 mt-3 mb-2">
             </div>
             <div class="col-sm-12 col-md-2 mt-3">
-                <select class="form-control" id="gameTypeSelect" onchange="changeDocumentData()">
+                <select class="form-control" id="gameTypeSelect" onchange="changeComparisonData()">
                     <option style="font-weight:600" disabled>Game Type</option>
                     <option value="quickPlayStats">Quickplay</option>
                     <option value="competitiveStats">Competitive</option>
                 </select>
             </div>
             <div class="col-sm-12 col-md-2 mt-3">
-                <select class="form-control" id="heroNameSelect" onchange="changeDocumentData()">
+                <select class="form-control" id="heroNameSelect" onchange="changeComparisonData()">
                     <option style="font-weight:600" disabled>Hero</option>
                     <option value="allHeroes">All Heroes</option>
                     <option value="ana">Ana</option>
@@ -142,19 +142,19 @@
             <div class="col-2 mt-3">
             </div>
             <div class="col-2 mt-3 text-center">
-                <button type="button" class="btn btn-danger" id="buttonRemoveProfile1">Clear</button>
+                <button type="button" class="btn btn-danger" id="buttonRemoveProfile1" onclick="removeProfile(comparisonProfile1, '1')">Clear</button>
             </div>
             <div class="col-2 mt-3 text-center">
-                <button type="button" class="btn btn-danger" id="buttonRemoveProfile2">Clear</button>
+                <button type="button" class="btn btn-danger" id="buttonRemoveProfile2" onclick="removeProfile(comparisonProfile2, '2')">Clear</button>
             </div>
             <div class="col-2 mt-3 text-center">
-                <button type="button" class="btn btn-danger" id="buttonRemoveProfile3">Clear</button>
+                <button type="button" class="btn btn-danger" id="buttonRemoveProfile3" onclick="removeProfile(comparisonProfile3, '3')">Clear</button>
             </div>
             <div class="col-2 mt-3 text-center">
-                <button type="button" class="btn btn-danger" id="buttonRemoveProfile4">Clear</button>
+                <button type="button" class="btn btn-danger" id="buttonRemoveProfile4" onclick="removeProfile(comparisonProfile4, '4')">Clear</button>
             </div>
             <div class="col-2 mt-3 text-center">
-                <button type="button" class="btn btn-danger" id="buttonRemoveProfile5">Clear</button>
+                <button type="button" class="btn btn-danger" id="buttonRemoveProfile5" onclick="removeProfile(comparisonProfile5, '5')">Clear</button>
             </div>
         </div>
         <div class="row">
@@ -220,25 +220,25 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-2 pl-0 mt-3 pr-0 text-center">
+            <div class="col-2 pl-0 my-3 pr-0 text-center">
             </div>
-            <div class="col-2 pl-0 mt-3 pr-0 text-center">
+            <div class="col-2 pl-0 my-3 pr-0 text-center">
                 <span class="mb-0">Endorsement Level: </span>
                 <span id="profileEndoresmentLevel1">99</span>
             </div>
-            <div class="col-2 pl-0 mt-3 pr-0 text-center">
+            <div class="col-2 pl-0 my-3 pr-0 text-center">
                 <span class="mb-0">Endorsement Level: </span>
                 <span id="profileEndoresmentLevel2">99</span>
             </div>
-            <div class="col-2 pl-0 mt-3 pr-0 text-center">
+            <div class="col-2 pl-0 my-3 pr-0 text-center">
                 <span class="mb-0">Endorsement Level: </span>
                 <span id="profileEndoresmentLevel3">99</span>
             </div>
-            <div class="col-2 pl-0 mt-3 pr-0 text-center">
+            <div class="col-2 pl-0 my-3 pr-0 text-center">
                 <span class="mb-0">Endorsement Level: </span>
                 <span id="profileEndoresmentLevel4">99</span>
             </div>
-            <div class="col-2 pl-0 mt-3 pr-0 text-center">
+            <div class="col-2 pl-0 my-3 pr-0 text-center">
                 <span class="mb-0">Endorsement Level: </span>
                 <span id="profileEndoresmentLevel5">99</span>
             </div>
@@ -278,137 +278,137 @@
                 <!-- /NAV TABS -->
 
                 <!-- TAB PANES -->
-                <div class="tab-content" id="searchTabsContent">
+                <div class="tab-content" id="comparisonTabsContent">
                     <div class="tab-pane fade show active" id="best" role="tabpanel" aria-labelledby="bestTab">
                         <table class="table table-bordered table-hover table-striped">
                             <tbody>
                                 <tr>
                                     <th style="width:16.66%" scope="row">All Damage Done:</th>
-                                    <td class="text-center" id="allDamageDoneMostInGame1"></td>
-                                    <td class="text-center" id="allDamageDoneMostInGame2"></td>
-                                    <td class="text-center" id="allDamageDoneMostInGame3"></td>
-                                    <td class="text-center" id="allDamageDoneMostInGame4"></td>
-                                    <td class="text-center" id="allDamageDoneMostInGame5"></td>
+                                    <td id="allDamageDoneMostInGame1"></td>
+                                    <td id="allDamageDoneMostInGame2"></td>
+                                    <td id="allDamageDoneMostInGame3"></td>
+                                    <td id="allDamageDoneMostInGame4"></td>
+                                    <td id="allDamageDoneMostInGame5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Barrier Damage Done:</th>
-                                    <td class="text-center" id="barrierDamageDoneMostInGame1"></td>
-                                    <td class="text-center" id="barrierDamageDoneMostInGame2"></td>
-                                    <td class="text-center" id="barrierDamageDoneMostInGame3"></td>
-                                    <td class="text-center" id="barrierDamageDoneMostInGame4"></td>
-                                    <td class="text-center" id="barrierDamageDoneMostInGame5"></td>
+                                    <td id="barrierDamageDoneMostInGame1"></td>
+                                    <td id="barrierDamageDoneMostInGame2"></td>
+                                    <td id="barrierDamageDoneMostInGame3"></td>
+                                    <td id="barrierDamageDoneMostInGame4"></td>
+                                    <td id="barrierDamageDoneMostInGame5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Defensive Assists:</th>
-                                    <td class="text-center" id="defensiveAssistsMostInGame1"></td>
-                                    <td class="text-center" id="defensiveAssistsMostInGame2"></td>
-                                    <td class="text-center" id="defensiveAssistsMostInGame3"></td>
-                                    <td class="text-center" id="defensiveAssistsMostInGame4"></td>
-                                    <td class="text-center" id="defensiveAssistsMostInGame5"></td>
+                                    <td id="defensiveAssistsMostInGame1"></td>
+                                    <td id="defensiveAssistsMostInGame2"></td>
+                                    <td id="defensiveAssistsMostInGame3"></td>
+                                    <td id="defensiveAssistsMostInGame4"></td>
+                                    <td id="defensiveAssistsMostInGame5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Eliminations:</th>
-                                    <td class="text-center" id="eliminationsMostInGame1"></td>
-                                    <td class="text-center" id="eliminationsMostInGame2"></td>
-                                    <td class="text-center" id="eliminationsMostInGame3"></td>
-                                    <td class="text-center" id="eliminationsMostInGame4"></td>
-                                    <td class="text-center" id="eliminationsMostInGame5"></td>
+                                    <td id="eliminationsMostInGame1"></td>
+                                    <td id="eliminationsMostInGame2"></td>
+                                    <td id="eliminationsMostInGame3"></td>
+                                    <td id="eliminationsMostInGame4"></td>
+                                    <td id="eliminationsMostInGame5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Environmental Kills:</th>
-                                    <td class="text-center" id="finalBlowsMostInGame1"></td>
-                                    <td class="text-center" id="finalBlowsMostInGame2"></td>
-                                    <td class="text-center" id="finalBlowsMostInGame3"></td>
-                                    <td class="text-center" id="finalBlowsMostInGame4"></td>
-                                    <td class="text-center" id="finalBlowsMostInGame5"></td>
+                                    <td id="finalBlowsMostInGame1"></td>
+                                    <td id="finalBlowsMostInGame2"></td>
+                                    <td id="finalBlowsMostInGame3"></td>
+                                    <td id="finalBlowsMostInGame4"></td>
+                                    <td id="finalBlowsMostInGame5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Final Blows:</th>
-                                    <td class="text-center" id="healingDoneMostInGame1"></td>
-                                    <td class="text-center" id="healingDoneMostInGame2"></td>
-                                    <td class="text-center" id="healingDoneMostInGame3"></td>
-                                    <td class="text-center" id="healingDoneMostInGame4"></td>
-                                    <td class="text-center" id="healingDoneMostInGame5"></td>
+                                    <td id="healingDoneMostInGame1"></td>
+                                    <td id="healingDoneMostInGame2"></td>
+                                    <td id="healingDoneMostInGame3"></td>
+                                    <td id="healingDoneMostInGame4"></td>
+                                    <td id="healingDoneMostInGame5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Healing Done:</th>
-                                    <td class="text-center" id="heroDamageDoneMostInGame1"></td>
-                                    <td class="text-center" id="heroDamageDoneMostInGame2"></td>
-                                    <td class="text-center" id="heroDamageDoneMostInGame3"></td>
-                                    <td class="text-center" id="heroDamageDoneMostInGame4"></td>
-                                    <td class="text-center" id="heroDamageDoneMostInGame5"></td>
+                                    <td id="heroDamageDoneMostInGame1"></td>
+                                    <td id="heroDamageDoneMostInGame2"></td>
+                                    <td id="heroDamageDoneMostInGame3"></td>
+                                    <td id="heroDamageDoneMostInGame4"></td>
+                                    <td id="heroDamageDoneMostInGame5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Hero Damage Done:</th>
-                                    <td class="text-center" id="killsStreakBest1"></td>
-                                    <td class="text-center" id="killsStreakBest2"></td>
-                                    <td class="text-center" id="killsStreakBest3"></td>
-                                    <td class="text-center" id="killsStreakBest4"></td>
-                                    <td class="text-center" id="killsStreakBest5"></td>
+                                    <td id="killsStreakBest1"></td>
+                                    <td id="killsStreakBest2"></td>
+                                    <td id="killsStreakBest3"></td>
+                                    <td id="killsStreakBest4"></td>
+                                    <td id="killsStreakBest5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Kills Streak - Best:</th>
-                                    <td class="text-center" id="meleeFinalBlowsMostInGame1"></td>
-                                    <td class="text-center" id="meleeFinalBlowsMostInGame2"></td>
-                                    <td class="text-center" id="meleeFinalBlowsMostInGame3"></td>
-                                    <td class="text-center" id="meleeFinalBlowsMostInGame4"></td>
-                                    <td class="text-center" id="meleeFinalBlowsMostInGame5"></td>
+                                    <td id="meleeFinalBlowsMostInGame1"></td>
+                                    <td id="meleeFinalBlowsMostInGame2"></td>
+                                    <td id="meleeFinalBlowsMostInGame3"></td>
+                                    <td id="meleeFinalBlowsMostInGame4"></td>
+                                    <td id="meleeFinalBlowsMostInGame5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Melee Final Blows:</th>
-                                    <td class="text-center" id="multikillsBest1"></td>
-                                    <td class="text-center" id="multikillsBest2"></td>
-                                    <td class="text-center" id="multikillsBest3"></td>
-                                    <td class="text-center" id="multikillsBest4"></td>
-                                    <td class="text-center" id="multikillsBest5"></td>
+                                    <td id="multikillsBest1"></td>
+                                    <td id="multikillsBest2"></td>
+                                    <td id="multikillsBest3"></td>
+                                    <td id="multikillsBest4"></td>
+                                    <td id="multikillsBest5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Multikills - Best:</th>
-                                    <td class="text-center" id="objectiveKillsMostInGame1"></td>
-                                    <td class="text-center" id="objectiveKillsMostInGame2"></td>
-                                    <td class="text-center" id="objectiveKillsMostInGame3"></td>
-                                    <td class="text-center" id="objectiveKillsMostInGame4"></td>
-                                    <td class="text-center" id="objectiveKillsMostInGame5"></td>
+                                    <td id="objectiveKillsMostInGame1"></td>
+                                    <td id="objectiveKillsMostInGame2"></td>
+                                    <td id="objectiveKillsMostInGame3"></td>
+                                    <td id="objectiveKillsMostInGame4"></td>
+                                    <td id="objectiveKillsMostInGame5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Objective Kills:</th>
-                                    <td class="text-center" id="objectiveTimeMostInGame1"></td>
-                                    <td class="text-center" id="objectiveTimeMostInGame2"></td>
-                                    <td class="text-center" id="objectiveTimeMostInGame3"></td>
-                                    <td class="text-center" id="objectiveTimeMostInGame4"></td>
-                                    <td class="text-center" id="objectiveTimeMostInGame5"></td>
+                                    <td id="objectiveTimeMostInGame1"></td>
+                                    <td id="objectiveTimeMostInGame2"></td>
+                                    <td id="objectiveTimeMostInGame3"></td>
+                                    <td id="objectiveTimeMostInGame4"></td>
+                                    <td id="objectiveTimeMostInGame5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Objective Time:</th>
-                                    <td class="text-center" id="offensiveAssistsMostInGame1"></td>
-                                    <td class="text-center" id="offensiveAssistsMostInGame2"></td>
-                                    <td class="text-center" id="offensiveAssistsMostInGame3"></td>
-                                    <td class="text-center" id="offensiveAssistsMostInGame4"></td>
-                                    <td class="text-center" id="offensiveAssistsMostInGame5"></td>
+                                    <td id="offensiveAssistsMostInGame1"></td>
+                                    <td id="offensiveAssistsMostInGame2"></td>
+                                    <td id="offensiveAssistsMostInGame3"></td>
+                                    <td id="offensiveAssistsMostInGame4"></td>
+                                    <td id="offensiveAssistsMostInGame5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Offensive Assists:</th>
-                                    <td class="text-center" id="soloKillsMostInGame1"></td>
-                                    <td class="text-center" id="soloKillsMostInGame2"></td>
-                                    <td class="text-center" id="soloKillsMostInGame3"></td>
-                                    <td class="text-center" id="soloKillsMostInGame4"></td>
-                                    <td class="text-center" id="soloKillsMostInGame5"></td>
+                                    <td id="soloKillsMostInGame1"></td>
+                                    <td id="soloKillsMostInGame2"></td>
+                                    <td id="soloKillsMostInGame3"></td>
+                                    <td id="soloKillsMostInGame4"></td>
+                                    <td id="soloKillsMostInGame5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Recon Assists:</th>
-                                    <td class="text-center" id="timeSpentOnFireMostInGame1"></td>
-                                    <td class="text-center" id="timeSpentOnFireMostInGame2"></td>
-                                    <td class="text-center" id="timeSpentOnFireMostInGame3"></td>
-                                    <td class="text-center" id="timeSpentOnFireMostInGame4"></td>
-                                    <td class="text-center" id="timeSpentOnFireMostInGame5"></td>
+                                    <td id="timeSpentOnFireMostInGame1"></td>
+                                    <td id="timeSpentOnFireMostInGame2"></td>
+                                    <td id="timeSpentOnFireMostInGame3"></td>
+                                    <td id="timeSpentOnFireMostInGame4"></td>
+                                    <td id="timeSpentOnFireMostInGame5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Solo Kills:</th>
-                                    <td class="text-center" id="turretsDestroyedMostInGame1"></td>
-                                    <td class="text-center" id="turretsDestroyedMostInGame2"></td>
-                                    <td class="text-center" id="turretsDestroyedMostInGame3"></td>
-                                    <td class="text-center" id="turretsDestroyedMostInGame4"></td>
-                                    <td class="text-center" id="turretsDestroyedMostInGame5"></td>
+                                    <td id="turretsDestroyedMostInGame1"></td>
+                                    <td id="turretsDestroyedMostInGame2"></td>
+                                    <td id="turretsDestroyedMostInGame3"></td>
+                                    <td id="turretsDestroyedMostInGame4"></td>
+                                    <td id="turretsDestroyedMostInGame5"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -418,99 +418,99 @@
                             <tbody>
                                 <tr>
                                     <th style="width:16.66%" scope="row">Barrier Damage Done:</th>
-                                    <td class="text-center" id="barrierDamageDone1"></td>
-                                    <td class="text-center" id="barrierDamageDone2"></td>
-                                    <td class="text-center" id="barrierDamageDone3"></td>
-                                    <td class="text-center" id="barrierDamageDone4"></td>
-                                    <td class="text-center" id="barrierDamageDone5"></td>
+                                    <td id="barrierDamageDone1"></td>
+                                    <td id="barrierDamageDone2"></td>
+                                    <td id="barrierDamageDone3"></td>
+                                    <td id="barrierDamageDone4"></td>
+                                    <td id="barrierDamageDone5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Damage Done:</th>
-                                    <td class="text-center" id="damageDone1"></td>
-                                    <td class="text-center" id="damageDone2"></td>
-                                    <td class="text-center" id="damageDone3"></td>
-                                    <td class="text-center" id="damageDone4"></td>
-                                    <td class="text-center" id="damageDone5"></td>
+                                    <td id="damageDone1"></td>
+                                    <td id="damageDone2"></td>
+                                    <td id="damageDone3"></td>
+                                    <td id="damageDone4"></td>
+                                    <td id="damageDone5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Deaths:</th>
-                                    <td class="text-center" id="deaths1"></td>
-                                    <td class="text-center" id="deaths2"></td>
-                                    <td class="text-center" id="deaths3"></td>
-                                    <td class="text-center" id="deaths4"></td>
-                                    <td class="text-center" id="deaths5"></td>
+                                    <td id="deaths1"></td>
+                                    <td id="deaths2"></td>
+                                    <td id="deaths3"></td>
+                                    <td id="deaths4"></td>
+                                    <td id="deaths5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Eliminations:</th>
-                                    <td class="text-center" id="eliminations1"></td>
-                                    <td class="text-center" id="eliminations2"></td>
-                                    <td class="text-center" id="eliminations3"></td>
-                                    <td class="text-center" id="eliminations4"></td>
-                                    <td class="text-center" id="eliminations5"></td>
+                                    <td id="eliminations1"></td>
+                                    <td id="eliminations2"></td>
+                                    <td id="eliminations3"></td>
+                                    <td id="eliminations4"></td>
+                                    <td id="eliminations5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Final Blows:</th>
-                                    <td class="text-center" id="finalBlows1"></td>
-                                    <td class="text-center" id="finalBlows2"></td>
-                                    <td class="text-center" id="finalBlows3"></td>
-                                    <td class="text-center" id="finalBlows4"></td>
-                                    <td class="text-center" id="finalBlows5"></td>
+                                    <td id="finalBlows1"></td>
+                                    <td id="finalBlows2"></td>
+                                    <td id="finalBlows3"></td>
+                                    <td id="finalBlows4"></td>
+                                    <td id="finalBlows5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Hero Damage Done:</th>
-                                    <td class="text-center" id="heroDamageDone1"></td>
-                                    <td class="text-center" id="heroDamageDone2"></td>
-                                    <td class="text-center" id="heroDamageDone3"></td>
-                                    <td class="text-center" id="heroDamageDone4"></td>
-                                    <td class="text-center" id="heroDamageDone5"></td>
+                                    <td id="heroDamageDone1"></td>
+                                    <td id="heroDamageDone2"></td>
+                                    <td id="heroDamageDone3"></td>
+                                    <td id="heroDamageDone4"></td>
+                                    <td id="heroDamageDone5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Melee Final Blows:</th>
-                                    <td class="text-center" id="meleeFinalBlows1"></td>
-                                    <td class="text-center" id="meleeFinalBlows2"></td>
-                                    <td class="text-center" id="meleeFinalBlows3"></td>
-                                    <td class="text-center" id="meleeFinalBlows4"></td>
-                                    <td class="text-center" id="meleeFinalBlows5"></td>
+                                    <td id="meleeFinalBlows1"></td>
+                                    <td id="meleeFinalBlows2"></td>
+                                    <td id="meleeFinalBlows3"></td>
+                                    <td id="meleeFinalBlows4"></td>
+                                    <td id="meleeFinalBlows5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Multikills:</th>
-                                    <td class="text-center" id="multikills1"></td>
-                                    <td class="text-center" id="multikills2"></td>
-                                    <td class="text-center" id="multikills3"></td>
-                                    <td class="text-center" id="multikills4"></td>
-                                    <td class="text-center" id="multikills5"></td>
+                                    <td id="multikills1"></td>
+                                    <td id="multikills2"></td>
+                                    <td id="multikills3"></td>
+                                    <td id="multikills4"></td>
+                                    <td id="multikills5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Objective Kills:</th>
-                                    <td class="text-center" id="objectiveKills1"></td>
-                                    <td class="text-center" id="objectiveKills2"></td>
-                                    <td class="text-center" id="objectiveKills3"></td>
-                                    <td class="text-center" id="objectiveKills4"></td>
-                                    <td class="text-center" id="objectiveKills5"></td>
+                                    <td id="objectiveKills1"></td>
+                                    <td id="objectiveKills2"></td>
+                                    <td id="objectiveKills3"></td>
+                                    <td id="objectiveKills4"></td>
+                                    <td id="objectiveKills5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Objective Time:</th>
-                                    <td class="text-center" id="objectiveTime1"></td>
-                                    <td class="text-center" id="objectiveTime2"></td>
-                                    <td class="text-center" id="objectiveTime3"></td>
-                                    <td class="text-center" id="objectiveTime4"></td>
-                                    <td class="text-center" id="objectiveTime5"></td>
+                                    <td id="objectiveTime1"></td>
+                                    <td id="objectiveTime2"></td>
+                                    <td id="objectiveTime3"></td>
+                                    <td id="objectiveTime4"></td>
+                                    <td id="objectiveTime5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Solo Kills:</th>
-                                    <td class="text-center" id="soloKills1"></td>
-                                    <td class="text-center" id="soloKills2"></td>
-                                    <td class="text-center" id="soloKills3"></td>
-                                    <td class="text-center" id="soloKills4"></td>
-                                    <td class="text-center" id="soloKills5"></td>
+                                    <td id="soloKills1"></td>
+                                    <td id="soloKills2"></td>
+                                    <td id="soloKills3"></td>
+                                    <td id="soloKills4"></td>
+                                    <td id="soloKills5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Time Spent On Fire:</th>
-                                    <td class="text-center" id="timeSpentOnFire1"></td>
-                                    <td class="text-center" id="timeSpentOnFire2"></td>
-                                    <td class="text-center" id="timeSpentOnFire3"></td>
-                                    <td class="text-center" id="timeSpentOnFire4"></td>
-                                    <td class="text-center" id="timeSpentOnFire5"></td>
+                                    <td id="timeSpentOnFire1"></td>
+                                    <td id="timeSpentOnFire2"></td>
+                                    <td id="timeSpentOnFire3"></td>
+                                    <td id="timeSpentOnFire4"></td>
+                                    <td id="timeSpentOnFire5"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -520,27 +520,27 @@
                             <tbody>
                                 <tr>
                                     <th style="width:16.66%" scope="row">Defensive Assists:</th>
-                                    <td class="text-center" id="defensiveAssists1"></td>
-                                    <td class="text-center" id="defensiveAssists2"></td>
-                                    <td class="text-center" id="defensiveAssists3"></td>
-                                    <td class="text-center" id="defensiveAssists4"></td>
-                                    <td class="text-center" id="defensiveAssists5"></td>
+                                    <td id="defensiveAssists1"></td>
+                                    <td id="defensiveAssists2"></td>
+                                    <td id="defensiveAssists3"></td>
+                                    <td id="defensiveAssists4"></td>
+                                    <td id="defensiveAssists5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Healing Done:</th>
-                                    <td class="text-center" id="healingDone1"></td>
-                                    <td class="text-center" id="healingDone2"></td>
-                                    <td class="text-center" id="healingDone3"></td>
-                                    <td class="text-center" id="healingDone4"></td>
-                                    <td class="text-center" id="healingDone5"></td>
+                                    <td id="healingDone1"></td>
+                                    <td id="healingDone2"></td>
+                                    <td id="healingDone3"></td>
+                                    <td id="healingDone4"></td>
+                                    <td id="healingDone5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Offensive Assists:</th>
-                                    <td class="text-center" id="offensiveAssists1"></td>
-                                    <td class="text-center" id="offensiveAssists2"></td>
-                                    <td class="text-center" id="offensiveAssists3"></td>
-                                    <td class="text-center" id="offensiveAssists4"></td>
-                                    <td class="text-center" id="offensiveAssists5"></td>
+                                    <td id="offensiveAssists1"></td>
+                                    <td id="offensiveAssists2"></td>
+                                    <td id="offensiveAssists3"></td>
+                                    <td id="offensiveAssists4"></td>
+                                    <td id="offensiveAssists5"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -550,91 +550,91 @@
                             <tbody>
                                 <tr>
                                     <th style="width:16.66%" scope="row">All Damage Done Avg:</th>
-                                    <td class="text-center" id="allDamageDoneAvgPer10Min1"></td>
-                                    <td class="text-center" id="allDamageDoneAvgPer10Min2"></td>
-                                    <td class="text-center" id="allDamageDoneAvgPer10Min3"></td>
-                                    <td class="text-center" id="allDamageDoneAvgPer10Min4"></td>
-                                    <td class="text-center" id="allDamageDoneAvgPer10Min5"></td>
+                                    <td id="allDamageDoneAvgPer10Min1"></td>
+                                    <td id="allDamageDoneAvgPer10Min2"></td>
+                                    <td id="allDamageDoneAvgPer10Min3"></td>
+                                    <td id="allDamageDoneAvgPer10Min4"></td>
+                                    <td id="allDamageDoneAvgPer10Min5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Barrier Damage Done Avg:</th>
-                                    <td class="text-center" id="barrierDamageDoneAvgPer10Min1"></td>
-                                    <td class="text-center" id="barrierDamageDoneAvgPer10Min2"></td>
-                                    <td class="text-center" id="barrierDamageDoneAvgPer10Min3"></td>
-                                    <td class="text-center" id="barrierDamageDoneAvgPer10Min4"></td>
-                                    <td class="text-center" id="barrierDamageDoneAvgPer10Min5"></td>
+                                    <td id="barrierDamageDoneAvgPer10Min1"></td>
+                                    <td id="barrierDamageDoneAvgPer10Min2"></td>
+                                    <td id="barrierDamageDoneAvgPer10Min3"></td>
+                                    <td id="barrierDamageDoneAvgPer10Min4"></td>
+                                    <td id="barrierDamageDoneAvgPer10Min5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Deaths Avg:</th>
-                                    <td class="text-center" id="deathsAvgPer10Min1"></td>
-                                    <td class="text-center" id="deathsAvgPer10Min2"></td>
-                                    <td class="text-center" id="deathsAvgPer10Min3"></td>
-                                    <td class="text-center" id="deathsAvgPer10Min4"></td>
-                                    <td class="text-center" id="deathsAvgPer10Min5"></td>
+                                    <td id="deathsAvgPer10Min1"></td>
+                                    <td id="deathsAvgPer10Min2"></td>
+                                    <td id="deathsAvgPer10Min3"></td>
+                                    <td id="deathsAvgPer10Min4"></td>
+                                    <td id="deathsAvgPer10Min5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Eliminations Avg:</th>
-                                    <td class="text-center" id="eliminationsAvgPer10Min1"></td>
-                                    <td class="text-center" id="eliminationsAvgPer10Min2"></td>
-                                    <td class="text-center" id="eliminationsAvgPer10Min3"></td>
-                                    <td class="text-center" id="eliminationsAvgPer10Min4"></td>
-                                    <td class="text-center" id="eliminationsAvgPer10Min5"></td>
+                                    <td id="eliminationsAvgPer10Min1"></td>
+                                    <td id="eliminationsAvgPer10Min2"></td>
+                                    <td id="eliminationsAvgPer10Min3"></td>
+                                    <td id="eliminationsAvgPer10Min4"></td>
+                                    <td id="eliminationsAvgPer10Min5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Final Blows Avg:</th>
-                                    <td class="text-center" id="finalBlowsAvgPer10Min1"></td>
-                                    <td class="text-center" id="finalBlowsAvgPer10Min2"></td>
-                                    <td class="text-center" id="finalBlowsAvgPer10Min3"></td>
-                                    <td class="text-center" id="finalBlowsAvgPer10Min4"></td>
-                                    <td class="text-center" id="finalBlowsAvgPer10Min5"></td>
+                                    <td id="finalBlowsAvgPer10Min1"></td>
+                                    <td id="finalBlowsAvgPer10Min2"></td>
+                                    <td id="finalBlowsAvgPer10Min3"></td>
+                                    <td id="finalBlowsAvgPer10Min4"></td>
+                                    <td id="finalBlowsAvgPer10Min5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Healing Done Avg:</th>
-                                    <td class="text-center" id="healingDoneAvgPer10Min1"></td>
-                                    <td class="text-center" id="healingDoneAvgPer10Min2"></td>
-                                    <td class="text-center" id="healingDoneAvgPer10Min3"></td>
-                                    <td class="text-center" id="healingDoneAvgPer10Min4"></td>
-                                    <td class="text-center" id="healingDoneAvgPer10Min5"></td>
+                                    <td id="healingDoneAvgPer10Min1"></td>
+                                    <td id="healingDoneAvgPer10Min2"></td>
+                                    <td id="healingDoneAvgPer10Min3"></td>
+                                    <td id="healingDoneAvgPer10Min4"></td>
+                                    <td id="healingDoneAvgPer10Min5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Hero Damage Done Avg:</th>
-                                    <td class="text-center" id="heroDamageDoneAvgPer10Min1"></td>
-                                    <td class="text-center" id="heroDamageDoneAvgPer10Min2"></td>
-                                    <td class="text-center" id="heroDamageDoneAvgPer10Min3"></td>
-                                    <td class="text-center" id="heroDamageDoneAvgPer10Min4"></td>
-                                    <td class="text-center" id="heroDamageDoneAvgPer10Min5"></td>
+                                    <td id="heroDamageDoneAvgPer10Min1"></td>
+                                    <td id="heroDamageDoneAvgPer10Min2"></td>
+                                    <td id="heroDamageDoneAvgPer10Min3"></td>
+                                    <td id="heroDamageDoneAvgPer10Min4"></td>
+                                    <td id="heroDamageDoneAvgPer10Min5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Objective Kills Avg:</th>
-                                    <td class="text-center" id="objectiveKillsAvgPer10Min1"></td>
-                                    <td class="text-center" id="objectiveKillsAvgPer10Min2"></td>
-                                    <td class="text-center" id="objectiveKillsAvgPer10Min3"></td>
-                                    <td class="text-center" id="objectiveKillsAvgPer10Min4"></td>
-                                    <td class="text-center" id="objectiveKillsAvgPer10Min5"></td>
+                                    <td id="objectiveKillsAvgPer10Min1"></td>
+                                    <td id="objectiveKillsAvgPer10Min2"></td>
+                                    <td id="objectiveKillsAvgPer10Min3"></td>
+                                    <td id="objectiveKillsAvgPer10Min4"></td>
+                                    <td id="objectiveKillsAvgPer10Min5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Objective Time Avg:</th>
-                                    <td class="text-center" id="objectiveTimeAvgPer10Min1"></td>
-                                    <td class="text-center" id="objectiveTimeAvgPer10Min2"></td>
-                                    <td class="text-center" id="objectiveTimeAvgPer10Min3"></td>
-                                    <td class="text-center" id="objectiveTimeAvgPer10Min4"></td>
-                                    <td class="text-center" id="objectiveTimeAvgPer10Min5"></td>
+                                    <td id="objectiveTimeAvgPer10Min1"></td>
+                                    <td id="objectiveTimeAvgPer10Min2"></td>
+                                    <td id="objectiveTimeAvgPer10Min3"></td>
+                                    <td id="objectiveTimeAvgPer10Min4"></td>
+                                    <td id="objectiveTimeAvgPer10Min5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Solo Kills Avg:</th>
-                                    <td class="text-center" id="soloKillsAvgPer10Min1"></td>
-                                    <td class="text-center" id="soloKillsAvgPer10Min2"></td>
-                                    <td class="text-center" id="soloKillsAvgPer10Min3"></td>
-                                    <td class="text-center" id="soloKillsAvgPer10Min4"></td>
-                                    <td class="text-center" id="soloKillsAvgPer10Min5"></td>
+                                    <td id="soloKillsAvgPer10Min1"></td>
+                                    <td id="soloKillsAvgPer10Min2"></td>
+                                    <td id="soloKillsAvgPer10Min3"></td>
+                                    <td id="soloKillsAvgPer10Min4"></td>
+                                    <td id="soloKillsAvgPer10Min5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Time Spent On Fire Avg:</th>
-                                    <td class="text-center" id="timeSpentOnFireAvgPer10Min1"></td>
-                                    <td class="text-center" id="timeSpentOnFireAvgPer10Min2"></td>
-                                    <td class="text-center" id="timeSpentOnFireAvgPer10Min3"></td>
-                                    <td class="text-center" id="timeSpentOnFireAvgPer10Min4"></td>
-                                    <td class="text-center" id="timeSpentOnFireAvgPer10Min5"></td>
+                                    <td id="timeSpentOnFireAvgPer10Min1"></td>
+                                    <td id="timeSpentOnFireAvgPer10Min2"></td>
+                                    <td id="timeSpentOnFireAvgPer10Min3"></td>
+                                    <td id="timeSpentOnFireAvgPer10Min4"></td>
+                                    <td id="timeSpentOnFireAvgPer10Min5"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -644,43 +644,43 @@
                             <tbody>
                                 <tr>
                                     <th style="width:16.66%" scope="row">Cards:</th>
-                                    <td class="text-center" id="cards1"></td>
-                                    <td class="text-center" id="cards2"></td>
-                                    <td class="text-center" id="cards3"></td>
-                                    <td class="text-center" id="cards4"></td>
-                                    <td class="text-center" id="cards5"></td>
+                                    <td id="cards1"></td>
+                                    <td id="cards2"></td>
+                                    <td id="cards3"></td>
+                                    <td id="cards4"></td>
+                                    <td id="cards5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Medals:</th>
-                                    <td class="text-center" id="medals1"></td>
-                                    <td class="text-center" id="medals2"></td>
-                                    <td class="text-center" id="medals3"></td>
-                                    <td class="text-center" id="medals4"></td>
-                                    <td class="text-center" id="medals5"></td>
+                                    <td id="medals1"></td>
+                                    <td id="medals2"></td>
+                                    <td id="medals3"></td>
+                                    <td id="medals4"></td>
+                                    <td id="medals5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Medals Bronze:</th>
-                                    <td class="text-center" id="medalsBronze1"></td>
-                                    <td class="text-center" id="medalsBronze2"></td>
-                                    <td class="text-center" id="medalsBronze3"></td>
-                                    <td class="text-center" id="medalsBronze4"></td>
-                                    <td class="text-center" id="medalsBronze5"></td>
+                                    <td id="medalsBronze1"></td>
+                                    <td id="medalsBronze2"></td>
+                                    <td id="medalsBronze3"></td>
+                                    <td id="medalsBronze4"></td>
+                                    <td id="medalsBronze5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Medals Silver:</th>
-                                    <td class="text-center" id="medalsSilver1"></td>
-                                    <td class="text-center" id="medalsSilver2"></td>
-                                    <td class="text-center" id="medalsSilver3"></td>
-                                    <td class="text-center" id="medalsSilver4"></td>
-                                    <td class="text-center" id="medalsSilver5"></td>
+                                    <td id="medalsSilver1"></td>
+                                    <td id="medalsSilver2"></td>
+                                    <td id="medalsSilver3"></td>
+                                    <td id="medalsSilver4"></td>
+                                    <td id="medalsSilver5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Medals Gold:</th>
-                                    <td class="text-center" id="medalsGold1"></td>
-                                    <td class="text-center" id="medalsGold2"></td>
-                                    <td class="text-center" id="medalsGold3"></td>
-                                    <td class="text-center" id="medalsGold4"></td>
-                                    <td class="text-center" id="medalsGold5"></td>
+                                    <td id="medalsGold1"></td>
+                                    <td id="medalsGold2"></td>
+                                    <td id="medalsGold3"></td>
+                                    <td id="medalsGold4"></td>
+                                    <td id="medalsGold5"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -690,19 +690,19 @@
                             <tbody>
                                 <tr>
                                     <th style="width:16.66%" scope="row">Games Won:</th>
-                                    <td class="text-center" id="gamesWon1"></td>
-                                    <td class="text-center" id="gamesWon2"></td>
-                                    <td class="text-center" id="gamesWon3"></td>
-                                    <td class="text-center" id="gamesWon4"></td>
-                                    <td class="text-center" id="gamesWon5"></td>
+                                    <td id="gamesWon1"></td>
+                                    <td id="gamesWon2"></td>
+                                    <td id="gamesWon3"></td>
+                                    <td id="gamesWon4"></td>
+                                    <td id="gamesWon5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Time Played:</th>
-                                    <td class="text-center" id="timePlayed1"></td>
-                                    <td class="text-center" id="timePlayed2"></td>
-                                    <td class="text-center" id="timePlayed3"></td>
-                                    <td class="text-center" id="timePlayed4"></td>
-                                    <td class="text-center" id="timePlayed5"></td>
+                                    <td id="timePlayed1"></td>
+                                    <td id="timePlayed2"></td>
+                                    <td id="timePlayed3"></td>
+                                    <td id="timePlayed4"></td>
+                                    <td id="timePlayed5"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -712,19 +712,19 @@
                             <tbody>
                                 <tr>
                                     <th style="width:16.66%" scope="row">Teleporter Pads Destroyed:</th>
-                                    <td class="text-center" id="teleporterPadsDestroyed1"></td>
-                                    <td class="text-center" id="teleporterPadsDestroyed2"></td>
-                                    <td class="text-center" id="teleporterPadsDestroyed3"></td>
-                                    <td class="text-center" id="teleporterPadsDestroyed4"></td>
-                                    <td class="text-center" id="teleporterPadsDestroyed5"></td>
+                                    <td id="teleporterPadsDestroyed1"></td>
+                                    <td id="teleporterPadsDestroyed2"></td>
+                                    <td id="teleporterPadsDestroyed3"></td>
+                                    <td id="teleporterPadsDestroyed4"></td>
+                                    <td id="teleporterPadsDestroyed5"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Turrets Destroyed:</th>
-                                    <td class="text-center" id="turretsDestroyed1"></td>
-                                    <td class="text-center" id="turretsDestroyed2"></td>
-                                    <td class="text-center" id="turretsDestroyed3"></td>
-                                    <td class="text-center" id="turretsDestroyed4"></td>
-                                    <td class="text-center" id="turretsDestroyed5"></td>
+                                    <td id="turretsDestroyed1"></td>
+                                    <td id="turretsDestroyed2"></td>
+                                    <td id="turretsDestroyed3"></td>
+                                    <td id="turretsDestroyed4"></td>
+                                    <td id="turretsDestroyed5"></td>
                                 </tr>
                             </tbody>
                         </table>

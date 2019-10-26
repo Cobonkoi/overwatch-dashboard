@@ -89,10 +89,7 @@ function writeToDocument(platformInput, usernameInput) {
                 document.getElementById("errorMessage").innerHTML = "Profile is Private - Please set to public in Overwatch > Social settings";
             }
             else {
-                var profileBackgroundImage = profileImageArray[Math.floor(Math.random() * profileImageArray.length)]
-                var profileBackground = document.createElement('style');
-                document.head.appendChild(profileBackground);
-                profileBackground.sheet.insertRule(`#profileBackground { background: url("./assets/images/${profileBackgroundImage}") no-repeat center center;`)
+                randomBackground()
                 changeDocumentData();
             }
             hideLoadingScreen();
@@ -118,6 +115,7 @@ function hideLoadingScreen() {
     document.getElementById("loader").classList.remove('loader');
 }
 
+//Chooses a random background from an array for the profilebackground
 function randomBackground() {
     var profileBackgroundImage = profileImageArray[Math.floor(Math.random() * profileImageArray.length)]
     var profileBackground = document.createElement('style');
@@ -333,6 +331,8 @@ function changeUsernamePlaceholderMobile() {
 
 
 function writeToComparison(platformInput, usernameInput) {
+    showLoadingScreen();
+
     //Check that they have entered a username and platform before going any further
     if (document.getElementById(platformInput).value !== '' && document.getElementById(usernameInput).value !== '') {
 
@@ -342,29 +342,37 @@ function writeToComparison(platformInput, usernameInput) {
             //Checks if profile is private and gives error if so. Otherwise inserts random profile background & populates dashboard.
             if (data['private'] === true) {
                 document.getElementById("errorMessage").innerHTML = "Profile is Private - Please set to public in Overwatch > Social settings";
+                hideLoadingScreen();
             }
             else {
                 if (Object.entries(comparisonProfile1).length === 0) {
                     comparisonProfile1 = data;
                     console.dir(comparisonProfile1);
+                    addComparisonData(comparisonProfile1, "1");
                 }
                 else if (Object.entries(comparisonProfile2).length === 0) {
                     comparisonProfile2 = data;
                     console.dir(comparisonProfile2);
+                    addComparisonData(comparisonProfile2, "2");
                 }
                 else if (Object.entries(comparisonProfile3).length === 0) {
                     comparisonProfile3 = data;
                     console.dir(comparisonProfile3);
+                    addComparisonData(comparisonProfile3, "3");
                 }
                 else if (Object.entries(comparisonProfile4).length === 0) {
                     comparisonProfile4 = data;
                     console.dir(comparisonProfile4);
+                    addComparisonData(comparisonProfile4, "4");
                 }
                 else if (Object.entries(comparisonProfile5).length === 0) {
                     comparisonProfile5 = data;
                     console.dir(comparisonProfile5);
-                } else {
+                    addComparisonData(comparisonProfile5, "5");
+                }
+                else {
                     document.getElementById("errorMessage").innerHTML = "Comparison Slots Full - Please remove a profile first";
+                    hideLoadingScreen();
                 }
             }
         });
@@ -373,48 +381,230 @@ function writeToComparison(platformInput, usernameInput) {
         document.getElementById("errorMessage").innerHTML = "Error - Please enter a username";
         hideLoadingScreen();
     }
-
 }
 
+function addComparisonData(profileData, profileNumber) {
 
+    var gameType = document.getElementById("gameTypeSelect").value;
+    var heroName = document.getElementById("heroNameSelect").value;
 
-function addProfile(platformInput, usernameInput) {
-    showLoadingScreen();
-    
-    /* 
-    look up profile data as normal
-    save to temp variable
-    look for next empty array slot
-    put data into that slot
-    */
-    writeToComparison(platformInput, usernameInput);
-    
-    
-    
-    /*
-    populate fields for that slot on page
-    show those fields on page
-    comparestats()
-    */
+    //Profile Text
+    document.getElementById(`profileUsername${profileNumber}`).innerHTML = profileData['name'];
+    document.getElementById(`profileLevel${profileNumber}`).innerHTML = profileData['level'] + (profileData['prestige'] * 100);
+    document.getElementById(`profileEndoresmentLevel${profileNumber}`).innerHTML = profileData['endorsement'];
+
+    //Images
+    document.getElementById(`profilePictureImage${profileNumber}`).src = profileData['icon'];
+
+    //Table Data - Each table checks for possible errors with null data before populating.
+    bestArray.forEach(function(statistic) {
+        if (profileData[gameType]['careerStats'][heroName] == null) {
+            document.getElementById(`${statistic}${profileNumber}`).innerHTML = "N/A";
+        }
+        else {
+            if (profileData[gameType]['careerStats'][heroName]['best'] == null) {
+                document.getElementById(`${statistic}${profileNumber}`).innerHTML = "N/A";
+            }
+            else {
+                if (profileData[gameType]['careerStats'][heroName]['best'][statistic] == null) {
+                    document.getElementById(`${statistic}${profileNumber}`).innerHTML = "N/A";
+                }
+                else {
+                    document.getElementById(`${statistic}${profileNumber}`).innerHTML = profileData[gameType]['careerStats'][heroName]['best'][statistic];
+                }
+            }
+        }
+    });
+
+    combatArray.forEach(function(statistic) {
+        if (profileData[gameType]['careerStats'][heroName] == null) {
+            document.getElementById(`${statistic}${profileNumber}`).innerHTML = "N/A";
+        }
+        else {
+            if (profileData[gameType]['careerStats'][heroName]['combat'] == null) {
+                document.getElementById(`${statistic}${profileNumber}`).innerHTML = "N/A";
+            }
+            else {
+                if (profileData[gameType]['careerStats'][heroName]['combat'][statistic] == null) {
+                    document.getElementById(`${statistic}${profileNumber}`).innerHTML = "N/A";
+                }
+                else {
+                    document.getElementById(`${statistic}${profileNumber}`).innerHTML = profileData[gameType]['careerStats'][heroName]['combat'][statistic];
+                }
+            }
+        }
+    });
+
+    assistsArray.forEach(function(statistic) {
+        if (profileData[gameType]['careerStats'][heroName] == null) {
+            document.getElementById(`${statistic}${profileNumber}`).innerHTML = "N/A";
+        }
+        else {
+            if (profileData[gameType]['careerStats'][heroName]['assists'] == null) {
+                document.getElementById(`${statistic}${profileNumber}`).innerHTML = "N/A";
+            }
+            else {
+                if (profileData[gameType]['careerStats'][heroName]['assists'][statistic] == null) {
+                    document.getElementById(`${statistic}${profileNumber}`).innerHTML = "N/A";
+                }
+                else {
+                    document.getElementById(`${statistic}${profileNumber}`).innerHTML = profileData[gameType]['careerStats'][heroName]['assists'][statistic];
+                }
+            }
+        }
+    });
+
+    averageArray.forEach(function(statistic) {
+        if (profileData[gameType]['careerStats'][heroName] == null) {
+            document.getElementById(`${statistic}${profileNumber}`).innerHTML = "N/A";
+        }
+        else {
+            if (profileData[gameType]['careerStats'][heroName]['average'] == null) {
+                document.getElementById(`${statistic}${profileNumber}`).innerHTML = "N/A";
+            }
+            else {
+                if (profileData[gameType]['careerStats'][heroName]['average'][statistic] == null) {
+                    document.getElementById(`${statistic}${profileNumber}`).innerHTML = "N/A";
+                }
+                else {
+                    document.getElementById(`${statistic}${profileNumber}`).innerHTML = profileData[gameType]['careerStats'][heroName]['average'][statistic];
+                }
+            }
+        }
+    });
+
+    awardsArray.forEach(function(statistic) {
+        if (profileData[gameType]['careerStats'][heroName] == null) {
+            document.getElementById(`${statistic}${profileNumber}`).innerHTML = "N/A";
+        }
+        else {
+            if (profileData[gameType]['careerStats'][heroName]['matchAwards'] == null) {
+                document.getElementById(`${statistic}${profileNumber}`).innerHTML = "N/A";
+            }
+            else {
+                if (profileData[gameType]['careerStats'][heroName]['matchAwards'][statistic] == null) {
+                    document.getElementById(`${statistic}${profileNumber}`).innerHTML = "N/A";
+                }
+                else {
+                    document.getElementById(`${statistic}${profileNumber}`).innerHTML = profileData[gameType]['careerStats'][heroName]['matchAwards'][statistic];
+                }
+            }
+        }
+    });
+
+    gameArray.forEach(function(statistic) {
+        if (profileData[gameType]['careerStats'][heroName] == null) {
+            document.getElementById(`${statistic}${profileNumber}`).innerHTML = "N/A";
+        }
+        else {
+            if (profileData[gameType]['careerStats'][heroName]['game'] == null) {
+                document.getElementById(`${statistic}${profileNumber}`).innerHTML = "N/A";
+            }
+            else {
+                if (profileData[gameType]['careerStats'][heroName]['game'][statistic] == null) {
+                    document.getElementById(`${statistic}${profileNumber}`).innerHTML = "N/A";
+                }
+                else {
+                    document.getElementById(`${statistic}${profileNumber}`).innerHTML = profileData[gameType]['careerStats'][heroName]['game'][statistic];
+                }
+            }
+        }
+    });
+
+    miscellaneousArray.forEach(function(statistic) {
+        if (profileData[gameType]['careerStats'][heroName] == null) {
+            document.getElementById(`${statistic}${profileNumber}`).innerHTML = "N/A";
+        }
+        else {
+            if (profileData[gameType]['careerStats'][heroName]['miscellaneous'] == null) {
+                document.getElementById(`${statistic}${profileNumber}`).innerHTML = "N/A";
+            }
+            else {
+                if (profileData[gameType]['careerStats'][heroName]['miscellaneous'][statistic] == null) {
+                    document.getElementById(`${statistic}${profileNumber}`).innerHTML = "N/A";
+                }
+                else {
+                    document.getElementById(`${statistic}${profileNumber}`).innerHTML = profileData[gameType]['careerStats'][heroName]['miscellaneous'][statistic];
+                }
+            }
+        }
+    });
     hideLoadingScreen();
 }
 
-/*
-function removeProfile() {
-    showLoadingScreen();
-    check which profile is to be removed
-    remove data from array slot
-    remove data from page
-    hide those fields on page
-    comparestats()
-    hideLoadingScreen();
-} 
-
-function comparestats() {
-    forEach row {
-        look at stats in each column
-        find highest
-        turn background green
+function changeComparisonData() {
+    if (Object.entries(comparisonProfile1).length !== 0) {
+        addComparisonData(comparisonProfile1, "1");
+    }
+    if (Object.entries(comparisonProfile2).length !== 0) {
+        addComparisonData(comparisonProfile2, "2");
+    }
+    if (Object.entries(comparisonProfile3).length !== 0) {
+        addComparisonData(comparisonProfile3, "3");
+    }
+    if (Object.entries(comparisonProfile4).length !== 0) {
+        addComparisonData(comparisonProfile4, "4");
+    }
+    if (Object.entries(comparisonProfile5).length !== 0) {
+        addComparisonData(comparisonProfile5, "5");
     }
 }
-*/
+
+function removeProfile(profileData, profileNumber) {
+    if (profileNumber === "1") {
+        comparisonProfile1 = {};
+    } else if (profileNumber === "2") {
+        comparisonProfile2 = {};
+    } else if (profileNumber === "3") {
+        comparisonProfile3 = {};
+    } else if (profileNumber === "4") {
+        comparisonProfile4 = {};
+    } else if (profileNumber === "5") {
+        comparisonProfile5 = {};
+    }
+    
+    //Profile Text
+    document.getElementById(`profileUsername${profileNumber}`).innerHTML = "Username";
+    document.getElementById(`profileLevel${profileNumber}`).innerHTML = "999";
+    document.getElementById(`profileEndoresmentLevel${profileNumber}`).innerHTML = "99";
+
+    //Images
+    document.getElementById(`profilePictureImage${profileNumber}`).src = "assets/images/profile-picture.png";
+
+    //Table Data - Each table checks for possible errors with null data before populating.
+    bestArray.forEach(function(statistic) {
+            document.getElementById(`${statistic}${profileNumber}`).innerHTML = "";
+    });
+
+    combatArray.forEach(function(statistic) {
+            document.getElementById(`${statistic}${profileNumber}`).innerHTML = "";
+    });
+
+    assistsArray.forEach(function(statistic) {
+            document.getElementById(`${statistic}${profileNumber}`).innerHTML = "";
+    });
+
+    averageArray.forEach(function(statistic) {
+            document.getElementById(`${statistic}${profileNumber}`).innerHTML = "";
+    });
+
+    awardsArray.forEach(function(statistic) {
+            document.getElementById(`${statistic}${profileNumber}`).innerHTML = "";
+    });
+
+    gameArray.forEach(function(statistic) {
+            document.getElementById(`${statistic}${profileNumber}`).innerHTML = "";
+    });
+
+    miscellaneousArray.forEach(function(statistic) {
+            document.getElementById(`${statistic}${profileNumber}`).innerHTML = "";
+    });
+} 
+
+// function comparestats() {
+//     forEach row {
+//         look at stats in each column
+//         find highest
+//         turn background green
+//     }
+// }
