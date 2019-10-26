@@ -120,7 +120,10 @@ function randomBackground() {
     var profileBackgroundImage = profileImageArray[Math.floor(Math.random() * profileImageArray.length)]
     var profileBackground = document.createElement('style');
     document.head.appendChild(profileBackground);
-    profileBackground.sheet.insertRule(`#profileBackground { background: url("./assets/images/${profileBackgroundImage}") no-repeat center center;`)
+    profileBackground.sheet.insertRule(`#profileBackground { background: url("./assets/images/${profileBackgroundImage}") no-repeat center center; -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;`)
 }
 
 //To split out the data from the URL if sent from index
