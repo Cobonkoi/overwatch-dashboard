@@ -20,10 +20,13 @@ A demo can be viewed on Github Pages [here](https://cobonkoi.github.io/overwatch
 If you don't play Overwatch, here is a list of example profiles to use on the demo:
 Sharpy-2695 (PC)
 MLGesus-21679 (PC)
+Zael-2375 (PC)
 LicensedCntrctr (Xbox)
 shon bilinkis (Xbox)
+Seugoi (Xbox)
 Ignortion (PS4)
 NekoGirlMx (PS4)
+Heathenx (PS4)
 
 ## UX
 My goal with the design of this website was to be as minimilistic as possible to enable the data to be easy to read and understand.
