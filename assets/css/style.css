@@ -55,7 +55,7 @@ p {
 
 .search-header-container {
     color: white;
-    
+
     background: url("../images/profile-background.png") no-repeat center center;
 
     -webkit-background-size: cover;
@@ -66,7 +66,7 @@ p {
 
 .comparison-header-container {
     color: white;
-    
+
     background: url("../images/profile-background.png") no-repeat center center;
 
     -webkit-background-size: cover;
@@ -112,7 +112,12 @@ p {
 /* -- TABLES -- */
 
 #comparisonTabsContent div table tbody tr td {
-    width: 16.66%;
+    width: 33.33%;
+    text-align: center;
+}
+
+#comparisonTabsContent div table tbody tr th {
+    width: 33.33%;
     text-align: center;
 }
 
@@ -180,7 +185,7 @@ p {
 
 /* ---- MEDIA QUERIES ---- */
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
     /* -- CONTAINERS -- */
     .search-header-container {
         min-height: 30vh !important;
@@ -192,7 +197,7 @@ p {
         -o-background-size: cover;
         background-size: cover;
     }
-    
+
     .comparison-header-container {
         background: url("../images/profile-background.png") no-repeat center center;
 
@@ -235,5 +240,15 @@ p {
     /* -- IMAGES -- */
     .profile-picture {
         text-align: right;
+    }
+
+    /* -- TABLES -- */
+    #comparisonTabsContent div table tbody tr td {
+        width: 16.66%;
+        text-align: center;
+    }
+    
+    #comparisonTabsContent div table tbody tr th {
+        width: 16.66%;
     }
 }

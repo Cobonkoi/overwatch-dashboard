@@ -355,17 +355,17 @@ function writeToComparison(platformInput, usernameInput) {
                     console.dir(comparisonProfile2);
                     addComparisonData(comparisonProfile2, "2");
                 }
-                else if (Object.entries(comparisonProfile3).length === 0) {
+                else if (Object.entries(comparisonProfile3).length === 0 && platformInput !== "searchFormPlatformMobile") {
                     comparisonProfile3 = data;
                     console.dir(comparisonProfile3);
                     addComparisonData(comparisonProfile3, "3");
                 }
-                else if (Object.entries(comparisonProfile4).length === 0) {
+                else if (Object.entries(comparisonProfile4).length === 0  && platformInput !== "searchFormPlatformMobile") {
                     comparisonProfile4 = data;
                     console.dir(comparisonProfile4);
                     addComparisonData(comparisonProfile4, "4");
                 }
-                else if (Object.entries(comparisonProfile5).length === 0) {
+                else if (Object.entries(comparisonProfile5).length === 0  && platformInput !== "searchFormPlatformMobile") {
                     comparisonProfile5 = data;
                     console.dir(comparisonProfile5);
                     addComparisonData(comparisonProfile5, "5");
