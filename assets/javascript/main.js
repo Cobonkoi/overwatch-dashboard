@@ -89,7 +89,7 @@ function writeToDocument(platformInput, usernameInput) {
                 document.getElementById("errorMessage").innerHTML = "Profile is Private - Please set to public in Overwatch > Social settings";
             }
             else {
-                randomBackground()
+                randomBackground();
                 changeDocumentData();
             }
             hideLoadingScreen();
@@ -117,13 +117,13 @@ function hideLoadingScreen() {
 
 //Chooses a random background from an array for the profilebackground
 function randomBackground() {
-    var profileBackgroundImage = profileImageArray[Math.floor(Math.random() * profileImageArray.length)]
+    var profileBackgroundImage = profileImageArray[Math.floor(Math.random() * profileImageArray.length)];
     var profileBackground = document.createElement('style');
     document.head.appendChild(profileBackground);
     profileBackground.sheet.insertRule(`#profileBackground { background: url("./assets/images/${profileBackgroundImage}") no-repeat center center; -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;`)
+    background-size: cover;`);
 }
 
 //To split out the data from the URL if sent from index
@@ -531,6 +531,7 @@ function addComparisonData(profileData, profileNumber) {
     hideLoadingScreen();
 }
 
+//Changes the data shown in the tables
 function changeComparisonData() {
     if (Object.entries(comparisonProfile1).length !== 0) {
         addComparisonData(comparisonProfile1, "1");
@@ -550,6 +551,7 @@ function changeComparisonData() {
     comparestats();
 }
 
+//Removes profile data and frees up the profile for use again
 function removeProfile(profileData, profileNumber) {
     if (profileNumber === "1") {
         comparisonProfile1 = {};
@@ -606,6 +608,8 @@ function removeProfile(profileData, profileNumber) {
     comparestats();
 }
 
+//Compares each number against that of the same stat. Takes into account N/A's and time stats.
+//Ran out of time to turn this lengthy code into functions for the repeated lines.
 function comparestats() {
     bestArray.forEach(function(statistic) {
 
@@ -682,18 +686,18 @@ function comparestats() {
                 if (parseInt(document.getElementById(`${statistic}${profile}`).innerHTML.replace(':', ''), 10) === maxNumber) {
                     var profileBackground = document.createElement('style');
                     document.head.appendChild(profileBackground);
-                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:green; color:white;`)
+                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:green; color:white;`);
                 }
                 else {
                     var profileBackground = document.createElement('style');
                     document.head.appendChild(profileBackground);
-                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`)
+                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`);
                 }
             }
             else {
                 var profileBackground = document.createElement('style');
                 document.head.appendChild(profileBackground);
-                profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`)
+                profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`);
             }
         });
     });
@@ -772,18 +776,18 @@ function comparestats() {
                 if (parseInt(document.getElementById(`${statistic}${profile}`).innerHTML.replace(':', ''), 10) === maxNumber) {
                     var profileBackground = document.createElement('style');
                     document.head.appendChild(profileBackground);
-                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:green; color:white;`)
+                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:green; color:white;`);
                 }
                 else {
                     var profileBackground = document.createElement('style');
                     document.head.appendChild(profileBackground);
-                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`)
+                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`);
                 }
             }
             else {
                 var profileBackground = document.createElement('style');
                 document.head.appendChild(profileBackground);
-                profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`)
+                profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`);
             }
         });
     });
@@ -863,18 +867,18 @@ function comparestats() {
                 if (parseInt(document.getElementById(`${statistic}${profile}`).innerHTML.replace(':', ''), 10) === maxNumber) {
                     var profileBackground = document.createElement('style');
                     document.head.appendChild(profileBackground);
-                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:green; color:white;`)
+                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:green; color:white;`);
                 }
                 else {
                     var profileBackground = document.createElement('style');
                     document.head.appendChild(profileBackground);
-                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`)
+                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`);
                 }
             }
             else {
                 var profileBackground = document.createElement('style');
                 document.head.appendChild(profileBackground);
-                profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`)
+                profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`);
             }
         });
     });
@@ -954,18 +958,18 @@ function comparestats() {
                 if (parseInt(document.getElementById(`${statistic}${profile}`).innerHTML.replace(':', ''), 10) === maxNumber) {
                     var profileBackground = document.createElement('style');
                     document.head.appendChild(profileBackground);
-                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:green; color:white;`)
+                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:green; color:white;`);
                 }
                 else {
                     var profileBackground = document.createElement('style');
                     document.head.appendChild(profileBackground);
-                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`)
+                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`);
                 }
             }
             else {
                 var profileBackground = document.createElement('style');
                 document.head.appendChild(profileBackground);
-                profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`)
+                profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`);
             }
         });
     });
@@ -1045,18 +1049,18 @@ function comparestats() {
                 if (parseInt(document.getElementById(`${statistic}${profile}`).innerHTML.replace(':', ''), 10) === maxNumber) {
                     var profileBackground = document.createElement('style');
                     document.head.appendChild(profileBackground);
-                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:green; color:white;`)
+                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:green; color:white;`);
                 }
                 else {
                     var profileBackground = document.createElement('style');
                     document.head.appendChild(profileBackground);
-                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`)
+                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`);
                 }
             }
             else {
                 var profileBackground = document.createElement('style');
                 document.head.appendChild(profileBackground);
-                profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`)
+                profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`);
             }
         });
     });
@@ -1136,18 +1140,18 @@ function comparestats() {
                 if (parseInt(document.getElementById(`${statistic}${profile}`).innerHTML.replace(':', ''), 10) === maxNumber) {
                     var profileBackground = document.createElement('style');
                     document.head.appendChild(profileBackground);
-                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:green; color:white;`)
+                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:green; color:white;`);
                 }
                 else {
                     var profileBackground = document.createElement('style');
                     document.head.appendChild(profileBackground);
-                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`)
+                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`);
                 }
             }
             else {
                 var profileBackground = document.createElement('style');
                 document.head.appendChild(profileBackground);
-                profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`)
+                profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`);
             }
         });
     });
@@ -1216,7 +1220,7 @@ function comparestats() {
         let arrayMaxNumber = [profileOne, profileTwo, profileThree, profileFour, profileFive];
 
         let maxNumber = Math.max(...arrayMaxNumber);
-        
+
         profileNumberArray.forEach(function(profile) {
             if (document.getElementById(`${statistic}${profile}`).innerHTML === String(maxNumber)) {
                 var profileBackground = document.createElement('style');
@@ -1227,18 +1231,18 @@ function comparestats() {
                 if (parseInt(document.getElementById(`${statistic}${profile}`).innerHTML.replace(':', ''), 10) === maxNumber) {
                     var profileBackground = document.createElement('style');
                     document.head.appendChild(profileBackground);
-                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:green; color:white;`)
+                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:green; color:white;`);
                 }
                 else {
                     var profileBackground = document.createElement('style');
                     document.head.appendChild(profileBackground);
-                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`)
+                    profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`);
                 }
             }
             else {
                 var profileBackground = document.createElement('style');
                 document.head.appendChild(profileBackground);
-                profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`)
+                profileBackground.sheet.insertRule(`#${statistic}${profile} { background:white; color:black;`);
             }
         });
     });

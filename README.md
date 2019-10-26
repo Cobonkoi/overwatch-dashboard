@@ -46,8 +46,8 @@ This website is for users who want to look at their statistics outside of the ga
 
 Here are the wireframe mockups that I made before starting the project.
 
-You will see some changes on the search page compared to the demo.
-I made the change to the data so that only one set is shown at a time, this change was made due to some feedback from my mentor.
+You will see that there have been some changes from the initial wireframe designs.
+I made these changes during development based on feedback I received when asking people to view my website.
 
 - [Index - Web](wireframes/index-web.png).
 - [Index - Tablet](wireframes/index-tablet.png).
@@ -76,10 +76,19 @@ Clicking the search button will send you to the search page, and show informatio
 
 This page features the same search bar as the index page. If you have come from the index page this will show the information that you searched.
 If you have come from the index page via a search, all of the information on this page will update automatically on load.
+Any errors found when searching will be displayed under the search bar.
 Beneath the search is the profile overview which shows profile picture, username, platform, profile level and endoresment level of the searched profile.
 Beneath the profile overview, are the profiles full statistics.
 This has 2 dropdown menus to change the information that appears in the tables below them.
 The tables are laid out in tabs which can easily be switch between by clicking the titles.
+
+#### Compare
+
+This page features a search bar just like the search/index pages, but instead it adds a profile to the page for comparison.
+Searching using this bar populates the next empty profile on the page. Up to a maximum of 5 profiles on larger screens and 2 on other sizes.
+If you try to add more than the maximum profiles an error will be displayed.
+You can use the clear buttons on this page to remove all of the information from a comparison profile.
+The dropdowns and tabs behave just as they do on the search page.
 
 #### Feature Request/Bug Report
 
@@ -115,15 +124,35 @@ They also feature a form to fill in to either report a bug or request a feature.
     3. Tried to submit the form with an invalid platform for a PC username, confirmed an error message about the profile not being found appears.
     4. Tried to submit the form with an invalid format for PC, confirmed an error message about format appears.
     5. Tried to submit the form with an private profile, confirmed error about profile being private appears.
-    4. Tried to submit the form with all inputs valid and verify it populates dashboard correctly.
+    6. Tried to submit the form with all inputs valid and verify it populates dashboard correctly.
 
-1. Bug Report Form:
+3. Compare Page - Add Profile:
+    1. Went to the "Compare" page
+    2. Tried to submit the empty form and confirmed that an error message appears.
+    3. Tried to submit the form with an invalid platform for a PC username, confirmed an error message about the profile not being found appears.
+    4. Tried to submit the form with an invalid format for PC, confirmed an error message about format appears.
+    5. Tried to submit the form with an private profile, confirmed error about profile being private appears.
+    6. Tried to submit the form with all inputs valid and verify it populates the next free profile slot accurately.
+
+3. Compare Page - Clear Profile:
+    1. Went to the "Compare" page
+    2. Tried to clear an empty profile slot. Nothing happened as expected.
+    3. Added a profile and tried to clear it. All data was removed from dashboard. Added another profile and the empty slot was replaced as expected.
+
+4. Compare Page - Calculating Highest Stat:
+    1. Went to the "Compare" page
+    2. Added a profile to the page. As expected all of it's stats were highlighted as the highest.
+    3. Added a second profile to the page. The highest of each stat was accurately highlighted. If the highest profile changed the old highest value was returned to unhighlighted.
+    4. Changed the dropdowns to alter the data being shown. New highest stats were calculated accurately.
+    5. Removed a profile from the dashboard. New highest stats were calculated accurately.
+
+5. Bug Report Form:
     1. Go to the "Bug Report" page
     2. Tried to submit the empty form and confirmed that an error message about the required fields appears.
     3. Tried to submit the form with an invalid email address and verify that a relevant error message appears
     4. Tried to submit the form with all inputs valid and verify it submits.
 
-1. Feature Request Form:
+6. Feature Request Form:
     1. Go to the "Feature Request" page
     2. Tried to submit the empty form and confirmed that an error message about the required fields appears.
     3. Tried to submit the form with an invalid email address and verify that a relevant error message appears
